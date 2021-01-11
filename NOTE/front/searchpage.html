@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>Note - Search Note</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="./css/font-awesome/css/font-awesome.min.css">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- Responsive Css -->
+    <link rel="stylesheet" href="./css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <section class="navigation white-nav">
+        <div class="nav-box">
+            <div class="container">
+                <nav class="navbar">
+                    <!-- Logo -->
+                    <div class="nav-logo">
+                        <img src="./images/Logos/top-logo-white.png" alt="">
+                    </div>
+                    <!-- Link -->
+                    <div class="nav-menu-link">
+                        <ul class="navbar-nav container">
+                            <!-- Dashboard -->
+                            <li class="nav-item">
+                                <a class="nav-link active" href="searchpage.html">Search Notes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Sell Your Notes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="faq.html">FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contactus.html">Contact Us</a>
+                            </li>
+                            <!-- Logout Btn -->
+                            <li class="nav-item">
+                                <div id="btn-white">
+                                    <a class="btn" href="" title="Logout" role="button">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Mobile Toggle Btn -->
+                    <div class="menu-toggle" id="mobile-menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Head -->
+    <section id="head">
+        <div id="page-head-content">
+            <div class="page-text">
+                <p>Search Notes</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Search and Filter -->
+    <section id="search-filter">
+        <div class="content-box">
+            <div class="container">
+                <!-- Heading -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title">
+                            <p>Search and Filter Notes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-boxes">
+                    <!-- Search -->
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="form-group has-search">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input type="text" class="form-control" placeholder="Search notes here...">
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Filter -->
+                    <div class="row">
+                        <div class="col-lg-2 col-md-4 col-sm-6 fil-item">
+                            <select class="selectpicker">
+                                <option class="muted">Select Type</option>
+                                <option value="">Mustard</option>
+                                <option value="">Ketchup</option>
+                                <option value="">Relish</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 fil-item">
+                            <select class="selectpicker">
+                                <option class="muted">Select Category</option>
+                                <option value="">Mustard</option>
+                                <option value="">Ketchup</option>
+                                <option value="">Relish</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 fil-item">
+                            <select class="selectpicker">
+                                <option class="muted">Select University</option>
+                                <option value="">Mustard</option>
+                                <option value="">Ketchup</option>
+                                <option value="">Relish</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 fil-item">
+                            <select class="selectpicker">
+                                <option class="muted">Select Course</option>
+                                <option value="">Mustard</option>
+                                <option value="">Ketchup</option>
+                                <option value="">Relish</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 fil-item">
+                            <select class="selectpicker">
+                                <option class="muted">Select Country</option>
+                                <option value="">Mustard</option>
+                                <option value="">Ketchup</option>
+                                <option value="">Relish</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 fil-item">
+                            <select class="selectpicker">
+                                <option class="muted">Select Rating</option>
+                                <option value="">Mustard</option>
+                                <option value="">Ketchup</option>
+                                <option value="">Relish</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Notes -->
+    <section id="notes">
+        <div class="container">
+            <!-- Heading -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title">
+                        <p>Totle 18 Notes</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Note Detail -->
+            <div class="card-deck">
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6">
+                        <a class="card card-item" href="notedetail.html">
+                            <img class="card-img-top" src="./images/Search/1.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Computer Operating System - Final Exam Book With Paper Solution</h5>
+                            </div>
+                            <div class="card-footer">
+                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                <p><i class="fa fa-book"></i>204 Pages</p>
+                                <p><i class="fa fa-calendar"></i>Thu, 26 Nov 2020</p>
+                                <p><i class="fa fa-flag-o"></i><span>5 Users marked this note as inappropriate</span></p>
+                                <!-- Note Rating -->
+                                <div class="rate">
+                                    <!-- <span class="fa fa-star-half-o "></span> -->
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <p>100 reviews</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <a class="card card-item">
+                            <img class="card-img-top" src="./images/Search/2.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Computer Science</h5>
+            
+                            </div>
+                            <div class="card-footer">
+                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                <p><i class="fa fa-book"></i>204 Pages</p>
+                                <p><i class="fa fa-calendar"></i>Thu, 26 Nov 2020</p>
+                                <p><i class="fa fa-flag-o"></i><span>5 Users marked this note as inappropriate</span></p>
+                                <!-- Note Rating -->
+                                <div class="rate">
+                                    <!-- <span class="fa fa-star-half-o "></span> -->
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <p>100 reviews</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <a class="card card-item">
+                            <img class="card-img-top" src="./images/Search/3.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Basic Computer Engineering Tech India Publication Series</h5>    
+                                <p></p>
+            
+                            </div>
+                            <div class="card-footer">
+                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                <p><i class="fa fa-book"></i>204 Pages</p>
+                                <p><i class="fa fa-calendar"></i>Thu, 26 Nov 2020</p>
+                                <p><i class="fa fa-flag-o"></i><span>5 Users marked this note as inappropriate</span></p>
+                                <!-- Note Rating -->
+                                <div class="rate">
+                                    <!-- <span class="fa fa-star-half-o "></span> -->
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <p>100 reviews</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <a class="card card-item">
+                            <img class="card-img-top" src="./images/Search/4.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Computer Science illuminated - Seventh Edition</h5>
+            
+                            </div>
+                            <div class="card-footer">
+                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                <p><i class="fa fa-book"></i>204 Pages</p>
+                                <p><i class="fa fa-calendar"></i>Thu, 26 Nov 2020</p>
+                                <p><i class="fa fa-flag-o"></i><span>5 Users marked this note as inappropriate</span></p>
+                                <!-- Note Rating -->
+                                <div class="rate">
+                                    <!-- <span class="fa fa-star-half-o "></span> -->
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <p>100 reviews</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+
+                    <div class="col-lg-4 col-md-6">
+                        <a class="card card-item">
+                            <img class="card-img-top" src="./images/Search/5.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">The Principle of Computer Hardware - Oxford</h5>
+            
+                            </div>
+                            <div class="card-footer">
+                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                <p><i class="fa fa-book"></i>204 Pages</p>
+                                <p><i class="fa fa-calendar"></i>Thu, 26 Nov 2020</p>
+                                <p><i class="fa fa-flag-o"></i><span>5 Users marked this note as inappropriate</span></p>
+                                <!-- Note Rating -->
+                                <div class="rate">
+                                    <!-- <span class="fa fa-star-half-o "></span> -->
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <p>100 reviews</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <a class="card card-item">
+                            <img class="card-img-top" src="./images/Search/6.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">The Computer Book</h5>
+            
+                            </div>
+                            <div class="card-footer">
+                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                <p><i class="fa fa-book"></i>204 Pages</p>
+                                <p><i class="fa fa-calendar"></i>Thu, 26 Nov 2020</p>
+                                <p><i class="fa fa-flag-o"></i><span>5 Users marked this note as inappropriate</span></p>
+                                <!-- Note Rating -->
+                                <div class="rate">
+                                    <!-- <span class="fa fa-star-half-o "></span> -->
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <p>100 reviews</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <a class="card card-item">
+                            <img class="card-img-top" src="./images/Search/3.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Basic Computer Engineering Tech India Publication Series</h5>
+            
+                            </div>
+                            <div class="card-footer">
+                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                <p><i class="fa fa-book"></i>204 Pages</p>
+                                <p><i class="fa fa-calendar"></i>Thu, 26 Nov 2020</p>
+                                <p><i class="fa fa-flag-o"></i><span>5 Users marked this note as inappropriate</span></p>
+                                <!-- Note Rating -->
+                                <div class="rate">
+                                    <!-- <span class="fa fa-star-half-o "></span> -->
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <p>100 reviews</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <a class="card card-item">
+                            <img class="card-img-top" src="./images/Search/2.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Computer Science</h5>
+            
+                            </div>
+                            <div class="card-footer">
+                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                <p><i class="fa fa-book"></i>204 Pages</p>
+                                <p><i class="fa fa-calendar"></i>Thu, 26 Nov 2020</p>
+                                <p><i class="fa fa-flag-o"></i><span>5 Users marked this note as inappropriate</span></p>
+                                <!-- Note Rating -->
+                                <div class="rate">
+                                    <!-- <span class="fa fa-star-half-o "></span> -->
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <p>100 reviews</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <a class="card card-item">
+                            <img class="card-img-top" src="./images/Search/1.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Computer Operating System - Final Exam Book With Paper Solution</h5>
+            
+                            </div>
+                            <div class="card-footer">
+                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                <p><i class="fa fa-book"></i>204 Pages</p>
+                                <p><i class="fa fa-calendar"></i>Thu, 26 Nov 2020</p>
+                                <p><i class="fa fa-flag-o"></i><span>5 Users marked this note as inappropriate</span></p>
+                                <!-- Note Rating -->
+                                <div class="rate">
+                                    <!-- <span class="fa fa-star-half-o "></span> -->
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <p>100 reviews</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                
+                
+            </div>
+        </div>   
+    </section>
+
+
+
+    <!-- Pagination -->
+    <section id="paginations">
+        <div class="content-box">
+            <ul class="pagination justify-content-center align-items-center">
+
+                <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">1<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
+
+            </ul>
+        </div>
+
+    </section>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <!-- Copyright -->
+                <div class="col-md-6 col-sm-8 foot-text text-left">
+                    <p>Copyright &copy; TatvaSoft All Rights Reserved By</p>
+                </div>
+                <!-- Social Icon -->
+                <div class="col-md-6 col-sm-4 foot-icon col-sm-4 text-right">
+                    <ul class="social-list">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <!-- JQuery -->
+    <script src="./js/jquery.js"></script>
+
+    <!-- bootstrap javaScript -->
+    <script src="./js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- javaScript -->
+    <script src="./js/script.js"></script>
+</body>
+
+</html>

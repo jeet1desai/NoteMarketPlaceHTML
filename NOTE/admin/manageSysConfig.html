@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- title -->
+    <title>Note - Manage System Configuration</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="./css/font-awesome/css/font-awesome.min.css">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- Responsive Css -->
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <section class="navigation">
+        <div class="nav-box">
+            <div class="container">
+                <nav class="navbar">
+                    <!-- Logo -->
+                    <div class="nav-logo">
+                        <img src="./images/Logos/top-logo-purple.png" alt="">
+                    </div>
+                    <!-- Link -->
+                    <div class="nav-menu-link">
+                        <ul class="navbar-nav container">
+                            <!-- Dashboard -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="adminDashboard.html">Dashboard</a>
+                            </li>
+                            <!-- Notes -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">Notes</a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="noteUnderReview.html">Notes Under Review</a>
+                                        <a class="dropdown-item" href="publishedNote.html">Published Notes</a>
+                                        <a class="dropdown-item" href="downloadedNote.html">Downloaded Notes</a>
+                                        <a class="dropdown-item" href="rejectedNote.html">Rejected Notes</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Members -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="members.html">Members</a>
+                            </li>
+                            <!-- Reports -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">Reports</a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="spamReports.html">Spam Reports</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Settings -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">Settings</a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item active" href="manageSysConfig.html">Manage System Configuration</a>
+                                        <a class="dropdown-item" href="manageAdmin.html">Manage Administrator</a>
+                                        <a class="dropdown-item" href="manageCategory.html">Manage Category</a>
+                                        <a class="dropdown-item" href="manageType.html">Manage Type</a>
+                                        <a class="dropdown-item" href="manageCountry.html">Manage Countries</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Profile -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">
+                                        <img class="rounded-circle" src="./images/Profile/avatar.png" alt="profile">
+                                    </a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="down-arrow">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Update Profile</a>
+                                        <a class="dropdown-item" href="#">Change Password</a>
+                                        <a class="dropdown-item" href="#"><span>Logout</span> </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Logout Btn -->
+                            <li class="nav-item">
+                                <div id="btn-purple">
+                                    <a class="btn" href="" title="Logout" role="button">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Mobile Toggle Btn -->
+                    <div class="menu-toggle" id="mobile-menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Manage System Configuration -->
+    <section id="msc">
+        <div class="content-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-8 col-sm-12">
+                        <div class="title">
+                            <p>Manage System Configuration</p>
+                        </div>
+
+                        <div class="form-div">
+                            <form action="#">
+                                <div class="form-group">
+                                    <label for="supportemailadd">Support Email Address *</label>
+                                    <input type="text" class="form-control" id="supportemailadd"
+                                        placeholder="Enter Your Support Email Address" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="supportphone">Support Phone No *</label>
+                                    <input type="text" class="form-control" id="supportphone"
+                                        placeholder="Enter Your Support Phone No" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="vemail">Email Address(es) (for various events system will send notifications to these users) *</label>
+                                    <input type="text" class="form-control" id="vemail"
+                                        placeholder="Enter Your Email Address" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fb">Facebook URL</label>
+                                    <input type="text" class="form-control" id="fb"
+                                        placeholder="Enter Your FB URL" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="twitter">Twitter URL</label>
+                                    <input type="text" class="form-control" id="twitter"
+                                        placeholder="Enter Your Twitter URL" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="linkedin">Linkedin URL</label>
+                                    <input type="text" class="form-control" id="linkedin"
+                                        placeholder="Enter Your Linkedin URL" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="upload-notes">Default Image for Notes (is seller do not upload) </label>
+                                    <div class="upload-box">
+                                        <input type="file" class="upload" id="upload-notes" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="upload-notes1">Default Profile Picture (is seller do not upload)</label>
+                                    <div class="upload-box">
+                                        <input type="file" class="upload" id="upload-notes1" />
+                                    </div>
+                                </div>
+
+                                
+                                <div id="btn-purple">
+                                    <a class="btn" href="" title="Submit" role="button">Submit</a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="foot">
+        <hr>
+        <div class="container">
+            <div class="row">
+                <!-- Copyright -->
+                <div class="col-lg-4 col-md-4 col-sm-4 foot-text text-left">
+                    <p>Version : 1.1.1</p>
+                </div>
+                <!-- Social Icon -->
+                <div class="col-lg-8 col-md-8 col-sm-8 foot-text text-right">
+                    <p>Copyright &copy; TatvaSoft All Rights Reserved By</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <!-- JavaScript -->
+    <!-- JQuery -->
+    <script src="./js/jquery.js"></script>
+
+    <!-- bootstrap javaScript -->
+    <script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- javaScript -->
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>

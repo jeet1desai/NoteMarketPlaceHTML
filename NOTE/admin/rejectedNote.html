@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- title -->
+    <title>Note - Rejected Notes</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="./css/font-awesome/css/font-awesome.min.css">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- Responsive Css -->
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <section class="navigation">
+        <div class="nav-box">
+            <div class="container">
+                <nav class="navbar">
+                    <!-- Logo -->
+                    <div class="nav-logo">
+                        <img src="./images/Logos/top-logo-purple.png" alt="">
+                    </div>
+                    <!-- Link -->
+                    <div class="nav-menu-link">
+                        <ul class="navbar-nav container">
+                            <!-- Dashboard -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Dashboard</a>
+                            </li>
+                            <!-- Notes -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">Notes</a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Notes Under Review</a>
+                                        <a class="dropdown-item" href="#">Published Notes</a>
+                                        <a class="dropdown-item" href="#">Downloaded Notes</a>
+                                        <a class="dropdown-item active" href="#">Rejected Notes</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Members -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Members</a>
+                            </li>
+                            <!-- Reports -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">Reports</a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Spam Reports</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Settings -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">Settings</a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Manage System Configuration</a>
+                                        <a class="dropdown-item" href="#">Manage Administrator</a>
+                                        <a class="dropdown-item" href="#">Manage Category</a>
+                                        <a class="dropdown-item" href="#">Manage Type</a>
+                                        <a class="dropdown-item" href="#">Manage Countries</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Profile -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">
+                                        <img class="rounded-circle" src="./images/Profile/avatar.png" alt="">
+                                    </a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Update Profile</a>
+                                        <a class="dropdown-item" href="#">Change Password</a>
+                                        <a class="dropdown-item" href="#"><span>Logout</span> </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Logout Btn -->
+                            <li class="nav-item">
+                                <div id="btn-purple">
+                                    <a class="btn" href="" title="Logout" role="button">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Mobile Toggle Btn -->
+                    <div class="menu-toggle" id="mobile-menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Rejected note Table -->
+    <section id="rejectednote">
+        <div class="content-box-top">
+            <div class="container">
+                <div class="title">
+                    <p>Rejected Notes</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 select-filter">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-8">
+                                <div class="form-group ">
+                                    <label>Seller</label>
+                                    <select class="selectpicker">
+                                        <option class="muted">khyati</option>
+                                        <option value="">abc</option>
+                                        <option value="">abc</option>
+                                        <option value="">abc</option>
+                                        <option value="">abc</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 search-filter">
+                        <div class="search-btn">
+                            <div class="form-group has-search">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <div id="btn-purple">
+                                <a class="btn" href="#" title="search" role="button">search</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table-content table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>SR NO.</th>
+                                <th>NOTE TITLE</th>
+                                <th>CATEGORY</th>
+                                <th>SELLER</th>
+                                <th></th>
+                                <th>DATE EDITED</th>
+                                <th>REJECTED BY</th>
+                                <th>REMARK</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><span>Software Engineer</span></td>
+                                <td>IT</td>
+                                <td>Rahul Shah</td>
+                                <td><img src="./images/Login/eye.png" alt="eye"></td>
+                                <td>09-10-2020, 10:10</td>
+                                <td>Raj Seth</td>
+                                <td>Lorem ipsum dolor sit amet.</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Approve</a>
+                                            <a class="dropdown-item" href="#">View More Details</a>
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                            
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><span>Software Engineer</span></td>
+                                <td>IT</td>
+                                <td>Rahul Shah</td>
+                                <td><img src="./images/Login/eye.png" alt="eye"></td>
+                                <td>09-10-2020, 10:10</td>
+                                <td>Raj Seth</td>
+                                <td>Lorem ipsum dolor sit amet.</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Approve</a>
+                                            <a class="dropdown-item" href="#">View More Details</a>
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                            
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><span>Software Engineer</span></td>
+                                <td>IT</td>
+                                <td>Rahul Shah</td>
+                                <td><img src="./images/Login/eye.png" alt="eye"></td>
+                                <td>09-10-2020, 10:10</td>
+                                <td>Raj Seth</td>
+                                <td>Lorem ipsum dolor sit amet.</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Approve</a>
+                                            <a class="dropdown-item" href="#">View More Details</a>
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                            
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><span>Software Engineer</span></td>
+                                <td>IT</td>
+                                <td>Rahul Shah</td>
+                                <td><img src="./images/Login/eye.png" alt="eye"></td>
+                                <td>09-10-2020, 10:10</td>
+                                <td>Raj Seth</td>
+                                <td>Lorem ipsum dolor sit amet.</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Approve</a>
+                                            <a class="dropdown-item" href="#">View More Details</a>
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                            
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><span>Software Engineer</span></td>
+                                <td>IT</td>
+                                <td>Rahul Shah</td>
+                                <td><img src="./images/Login/eye.png" alt="eye"></td>
+                                <td>09-10-2020, 10:10</td>
+                                <td>Raj Seth</td>
+                                <td>Lorem ipsum dolor sit amet.</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Approve</a>
+                                            <a class="dropdown-item" href="#">View More Details</a>
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                            
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><span>Software Engineer</span></td>
+                                <td>IT</td>
+                                <td>Rahul Shah</td>
+                                <td><img src="./images/Login/eye.png" alt="eye"></td>
+                                <td>09-10-2020, 10:10</td>
+                                <td>Raj Seth</td>
+                                <td>Lorem ipsum dolor sit amet.</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Approve</a>
+                                            <a class="dropdown-item" href="#">View More Details</a>
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                            
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div id="paginations">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">&lt;</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link active" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item"><a class="page-link" href="#">></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="foot">
+        <hr>
+        <div class="container">
+            <div class="row">
+                <!-- Copyright -->
+                <div class="col-lg-4 col-md-4 col-sm-4 foot-text text-left">
+                    <p>Version : 1.1.1</p>
+                </div>
+                <!-- Social Icon -->
+                <div class="col-lg-8 col-md-8 col-sm-8 foot-text text-right">
+                    <p>Copyright &copy; TatvaSoft All Rights Reserved By</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+    <!-- JavaScript -->
+    <!-- JQuery -->
+    <script src="./js/jquery.js"></script>
+
+    <!-- bootstrap javaScript -->
+    <script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- javaScript -->
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>

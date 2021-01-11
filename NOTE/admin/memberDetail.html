@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- title -->
+    <title>Note - Member Detail</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="./css/font-awesome/css/font-awesome.min.css">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- Responsive Css -->
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <section class="navigation">
+        <div class="nav-box">
+            <div class="container">
+                <nav class="navbar">
+                    <!-- Logo -->
+                    <div class="nav-logo">
+                        <img src="./images/Logos/top-logo-purple.png" alt="">
+                    </div>
+                    <!-- Link -->
+                    <div class="nav-menu-link">
+                        <ul class="navbar-nav container">
+                            <!-- Dashboard -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="adminDashboard.html">Dashboard</a>
+                            </li>
+                            <!-- Notes -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">Notes</a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="noteUnderReview.html">Notes Under Review</a>
+                                        <a class="dropdown-item" href="publishedNote.html">Published Notes</a>
+                                        <a class="dropdown-item" href="downloadedNote.html">Downloaded Notes</a>
+                                        <a class="dropdown-item" href="rejectedNote.html">Rejected Notes</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Members -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="members.html">Members</a>
+                            </li>
+                            <!-- Reports -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">Reports</a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="spamReports.html">Spam Reports</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Settings -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">Settings</a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="manageSysConfig.html">Manage System Configuration</a>
+                                        <a class="dropdown-item" href="manageAdmin.html">Manage Administrator</a>
+                                        <a class="dropdown-item" href="manageCategory.html">Manage Category</a>
+                                        <a class="dropdown-item" href="manageType.html">Manage Type</a>
+                                        <a class="dropdown-item" href="manageCountry.html">Manage Countries</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Profile -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">
+                                        <img class="rounded-circle" src="./images/Profile/avatar.png" alt="">
+                                    </a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Update Profile</a>
+                                        <a class="dropdown-item" href="#">Change Password</a>
+                                        <a class="dropdown-item" href="#"><span>Logout</span> </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Logout Btn -->
+                            <li class="nav-item">
+                                <div id="btn-purple">
+                                    <a class="btn" href="" title="Logout" role="button">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Mobile Toggle Btn -->
+                    <div class="menu-toggle" id="mobile-menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Member Detail Top -->
+    <section id="member-top">
+        <div class="content-box">
+            <div class="container">
+
+                <div class="row">
+                    <!-- Heading -->
+                    <div class="col-md-12">
+                        <div class="title-sm">
+                            <p>Member Details</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Member Top -->
+                <div class="row">
+                    <!-- Member Detail Left -->
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12 mem-left">
+                        <div class="row">
+                            <!-- Member Image -->
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                                <div class="note-image">
+                                    <img class="img-fluid" src="./images/Profile/avatar.png" alt="">
+                                </div>
+                            </div>
+                            <!-- Member Detail -->
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-12">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p>First Name:</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p><span>Richard</span></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p>Last Name:</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p><span>Brown</span></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p>Email:</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p><span>abc@gmail.com</span></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p>DOB:</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p><span>01-01-2021</span></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p>Phone No:</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p><span>7894561230</span></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p>Collage/University:</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p><span>University Of California</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member Detail Right -->
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12 mem-right">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p>Address 1:</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p><span>144 Gandhi Road</span></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p>Address 2:</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p><span>Star Colony</span></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p>City:</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p><span>New York</span></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p>State:</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p><span>New York</span></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p>Country:</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p><span>US</span></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p>Zip Code:</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p><span>112266</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- Menber Detail Bottom -->
+    <section id="member-bottom">
+        <div class="content-box-top">
+            <div class="container">
+                <div class="title-sm">
+                    <p>Notes</p>
+                </div>
+
+                <div class="table-content table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>SR NO.</th>
+                                <th>NOTE TITLE</th>
+                                <th>CATEGORY</th>
+                                <th>STATUS</th>
+                                <th class="text-center">DOWNLOADED NOTES</th>
+                                <th class="text-center">TOTAL EARNING</th>
+                                <th>DATE ADDED</th>
+                                <th>PUBLISHED DATE</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><span>Computer Basic</span></td>
+                                <td>IT</td>
+                                <td>Published</td>
+                                <td class="text-center"><span>22</span></td>
+                                <td class="text-center">$133</td>
+                                <td>01-01-2020, 10:10</td>
+                                <td>01-01-2020, 10:10</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><span>Computer Basic</span></td>
+                                <td>IT</td>
+                                <td>InReview</td>
+                                <td class="text-center"><span>22</span></td>
+                                <td class="text-center">$133</td>
+                                <td>01-01-2020, 10:10</td>
+                                <td>01-01-2020, 10:10</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><span>Computer Basic</span></td>
+                                <td>IT</td>
+                                <td>Published</td>
+                                <td class="text-center"><span>22</span></td>
+                                <td class="text-center">$133</td>
+                                <td>01-01-2020, 10:10</td>
+                                <td>01-01-2020, 10:10</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><span>Computer Basic</span></td>
+                                <td>IT</td>
+                                <td>Published</td>
+                                <td class="text-center"><span>22</span></td>
+                                <td class="text-center">$133</td>
+                                <td>01-01-2020, 10:10</td>
+                                <td>01-01-2020, 10:10</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><span>Computer Basic</span></td>
+                                <td>IT</td>
+                                <td>Published</td>
+                                <td class="text-center"><span>22</span></td>
+                                <td class="text-center">$133</td>
+                                <td>01-01-2020, 10:10</td>
+                                <td>01-01-2020, 10:10</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><span>Computer Basic</span></td>
+                                <td>IT</td>
+                                <td>Published</td>
+                                <td class="text-center"><span>22</span></td>
+                                <td class="text-center">$133</td>
+                                <td>01-01-2020, 10:10</td>
+                                <td>01-01-2020, 10:10</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div id="paginations">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">&lt;</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link active" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item"><a class="page-link" href="#">></a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="foot">
+        <hr>
+        <div class="container">
+            <div class="row">
+                <!-- Copyright -->
+                <div class="col-lg-4 col-md-4 col-sm-4 foot-text text-left">
+                    <p>Version : 1.1.1</p>
+                </div>
+                <!-- Social Icon -->
+                <div class="col-lg-8 col-md-8 col-sm-8 foot-text text-right">
+                    <p>Copyright &copy; TatvaSoft All Rights Reserved By</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript -->
+    <!-- JQuery -->
+    <script src="./js/jquery.js"></script>
+
+    <!-- bootstrap javaScript -->
+    <script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- javaScript -->
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>

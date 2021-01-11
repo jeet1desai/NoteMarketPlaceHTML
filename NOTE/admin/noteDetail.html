@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>Note - Note Detail</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="./css/font-awesome/css/font-awesome.min.css">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- Responsive Css -->
+    <link rel="stylesheet" href="./css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <section class="navigation">
+        <div class="nav-box">
+            <div class="container">
+                <nav class="navbar">
+                    <!-- Logo -->
+                    <div class="nav-logo">
+                        <img src="./images/Logos/top-logo-purple.png" alt="">
+                    </div>
+                    <!-- Link -->
+                    <div class="nav-menu-link">
+                        <ul class="navbar-nav container">
+                            <!-- Dashboard -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="adminDashboard.html">Dashboard</a>
+                            </li>
+                            <!-- Notes -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">Notes</a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="noteUnderReview.html">Notes Under Review</a>
+                                        <a class="dropdown-item" href="publishedNote.html">Published Notes</a>
+                                        <a class="dropdown-item" href="downloadedNote.html">Downloaded Notes</a>
+                                        <a class="dropdown-item" href="rejectedNote.html">Rejected Notes</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Members -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="members.html">Members</a>
+                            </li>
+                            <!-- Reports -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">Reports</a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="spamReports.html">Spam Reports</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Settings -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">Settings</a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="manageSysConfig.html">Manage System
+                                            Configuration</a>
+                                        <a class="dropdown-item" href="manageAdmin.html">Manage Administrator</a>
+                                        <a class="dropdown-item" href="manageCategory.html">Manage Category</a>
+                                        <a class="dropdown-item" href="manageType.html">Manage Type</a>
+                                        <a class="dropdown-item" href="manageCountry.html">Manage Countries</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Profile -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">
+                                        <img class="rounded-circle" src="./images/Profile/avatar.png" alt="">
+                                    </a>
+                                    <img class="arrow-down" src="./images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Update Profile</a>
+                                        <a class="dropdown-item" href="#">Change Password</a>
+                                        <a class="dropdown-item" href="#"><span>Logout</span> </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Logout Btn -->
+                            <li class="nav-item">
+                                <div id="btn-purple">
+                                    <a class="btn" href="" title="Logout" role="button">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Mobile Toggle Btn -->
+                    <div class="menu-toggle" id="mobile-menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Note Detail Top -->
+    <section id="note-top">
+        <div class="content-box">
+            <div class="container">
+
+                <div class="row">
+                    <!-- Heading -->
+                    <div class="col-md-12">
+                        <div class="title">
+                            <p>Note Details</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Note -->
+                <div class="row">
+
+                    <!-- Note Detail Left -->
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="row note-header">
+                            <!-- Note Image -->
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-8">
+                                <div class="note-image">
+                                    <img class="img-fluid" src="./images/NoteDetail/1.jpg" alt="">
+                                </div>
+                            </div>
+                            <!-- Note Detail -->
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-12">
+                                <div class="note-detail">
+                                    <h5>Computer Operating System</h5>
+                                    <p>Sciense</p>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, corporis.
+                                        In ad ipsum, eveniet cupiditate quod ipsum, eveniet cupiditatepariatur esse a
+                                        itaque perferendiss
+                                        nesciunt at Perferendis!</p>
+                                    <div id="btn-purple">
+                                        <a class="btn download" href="#" onclick="confirmbtn()" title="Download / $15"
+                                            role="button">Download / $15</a>
+                                    </div>
+
+                                    <!-- Thanks PopUp -->
+                                    <div class="modal fade" id="thanksModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="thanksModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <!-- Close Btn -->
+                                                <div class="modal-header">
+
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <img src="./images/NoteDetail/close.png" alt="">
+                                                    </button>
+                                                </div>
+                                                <!-- Heading -->
+                                                <div class="text-center thank-pop-head">
+                                                    <img src="./images/NoteDetail/SUCCESS.png" alt="">
+                                                    <h5 class="modal-title" id="thanksModalCenterTitle">
+                                                        Thank you for
+                                                        purchasing!</h5>
+                                                </div>
+                                                <!-- popup Txt -->
+                                                <div class="modal-body">
+
+                                                    <p><b>Dear, Smith</b>
+                                                        <br>As this is paid notes - you need to pay
+                                                        to seller Rahil Shah offline.
+                                                        We will send Seller an email that you want to
+                                                        download this note. He may contact you
+                                                        further for payment process completion.
+                                                        <br><br>
+                                                        In case,
+                                                        you have urgency, please contact us on
+                                                        <b>+91 7896541230</b> number.
+                                                        <br><br>
+                                                        Once he receives the payment and
+                                                        acknowledge us - selected notes you can see
+                                                        over
+                                                        my downloads tab for download.
+                                                        <br><br>
+                                                        Have a good day.
+                                                        <br>
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Note Detail Right -->
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="note-info">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-3">
+                                    <p>Institution:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-9 text-right">
+                                    <p>University of California, US</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-4">
+                                    <p>Country:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-8 text-right">
+                                    <p>United State</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>Course Name:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                                    <p>Computer Enginnering</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>Course Code:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                                    <p>123456</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>Prefessor:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                                    <p>MR. Jeet Desai</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-7">
+                                    <p> Number Of Pages:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-5 text-right">
+                                    <p>277</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>Approved Date:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                                    <p>November 25 2020</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-3">
+                                    <p>Rating:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-9 text-right">
+                                    <div class="rate">
+                                        <!-- <span class="fa fa-star-half-o "></span> -->
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <p>100 reviews</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <span>5 Users marked this note as inappropriate</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <hr>
+
+
+    <!-- Note Detail Bottom -->
+    <section id="note-bottom">
+        <div class="content-box">
+            <div class="container">
+                <div class="row">
+                    <!-- Note PDF Preview -->
+                    <div class="col-lg-6 col-md-12 col-sm-12 note-preview">
+                        <div class="title">
+                            <p>Note Preview</p>
+                        </div>
+                        <iframe src="https://research.google.com/pubs/archive/44678.pdf"></iframe>
+                    </div>
+
+                    <!-- Note Customer Review -->
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12 customer-review">
+                        <div class="title">
+                            <p>Customer Review</p>
+                        </div>
+                        <div class="container">
+                            <div class="customers">
+                                <!-- Customer - 01 -->
+                                <div class="row customer">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                                        <img class="img-fluid rounded-circle" src="./images/NoteDetail/avatar.png"
+                                            alt="">
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-9">
+                                        <div class="review-delete">
+                                            <h6>Richard Brown</h6>
+                                            <div class="delete-img">
+                                                <img src="./images/Dashboard/delete.jpeg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="rate">
+                                            <!-- <span class="fa fa-star-half-o "></span> -->
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, magni,
+                                            assumenda delecs enim laborum earum odio commodi impedit repellendus
+                                            facere explicabo!</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!-- Customer - 02 -->
+                                <div class="row customer">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                                        <img class="img-fluid rounded-circle" src="./images/NoteDetail/avatar.png"
+                                            alt="">
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-9">
+                                        <div class="review-delete">
+                                            <h6>Richard Brown</h6>
+                                            <div class="delete-img">
+                                                <img src="./images/Dashboard/delete.jpeg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="rate">
+                                            <!-- <span class="fa fa-star-half-o "></span> -->
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, magni,
+                                            assumenda delectus enim laborum earum odio commodi impedit repellendus
+                                            facere explicabo!</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!-- Customer - 03 -->
+                                <div class="row customer">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                                        <img class="img-fluid rounded-circle" src="./images/NoteDetail/avatar.png"
+                                            alt="">
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-9">
+                                        <div class="review-delete">
+                                            <h6>Richard Brown</h6>
+                                            <div class="delete-img">
+                                                <img src="./images/Dashboard/delete.jpeg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="rate">
+                                            <!-- <span class="fa fa-star-half-o "></span> -->
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, magni,
+                                            assumenda delectus enim laborum earum odio commodi impedit repellendus
+                                            facere explicabo!</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="foot">
+        <hr>
+        <div class="container">
+            <div class="row">
+                <!-- Copyright -->
+                <div class="col-lg-4 col-md-4 col-sm-4 foot-text text-left">
+                    <p>Version : 1.1.1</p>
+                </div>
+                <!-- Social Icon -->
+                <div class="col-lg-8 col-md-8 col-sm-8 foot-text text-right">
+                    <p>Copyright &copy; TatvaSoft All Rights Reserved By</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript -->
+    <!-- JQuery -->
+    <script src="./js/jquery.js"></script>
+
+    <!-- bootstrap javaScript -->
+    <script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- javaScript -->
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>

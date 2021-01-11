@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- title -->
+    <title>Note - Login</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="./css/font-awesome/css/font-awesome.min.css">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- Responsive Css -->
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+
+<body>
+
+    <section id="login">
+        <div class="box">
+            <div class="logo">
+                <div class="text-center">
+                    <img src="./images/Login/top-logo.png" alt="">
+                </div>
+            </div>
+            <div class="form-content">
+                <div class="login-heading">
+                    <h3 class="text-center">Login</h3>
+                    <p class="text-center">Enter your details to LogIn</p>
+                </div>
+
+                <form id="login-form" class="form" action="#" method="post">
+
+                    <!-- email -->
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email *</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1"
+                            placeholder="Enter your email" required>
+                    </div>
+                    <!-- password -->
+                    <div class="form-group">
+                        <div class="pass-and-forgpass">
+                            <label for="password" class="text-left">Password *</label>
+                            <a href="#" class="text-right">Forgot Password ?</a>
+                        </div>
+                        <div class="password-input">
+                            <input id="password" type="password" class="form-control" name="password"
+                                placeholder="Enter your Password" required>
+                            <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <small id="passwordHelpBlock" class="form-text">
+                            The password that you've entered is incorrect
+                        </small>
+                    </div>
+                    <!-- remember me -->
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1"> Remember Me</label>
+                    </div>
+                    <!-- login btn -->
+                    <button type="button" class="btn login-btn">Login</button>
+                    <!-- signup -->
+                    <p class="text-center sign-up-text">Don't have an account? <a href="signup.html">Sign Up</a>
+                    </p>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- JavaScript -->
+    <!-- JQuery -->
+    <script src="./js/jquery.js"></script>
+
+    <!-- bootstrap javaScript -->
+    <script src="./js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- javaScript -->
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>

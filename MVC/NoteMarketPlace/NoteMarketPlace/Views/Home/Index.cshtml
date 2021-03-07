@@ -1,0 +1,190 @@
+﻿
+@{
+    ViewBag.Title = "Note - Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Head -->
+<section id="head">
+    <div id="head-content">
+        <div class="container">
+            <div class="row">
+                <div id="head-content-inner" class="col-md-6">
+                    <div id="head-heading">
+                        <p>Download Free/Paid Notes <br> or Sale your Book</p>
+                    </div>
+                    <div id="head-text">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur <br> distinctio magni! Excepturi adipisicing elit.</p>
+                    </div>
+                    <div id="head-button">
+                        <a class="btn btn-head" href="#" title="Learn More" role="button">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- About -->
+<section id="about">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+                <!-- Left -->
+                <div class="col-md-4">
+                    <div id="about-left">
+                        <div id="home-heading">
+                            <h3>About <br>NoteMarketPlace</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right -->
+                <div class="col-md-8">
+                    <div id="about-right">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore, modi minima vitae fugit magnam amet voluptatum corrupti quo inventore, quam alias voluptas et voluptates autem itaque tempore perspiciatis! Nisi nulla esse qui exercitationem vitae corrupti delectus quo inventore numquam nesciunt architecto!</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime asperiores repellat, architecto consequatur animi exercitationem ab commodi. Sunt consequatur animi rerum tempora officia iure cupiditate vitae magnam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Work -->
+<section id="work">
+    <div class="content-box">
+        <div class="container">
+            <!-- Heading -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div id="home-heading">
+                        <h3>How it Works</h3>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Download -->
+                <div class="col-md-6">
+                    <div class="work-item text-center">
+                        <div class="work-image">
+                            <img class="img-fluid" src="~/images/Homepage/download.png" alt="download">
+                        </div>
+                        <h5>Download Free/Paid Notes</h5>
+                        <p>Get Material for your <br>Course etc.</p>
+                        <div id="btn-purple">
+                            <a class="btn btn-home" href="@Url.Action("Index","SearchNote")" title="Download" role="button">Download</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Seller -->
+                <div class="col-md-6">
+                    <div class="work-item text-center">
+                        <div class="work-image">
+                            <img class="img-fluid" src="~/images/Homepage/sell-notes.jpeg" alt="download">
+                        </div>
+                        <h5>Seller</h5>
+                        <p>Upload and Download Course <br>and Material etc.</p>
+                        <div id="btn-purple">
+                            <a class="btn btn-home" href="@Url.Action("Index","SellNote")" title="Sell Book" role="button">Sell Book</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Testimonails -->
+<section id="testimonials">
+    <div class="content-box">
+        <div class="container">
+            <!-- Heading -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div id="home-heading">
+                        <h3>What our Customers are Saying</h3>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Testimonial - 01 -->
+                    <div class="testimonial">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                                <img src="~/images/Homepage/avatar.png" alt="">
+                            </div>
+                            <div class="col-md-9 col-sm-9">
+                                <div class="test-name-desc">
+                                    <h5>Walter Meller</h5>
+                                    <p>Founder & CEO, Matrix Group</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt accusamus molla odio toanditiis, iure moleas asperiores elit consectetur unde in deserunt."</p>
+                    </div>
+                </div>
+                <div class="col-md-6 ">
+                    <!-- Testimonial - 02 -->
+                    <div class="testimonial">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                                <img src="~/images/Homepage/avatar.png" alt="">
+                            </div>
+                            <div class="col-md-9 col-sm-9">
+                                <div class="test-name-desc">
+                                    <h5>Jonnie Riley</h5>
+                                    <p>Employee, Curious Snakcs</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt accusamus molla odio toanditiis, iure moleas asperiores elit consectetur unde in deserunt."</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- Testimonial - 03 -->
+                    <div class="testimonial">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                                <img src="~/images/Homepage/avatar.png" alt="">
+                            </div>
+                            <div class="col-md-9 col-sm-9">
+                                <div class="test-name-desc">
+                                    <h5>Amilia Luna</h5>
+                                    <p>Teacher, Saint joseph High School</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt accusamus molla odio toanditiis, iure moleas asperiores elit consectetur unde in deserunt."</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- Testimonial - 04 -->
+                    <div class="testimonial">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                                <img src="~/images/Homepage/avatar.png" alt="">
+                            </div>
+                            <div class="col-md-9 col-sm-9">
+                                <div class="test-name-desc">
+                                    <h5>Danial Cardos</h5>
+                                    <p>Software engineer, Infinitum Company</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt accusamus molla odio toanditiis, iure moleas asperiores elit consectetur unde in deserunt."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

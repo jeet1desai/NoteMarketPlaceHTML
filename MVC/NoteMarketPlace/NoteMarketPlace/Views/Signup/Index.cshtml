@@ -1,0 +1,122 @@
+﻿
+@model NoteMarketPlace.Models.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- title -->
+    <title>Note - SignUp</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.min.css">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="~/Content/style.css">
+
+    <!-- Responsive Css -->
+    <link rel="stylesheet" href="~/Content/responsive.css">
+</head>
+
+<body>
+
+
+    <!-- Sign up Box -->
+    <section id="signup">
+        <div class="box">
+            <div class="logo">
+                <div class="text-center">
+                    <img src="./images/Login/top-logo.png" alt="">
+                </div>
+            </div>
+            <div class="form-content">
+                <div class="signup-heading">
+                    <h3 class="text-center">Create an Account</h3>
+                    <p class="text-center">Enter your details to Signup</p>
+                </div>
+
+                @using (Html.BeginForm("Index", "Signup", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    if (ViewBag.Status == 1)
+                    {
+                        <p class="text-center success"><i class="fa fa-check-circle" aria-hidden="true"></i> Your Account has been Successfully Created</p>
+                        <p class="text-center fail">Please Verify Email, send link in your email id</p>
+                    }
+
+                    <div class="form-group">
+                        <label for="FirstName">First Name *</label>
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", id = "FirstName", placeholder = "Enter your first name", required = "required" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="LastName">Last Name *</label>
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", id = "LastName", placeholder = "Enter your last name", required = "required" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Email">Email *</label>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "Email", placeholder = "Enter your email address", type = "email", required = "required" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Password">Password *</label>
+                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", id = "Password", placeholder = "Enter your password", type = "password", required = "required" })
+                        <span toggle="#Password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ConfirmPassword">Confirm Password *</label>
+                        @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "form-control", id = "ConfirmPassword", placeholder = "Enter your password", type = "password", required = "required" })
+                        <span toggle="#ConfirmPassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                        
+                    </div>
+
+                    <button type="submit" class="btn signup-btn">Sign Up</button>
+
+                    <!-- signup -->
+                    <p class="text-center sign-up-text">
+                        Already have an Account? <a href="@Url.Action("Index","Login")">Login</a>
+                    </p>
+                }
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+    <!-- JavaScript -->
+    <!-- JQuery -->
+    <script src="~/Scripts/jquery.js"></script>
+
+    <!-- bootstrap javaScript -->
+    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+
+    <!-- javaScript -->
+    <script src="~/Scripts/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,348 @@
+﻿@model NoteMarketPlace.Models.NoteDetailsModel
+@{
+    ViewBag.Title = "Note - Note Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Note Detail Top -->
+<section id="note-top">
+    <div class="content-box">
+        <div class="container">
+
+            <div class="row">
+                <!-- Heading -->
+                <div class="col-md-12">
+                    <div class="title">
+                        <p>Note Details</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note -->
+            <div class="row">
+                <!-- Note Detail Left -->
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="row note-header">
+                        <!-- Note Image -->
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="note-image">
+                                <img class="img-fluid" src="@Url.Content(Model.sellerNote.DisplayPicture)" />
+                            </div>
+                        </div>
+                        <!-- Note Detail -->
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-12">
+                            <div class="note-detail">
+                                <h5>@Model.sellerNote.Title</h5>
+                                <p>@Model.sellerNote.NoteCategory.Name</p>
+                                <p>@Model.sellerNote.Description</p>
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+
+                                    if (Model.sellerNote.IsPaid)
+                                    {
+                                        if (Model.DisableBtn)
+                                        {
+                                            <button type="button" class="btn btn-purples" disabled>
+                                                Download / $ @Model.sellerNote.SellingPrice
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" class="btn btn-purples" data-toggle="modal" data-target="#exampleModal">
+                                                Download / $ @Model.sellerNote.SellingPrice
+                                            </button>
+                                        }
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <img src="~/images/NotesDetails/close.png" alt="">
+                                                        </button>
+                                                    </div>
+                                                    <div class="text-center thank-pop-head">
+                                                        <h5 class="modal-title" id="thanksModalCenterTitle">
+                                                            Please confirm
+                                                        </h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to download this Paid note ???
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+                                                        <div id="btn-purple">
+                                                            <a class="btn download" href="@Url.Action("DownloadNote", "SearchNote", new { noteId = Model.sellerNote.ID })" role="button">
+                                                                Yes
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModal1Label" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <img src="~/images/NotesDetails/close.png" alt="">
+                                                        </button>
+                                                    </div>
+                                                    <div class="text-center thank-pop-head">
+                                                        <img src="~/images/NotesDetails/SUCCESS.png" alt="">
+                                                        <h5 class="modal-title" id="thanksModalCenterTitle">
+                                                            Thank you for
+                                                            purchasing!
+                                                        </h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>
+                                                            <b>Dear, Smith</b>
+                                                            <br>As this is paid notes - you need to pay
+                                                            to seller Rahil Shah offline.
+                                                            We will send Seller an email that you want to
+                                                            download this note. He may contact you
+                                                            further for payment process completion.
+                                                            <br><br>
+                                                            In case,
+                                                            you have urgency, please contact us on
+                                                            <b>+91 7896541230</b> number.
+                                                            <br><br>
+                                                            Once he receives the payment and
+                                                            acknowledge us - selected notes you can see
+                                                            over
+                                                            my downloads tab for download.
+                                                            <br><br>
+                                                            Have a good day.
+                                                            <br>
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    }
+                                    else
+                                    {
+                                        <div id="btn-purple">
+                                            <a class="btn download" href="@Url.Action("DownloadNote", "SearchNote", new { noteId = Model.sellerNote.ID })" role="button">
+                                                Download / $ @Model.sellerNote.SellingPrice
+                                            </a>
+                                        </div>
+                                    }
+
+                                }
+                                else
+                                {
+                                    <div id="btn-purple">
+                                        <a class="btn download" href="@Url.Action("Index", "Login")" title="Download / $0" role="button">
+                                            Download / $ @Model.sellerNote.SellingPrice
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Note Detail Right -->
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="note-info">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-3">
+                                <p>Institution:</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-9 text-right">
+                                <p>@Model.sellerNote.UniversityName</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-4">
+                                <p>Country:</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-8 text-right">
+                                <p>@Model.sellerNote.Country1.Name</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-5">
+                                <p>Course Name:</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-7 text-right">
+                                <p>@Model.sellerNote.Course</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-5">
+                                <p>Course Code:</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-7 text-right">
+                                <p>@Model.sellerNote.CourseCode</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                <p>Prefessor:</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                                <p>@Model.sellerNote.Professor</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-7">
+                                <p> Number Of Pages:</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-5 text-right">
+                                <p>@Model.sellerNote.NumberofPages</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                <p>Approved Date:</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                                <p>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.sellerNote.ModifiedDate))</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-3">
+                                <p>Rating:</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-9 text-right">
+                                <div class="rate">
+                                    <!-- <span class="fa fa-star-half-o "></span> -->
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <p>100 reviews</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <span>5 Users marked this note as inappropriate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<hr>
+
+
+<!-- Note Detail Bottom -->
+<section id="note-bottom">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+                <!-- Note PDF Preview -->
+                <div class="col-lg-6 col-md-12 col-sm-12 note-preview">
+                    <div class="title">
+                        <p>Note Preview</p>
+                    </div>
+
+                    <iframe src="@Url.Content(Model.sellerNote.NotesPreview)"></iframe>
+
+
+                </div>
+
+                <!-- Note Customer Review -->
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12 customer-review">
+                    <div class="title">
+                        <p>Customer Review</p>
+                    </div>
+                    <div class="container">
+                        <div class="customers">
+                            <!-- Customer - 01 -->
+                            <div class="row customer">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                                    <img class="img-fluid rounded-circle" src="~/images/NotesDetails/avatar.png"
+                                         alt="">
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-9">
+                                    <h6>Richard Brown</h6>
+                                    <div class="rate">
+                                        <!-- <span class="fa fa-star-half-o "></span> -->
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, magni,
+                                        assumenda delecs enim laborum earum odio commodi impedit repellendus
+                                        facere explicabo!
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- Customer - 02 -->
+                            <div class="row customer">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                                    <img class="img-fluid rounded-circle" src="~/images/NotesDetails/avatar.png"
+                                         alt="">
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-9">
+                                    <h6>Richard Brown</h6>
+                                    <div class="rate">
+                                        <!-- <span class="fa fa-star-half-o "></span> -->
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, magni,
+                                        assumenda delectus enim laborum earum odio commodi impedit repellendus
+                                        facere explicabo!
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- Customer - 03 -->
+                            <div class="row customer">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                                    <img class="img-fluid rounded-circle" src="~/images/NotesDetails/avatar.png"
+                                         alt="">
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-9">
+                                    <h6>Richard Brown</h6>
+                                    <div class="rate">
+                                        <!-- <span class="fa fa-star-half-o "></span> -->
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, magni,
+                                        assumenda delectus enim laborum earum odio commodi impedit repellendus
+                                        facere explicabo!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function fun1() {
+        $(document).ready(function () {
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        });
+    }
+</script>
+
+@*data-dismiss="modal" data-toggle="modal" data-target="#exampleModal1"*@

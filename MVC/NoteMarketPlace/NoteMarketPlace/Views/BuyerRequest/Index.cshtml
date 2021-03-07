@@ -1,0 +1,159 @@
+﻿@model IEnumerable<NoteMarketPlace.Models.BuyerRequestModel>
+@{
+    ViewBag.Title = "Note - Buyer Request";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Buyer Request -->
+<section id="buyer-request">
+    <div class="content-box">
+        <div class="container">
+
+
+            <div class="heading">
+                <div class="row">
+                    <!-- Heading -->
+                    <div class="col-lg-8 col-md-7 col-sm-6">
+                        <div class="title">
+                            <p>Buyer Request</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-5 col-sm-6 text-right">
+                        <div class="search-in-tab">
+                            @using (Html.BeginForm("Index", "BuyerRequest", FormMethod.Get))
+                            {
+                                <div class="form-group has-search">
+                                    <span class="fa fa-search form-control-feedback"></span>
+                                    <input type="text" name="search" class="form-control" placeholder="Search">
+                                </div>
+                                <div id="btn-purple">
+                                    <button type="submit" class="btn">Search</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!-- Table -->
+            <div class="table-content table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">SR NO</th>
+                            <th scope="col">@Html.ActionLink("NOTE TITLE", "Index", new { sortOrder = ViewBag.TitleSortParm, search = Request.QueryString["search"], brpage = Request.QueryString["brpage"] })</th>
+                            <th scope="col">@Html.ActionLink("CATEGORY", "Index", new { sortOrder = ViewBag.CategorySortParm, search = Request.QueryString["search"], brpage = Request.QueryString["brpage"] })</th>
+                            <th scope="col">@Html.ActionLink("BUYER", "Index", new { sortOrder = ViewBag.BEmailSortParm, search = Request.QueryString["search"], brpage = Request.QueryString["brpage"] })</th>
+                            <th scope="col">@Html.ActionLink("PHONE NO", "Index", new { sortOrder = ViewBag.PhoneSortParm, search = Request.QueryString["search"], brpage = Request.QueryString["brpage"] })</th>
+                            <th scope="col">SELL TYPE</th>
+                            <th scope="col">@Html.ActionLink("PRICE", "Index", new { sortOrder = ViewBag.PriceSortParm, search = Request.QueryString["search"], brpage = Request.QueryString["brpage"] })</th>
+                            <th scope="col">@Html.ActionLink("DOWNLOADED DATE/TIME", "Index", new { sortOrder = ViewBag.DateSortParm, search = Request.QueryString["search"], brpage = Request.QueryString["brpage"] })</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{
+                            int no = (ViewBag.srno - 1) * 5 + 1;
+                        }
+                        @if (Model.Count() == 0)
+                        {
+                            <tr>
+                                <td colspan="9" class="text-center">No Record Found</td>
+                            </tr>
+                        }
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@no</td>
+                                <td><span>@item.Downloadstbl.NoteTitle</span></td>
+                                <td>@item.Downloadstbl.NoteCategory</td>
+                                <td>@item.Userstbl.Email</td>
+                                <td>+@item.UserProfiletbl.PhoneNumberCountryCode@item.UserProfiletbl.PhoneNumber</td>
+                                @if (item.Downloadstbl.IsPaid == true)
+                                {
+                                    <td>paid</td>
+                                    <td>@item.Downloadstbl.PurchasedPrice</td>
+                                }
+                                else
+                                {
+                                    <td>Free</td>
+                                    <td>$0</td>
+                                }
+                                <td>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.Downloadstbl.CreatedDate))</td>
+                                <td>
+                                    <!-- Dropdown -->
+                                    <div class="dropdown dropleft table-img">
+                                        <a href="@Url.Action("NoteDetail", "SearchNote", new { id = item.Downloadstbl.NoteID})"><img src="~/images/Dashboard/eye.png" alt="eye"></a>
+                                        <img src="~/images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="@Url.Action("PaymentRecieve", "BuyerRequest", new { id = item.Downloadstbl.ID})">Yes, I Received</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            no++;
+                        }
+
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item">
+                        @if (ViewBag.PageNumber == 1)
+                        {
+                            <a class="page-link" href="@Url.Action("Index", new { brpage = @ViewBag.PageNumber, search = Request.QueryString["search"], sortOrder = Request.QueryString["sortOrder"] })"><i class="fa fa-angle-left"></i></a>
+                        }
+                        else
+                        {
+                            <a class="page-link" href="@Url.Action("Index", new { brpage = @ViewBag.PageNumber - 1, search = Request.QueryString["search"], sortOrder = Request.QueryString["sortOrder"] })"><i class="fa fa-angle-left"></i></a>
+                        }
+                    </li>
+
+                    @{
+                        double TotalPagesBuyerRequest = ViewBag.TotalBuyerRequestPage;
+                        for (int i = 1; i <= TotalPagesBuyerRequest; i++)
+                        {
+                            if (i == ViewBag.PageNumber)
+                            {
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">@i<span class="sr-only">(current)</span></a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">@Html.ActionLink(i.ToString(), "Index", new { brpage = i, search = Request.QueryString["search"], sortOrder = Request.QueryString["sortOrder"] }, new { @class = "page-link" })</li>
+                            }
+                        }
+                    }
+
+                    <li class="page-item">
+                        @if (ViewBag.PageNumber == TotalPagesBuyerRequest)
+                        {
+                            <a class="page-link" href="@Url.Action("Index", new {brpage = @ViewBag.PageNumber, search = Request.QueryString["search"], sortOrder = Request.QueryString["sortOrder"]  })"><i class="fa fa-angle-right"></i></a>
+                        }
+                        else
+                        {
+                            <a class="page-link" href="@Url.Action("Index", new {  brpage = @ViewBag.PageNumber + 1, search = Request.QueryString["search"], sortOrder = Request.QueryString["sortOrder"] })"><i class="fa fa-angle-right"></i></a>
+                        }
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</section>
+
+
+

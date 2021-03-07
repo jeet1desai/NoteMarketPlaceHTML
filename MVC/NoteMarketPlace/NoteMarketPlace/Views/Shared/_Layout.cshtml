@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- meta-data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.min.css">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="~/Content/style.css">
+
+    <!-- Responsive Css -->
+    <link rel="stylesheet" href="~/Content/responsive.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <section class="navigation @ViewBag.Class">
+        <div class="nav-box">
+            <div class="container">
+                <nav class="navbar">
+                    <!-- Logo -->
+                    <div class="nav-logo">
+                        <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("/Content/images/Logos/top-logo-white.png")" alt="logo"></a>
+                    </div>
+
+                    <!-- Link -->
+                    <div class="nav-menu-link">
+                        <ul class="navbar-nav container">
+                            <!-- Dashboard -->
+                            <li class="nav-item">
+                                <a class="nav-link @ViewBag.SN" href="@Url.Action("Index","SearchNote")">Search Notes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @ViewBag.SellNote" href="@Url.Action("Index","SellNote")">Sell Your Notes</a>
+                            </li>
+
+                            @if (Session["ID"] != null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @ViewBag.BuyReq" href="@Url.Action("Index","BuyerRequest")">Buyer Requests</a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link @ViewBag.FAQ" href="@Url.Action("Index","FAQ")">FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @ViewBag.ContactUs" href="@Url.Action("Index","Contactus")">Contact Us</a>
+                            </li>
+
+                            @if (Session["ID"] != null)
+                            {
+                                <li class="nav-item">
+                                    <div class="dropdown">
+                                        <a class="nav-link" data-toggle="dropdown" href="#">
+                                            <img class="rounded-circle" src="~/images/NotesDetails/avatar.png" alt="">
+                                        </a>
+                                        <img class="arrow-down" src="~/images/Dashboard/down-arrow.png" alt="">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">My Profile</a>
+                                            <a class="dropdown-item" href="mydownloads.html">My Downloads</a>
+                                            <a class="dropdown-item" href="mysold_note.html">My Sold Notes</a>
+                                            <a class="dropdown-item" href="myrejected_note.html">My Rejected Notes</a>
+                                            <a class="dropdown-item" href="change_password.html">Change Password</a>
+                                            <a class="dropdown-item" href="@Url.Action("Logout","Login")"><span>Logout</span> </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- Logout Btn -->
+                                <li class="nav-item">
+                                    <div id="btn-white">
+                                        <a class="btn" href="@Url.Action("Logout","Login")" role="button">Logout</a>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <!-- Login Btn -->
+                                <li class="nav-item">
+                                    <div id="btn-white">
+                                        <a class="btn" href="@Url.Action("Index","Login")" role="button">Login</a>
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                    <!-- Mobile Toggle Btn -->
+                    <div class="menu-toggle" id="mobile-menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+
+    @RenderBody()
+
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <!-- Copyright -->
+                <div class="col-md-6 col-sm-8 foot-text text-left">
+                    <p>Copyright &copy; TatvaSoft All Rights Reserved By</p>
+                </div>
+                <!-- Social Icon -->
+                <div class="col-md-6 col-sm-4 foot-icon col-sm-4 text-right">
+                    <ul class="social-list">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- JavaScript -->
+    <!-- JQuery -->
+    <script src="~/Scripts/jquery.js"></script>
+
+
+    <script src="~/Scripts/popper.min.js"></script>
+
+    <!-- bootstrap javaScript -->
+    <script src="~/Scripts/bootstrap/bootstrap.bundle.min.js"></script>
+
+
+    <!-- javaScript -->
+    <script src="~/Scripts/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1078 @@
+
+/* ===============================================================================
+                        Responsive BootStrap 4
+================================================================================== */
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px){
+    .table {
+        width: 200%
+    }
+    /* ========================================
+                Navigation
+    ======================================== */
+    .menu-toggle, .bar {
+        display: block;
+    }
+    .navbar-nav.container {
+        padding-top: 6px;
+        position: fixed;
+        background-color: white;
+        right: 0px;
+        left: 0px;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: start;
+        align-items: end;
+    }
+    .nav-menu-link {
+        transition: all 0.8s;
+        position: fixed;
+        top: 80px;
+        right: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        transform: translate(-101%);
+        -webkit-transform: translate(-101%);
+        -moz-transform: translate(-101%);
+        -ms-transform: translate(-101%);
+        -o-transform: translate(-101%);
+        -webkit-transition: all 0.8s;
+        -moz-transition: all 0.8s;
+        -ms-transition: all 0.8s;
+        -o-transition: all 0.8s;
+}
+    .navbar-nav .nav-item {
+        width: 100%;
+    }
+    .navbar-nav .nav-link {
+        color: #333333;
+        border-bottom: 1px solid #d1d1d1;
+    }
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover {
+        color: #6255a5;
+        border-bottom: 2px solid #6255a5;
+    }
+    .nav-item #btn-white a{
+        margin-top: 10px;
+        background-color: #6255a5;
+        color: white;
+    }
+    .nav-item .arrow-down {
+        width: 18px;
+        display: block;
+        position: absolute;
+        top: 14px;
+        right: 20px;
+    }
+    .navbar-nav .dropdown-menu {
+        width: 100%;
+        /* display: block; */
+        position: inherit;
+    }
+    .mobile-nav {
+        transform: translate(0%)!important;
+    }
+    .dropdown-menu {
+        padding: 0;
+        border: 0;
+    }
+    .dropdown-item {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #d1d1d1;
+    }
+    .table .dropdown-menu{
+        border: 1px solid #d1d1d1;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .table .dropdown-item{
+        border-bottom: 0px;
+    }
+
+    /* ========================================
+                Home Page
+    ======================================== */
+    /* heading */
+    #home-heading h3{
+        text-align: center;
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 25px;
+    }
+
+    /* head */
+    #head-content{
+        height: 520px;
+    }
+
+    #head-heading p{
+        font-size: 18px;
+        line-height: 25px;
+    }
+
+    #head-text p{
+        font-size: 8px;
+        line-height: 10px;
+    }
+
+    #head-button .btn-head{
+        width: 100px;
+        font-size: 8px;
+        padding: 0px;
+    }
+
+    /* about */
+    #about #about-right p{
+        font-size: 14px;
+    }
+
+    /* work */
+    .work-image{
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+    }
+
+    .work-item h5{
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .work-item p{
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+
+    #work-button .btn-work{
+        width: 130px;
+        font-size: 14px;
+    }
+
+    .work-item{
+        padding-bottom: 30px;
+    }
+
+    /* testimonial */
+    .testimonial img{
+        width: 50px;
+        height: 50px;
+    }
+
+    .testimonial .test-name-desc {
+        margin-top: 2px;
+    }
+
+    .test-name-desc h5{
+        font-size: 16px;
+        line-height: 20px;
+        padding-bottom: 2px;
+    }
+
+    .test-name-desc p{
+        font-size: 10px;
+        line-height: 12px;
+    }
+
+    .testimonial .col-md-3{
+        width: 25%;
+    }
+
+    .testimonial .col-md-9{
+        width: 75%;
+    }
+
+    /* about */
+    #about-right p{
+        text-align: center;
+    }
+
+    /* ========================================
+                Footer
+    ======================================== */
+    .foot-text p{
+        text-align: center;
+        font-size: 10px;
+    }
+
+    .foot-icon ul{
+        text-align: center;
+    }
+
+    ul.social-list li a{
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+    }
+
+
+    /* ========================================
+                Search Page
+    ======================================== */
+    .page-text{
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .title{
+        font-size: 20px;
+    }
+
+    .fil-item{
+        margin-bottom: 20px;
+        padding: 0px 15px;
+    }
+
+    .card-item .card-title{
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .card-item p{
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .pagination li{
+        font-size: 14px;
+    }
+
+
+    /* ========================================
+                Note Detail
+    ======================================== */
+    /* heading */
+    .title{
+        text-align: center;
+        font-size: 25px;
+    }
+
+    /* note top left */
+    .note-header{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .note-image img{
+        width: 60%;
+        padding-bottom: 15px;
+    }
+
+    .note-detail h5{
+        font-size: 18px;
+    }
+
+    .note-detail p{
+        font-size: 14px;
+    }
+
+    .note-info span{
+        font-size: 14px;
+    }
+
+    /* note bottom customer review */
+    .customer-review{
+        margin-top: 20px;
+    }
+
+    .customer .rate{
+        font-size: 12px;
+    }
+
+    .customers .customer h6{
+        font-size: 15px;
+    }
+
+    .customer .col-9{
+        padding: 0;
+    }
+
+    .customer p{
+        font-size: 10px;
+        line-height: 14px;
+    }
+
+    /* ========================================
+                FAQ
+    ======================================== */
+    #head .page-text{
+        text-align: center;
+    }
+    .collapsible{
+        font-size: 14px;
+    }
+
+    .content {
+        font-size: 14px;
+    }
+
+
+    /* ========================================
+                Dashboard
+    ======================================== */
+    .heading{
+        margin-bottom: 10px;
+    }
+
+    #dashboard .content-box,
+    #in-progress .content-box{
+        padding-bottom: 0px;
+    }
+
+    .stats-content{
+        height: 125px;
+        padding: 35px 0px;
+        margin-bottom: 20px;
+    }
+
+    .earning .stats-content{
+        margin-right: 15px;
+    }
+
+    .note-sold .stats-content{
+        margin-left: 15px;
+        border-left: 1px solid #d1d1d1;
+    }
+
+    .stats-content h6{
+        font-size: 22px;
+    }
+    
+    .stats-content h4{
+        font-size: 20px;
+    }
+
+    .heading #btn-purple{
+        text-align: center;
+    }
+
+    #in-progress .title-sm p,
+    #published-notes .title-sm p{
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #in-progress .pagination a,
+    #published-notes .pagination a{
+        font-size: 12px;
+    }
+
+    /* table */
+    .table td, 
+    .table th{
+        font-size: 12px;
+    }
+
+    /* ========================================
+                My Download
+    ======================================== */
+    #mydownload .title{
+        margin-bottom: 25px;
+    }
+
+    #mydownload .pagination a{
+        font-size: 10px;
+    }
+
+    .comments{
+        margin-top: 30px;
+    }
+
+     /* ========================================
+                Add Notes, User Profile
+    ======================================== */
+    #addnotes .title p,
+    #userprofile .title p{
+        font-size: 22px;
+    }
+
+    #addnotes select,
+    #addnotes #sell-price{
+        margin-bottom: 15px;
+    }
+
+    #selling-info #btn-purple a,
+    #userprofile #btn-purple a{
+        width: 125px;
+    }
+
+    #selling-info #btn-purple{
+        margin-right: 10px;
+    }
+
+
+    /* ========================================
+        Signup, Login
+    ======================================== */
+    .form-content{
+        padding: 25px ;
+    }
+
+    .signup-heading h3,
+    .login-heading h3,
+    .for-pass-heading h3,
+    .email-verif-heading h3{
+        font-size: 26px;
+    }
+
+    .signup-heading p,
+    .login-heading p,
+    .for-pass-heading p,
+    #email-verif-form p,
+    #signup .success,
+    #signup .fail,
+    #login .fail,
+    #forget-password .fail {
+        margin-bottom: 15px;
+        font-size: 12px;
+    }
+
+    .form-group label{
+        font-size: 14px;
+    }
+
+    #passwordHelpBlock{
+        font-size: 10px;
+    }
+
+}
+
+
+/*  Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    .table{
+        width: 175%
+    }
+    /* ========================================
+                Navigation
+    ======================================== */
+    .menu-toggle, .bar {
+        display: block;
+    }
+    .navbar-nav.container {
+        padding-top: 6px;
+        position: fixed;
+        background-color: white;
+        right: 0px;
+        left: 0px;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: start;
+        align-items: end;
+    }
+    .nav-menu-link {
+        transition: all 0.8s;
+        position: fixed;
+        top: 80px;
+        right: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        transform: translate(-101%);
+        -webkit-transform: translate(-101%);
+        -moz-transform: translate(-101%);
+        -ms-transform: translate(-101%);
+        -o-transform: translate(-101%);
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.8s;
+        -ms-transition: all 0.8s;
+        -o-transition: all 0.8s;
+    }
+    .navbar-nav .nav-item {
+        width: 100%;
+    }
+    .navbar-nav .nav-link {
+        color: #333333;
+        border-bottom: 1px solid #d1d1d1;
+    }
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover {
+        color: #6255a5;
+        border-bottom: 2px solid #6255a5;
+    }
+    .nav-item #btn-white a{
+        margin-top: 10px;
+        background-color: #6255a5;
+        color: white;
+    }
+    .nav-item .arrow-down {
+        width: 18px;
+        display: block;
+        position: absolute;
+        top: 14px;
+        right: 20px;
+    }
+    .navbar-nav .dropdown-menu {
+        width: 100%;
+        /* display: block; */
+        position: inherit;
+    }
+    .mobile-nav {
+        transform: translate(0%)!important;
+    }
+    .dropdown-menu {
+        padding: 0;
+        border: 0;
+    }
+    .dropdown-item {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #d1d1d1;
+    }
+    .table .dropdown-menu{
+        border: 1px solid #d1d1d1;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .table .dropdown-item{
+        border-bottom: 0px;
+    }
+
+    /* ========================================
+                Home
+    ======================================== */
+    /* heading */
+    #home-heading h3{
+        text-align: center;
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    /* head */
+    #head-content{
+        height: 550px;
+    }
+
+    #head-heading p{
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    #head-text p{
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+    /* about */
+    #about-right p{
+        text-align: center;
+    }
+
+    /* work */
+    .work-item{
+        padding-bottom: 30px;
+    }
+
+    /* ========================================
+                Search Page
+    ======================================== */
+    .page-text{
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .title{
+        font-size: 20px;
+    }
+
+    .fil-item{
+        margin-bottom: 20px;
+        padding: 0px 15px;
+    }
+
+    .card-item .card-title{
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .card-item p{
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+
+    /* ========================================
+                Note Detail
+    ======================================== */
+    /* note top left */
+    .note-detail h5{
+        font-size: 18px;
+        line-height: 16px;
+    }
+
+    .note-detail p{
+        font-size: 14px;
+        line-height: 16px;
+        margin-bottom: 6px;
+    }
+    
+    .note-header{
+        margin-bottom: 30px;
+    }
+
+    /* note top right */
+    .note-info{
+        padding: 0px 25px;
+    }
+
+    /* pdf */
+    .note-preview{
+        margin-bottom: 30px;
+    }
+    
+    /* note bottom customer review */
+    .customers .customer h6{
+        font-size: 18px;
+    }
+
+    .customers .customer p{
+        font-size: 12px;
+    }
+
+
+    /* ========================================
+                Dashboard
+    ======================================== */
+    .heading{
+        margin-bottom: 10px;
+    }
+
+    .earning .stats-content{
+        margin-right: 15px;
+    }
+
+    .note-sold .stats-content{
+        margin-left: 15px;
+        border-left: 1px solid #d1d1d1;
+    }
+
+    #dashboard .content-box,
+    #in-progress .content-box{
+        padding-bottom: 0px;
+    }
+
+    .stats-content{
+        height: 125px;
+        padding: 35px 0px;
+        margin-bottom: 20px;
+    }
+
+    .stats-content h6{
+        font-size: 22px;
+    }
+    
+    .stats-content h4{
+        font-size: 20px;
+    }
+
+    #in-progress .title-sm p,
+    #published-notes .title-sm p{
+        font-size: 20px;
+    }
+
+    #in-progress .pagination a,
+    #published-notes .pagination a{
+        font-size: 14px;
+    }
+
+    /* table */
+    .table td, 
+    .table th{
+        font-size: 14px;
+    }
+
+
+
+    /* ========================================
+                My Download
+    ======================================== */
+    .comments{
+        margin-top: 30px;
+    }
+
+    /* ========================================
+                Add Note
+    ======================================== */
+    #addnotes select,
+    #addnotes #sell-price{
+        margin-bottom: 15px;
+    }
+
+
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    .table{
+        width: 125%;
+    }
+
+    /* ========================================
+                Navigation
+    ======================================== */
+    .menu-toggle, .bar {
+        display: block;
+    }
+    .navbar-nav.container {
+        padding-top: 6px;
+        position: fixed;
+        background-color: white;
+        right: 0px;
+        left: 0px;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: start;
+        align-items: end;
+    }
+    .nav-menu-link {
+        transition: all 0.8s;
+        position: fixed;
+        top: 80px;
+        right: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        transform: translate(-101%);
+        -webkit-transform: translate(-101%);
+        -moz-transform: translate(-101%);
+        -ms-transform: translate(-101%);
+        -o-transform: translate(-101%);
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.8s;
+        -ms-transition: all 0.8s;
+        -o-transition: all 0.8s;
+    }
+    .navbar-nav .nav-item {
+        width: 100%;
+    }
+    .navbar-nav .nav-link {
+        color: #333333;
+        border-bottom: 1px solid #d1d1d1;
+    }
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover {
+        color: #6255a5;
+        border-bottom: 2px solid #6255a5;
+    }
+    .nav-item #btn-white a{
+        margin-top: 10px;
+        background-color: #6255a5;
+        color: white;
+    }
+    .nav-item .arrow-down {
+        width: 18px;
+        display: block;
+        position: absolute;
+        top: 14px;
+        right: 20px;
+    }
+    .navbar-nav .dropdown-menu {
+        width: 100%;
+        /* display: block; */
+        position: inherit;
+    }
+    .mobile-nav {
+        transform: translate(0%)!important;
+    }
+    .dropdown-menu {
+        padding: 0;
+        border: 0;
+    }
+    .dropdown-item {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #d1d1d1;
+    }
+    .table .dropdown-menu{
+        border: 1px solid #d1d1d1;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .table .dropdown-item{
+        border-bottom: 0px;
+    }
+
+    /* ========================================
+                Home Page
+    ======================================== */
+    /* heading */
+    #home-heading h3{
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    /* head */
+    #head-content{
+        height: 560px;
+    }
+
+    #head-heading p{
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    #head-text p{
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+    #head-content-inner{
+        top: 55%;
+    }
+
+    /* work */
+    .work-image{
+        width: 90px;
+        height: 90px;
+    } 
+
+    .btn-home{
+        width: 130px;
+        padding: 6px 0px;
+        font-size: 16px;
+    }
+
+    .work-item h5{
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .work-item p{
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    /* testimonial */
+    .testimonial .test-name-desc{
+        margin-top: 0px;
+    }
+
+    .testimonial img{
+        width: 65px;
+        height: 65px;
+    }
+
+    .test-name-desc h5{
+        font-size: 18px;
+    }
+
+    .test-name-desc p{
+        font-size: 12px;
+        line-height: 12px;
+    }
+
+    /* ========================================
+                Footer
+    ======================================== */
+    .foot-text{
+        width: 50%;
+    }
+
+    .foot-icon{
+        width: 50%;
+    }
+
+    /* ========================================
+                Search Page
+    ======================================== */
+    .page-text{
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .title{
+        font-size: 20px;
+    }
+
+    .fil-item{
+        margin-bottom: 20px;
+        padding: 0px 15px;
+    }
+
+    .card-item .card-title{
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .card-item p{
+        font-size: 13px;
+        line-height: 16px;
+    }
+     /* ========================================
+                Note Detail
+    ======================================== */
+    /* note top left */
+    .note-detail h5{
+        margin-top: 14px;
+    }
+    
+    .note-header{
+        margin-bottom: 30px;
+    }
+
+    /* nore top right */
+    .note-info{
+        padding: 0px 50px;
+    }
+
+    /* pdf */
+    .note-preview{
+        margin-bottom: 30px;
+    }
+
+    /* ========================================
+                Dashboard
+    ======================================== */
+    .heading{
+        margin-bottom: 10px;
+    }
+
+    #dashboard .content-box,
+    #in-progress .content-box{
+        padding-bottom: 0px;
+    }
+
+    .stats-content{
+        height: 125px;
+        padding: 30px 0px;
+        margin-bottom: 20px;
+    }
+
+    .stats-content h6{
+        font-size: 22px;
+    }
+    
+    .stats-content h4{
+        font-size: 20px;
+    }
+
+    /* table */
+    .table td, 
+    .table th{
+        font-size: 14px;
+    }
+
+}
+
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    /* ========================================
+                Home
+    ======================================== */
+    
+    /* head */
+    #head-content{
+        height: 580px;
+    }
+
+    #head-heading p{
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    #head-text p{
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+
+    /* ========================================
+                Search Page
+    ======================================== */
+    .card-item .card-title{
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .card-item p{
+        font-size: 13px;
+        line-height: 16px;
+    }
+
+    /* ========================================
+                Note Detail
+    ======================================== */
+    /* note top left */
+    .note-detail h5{
+        font-size: 18px;
+        line-height: 10px;
+    }
+
+    .note-detail p{
+        font-size: 13px;
+        line-height: 18px;
+        margin-bottom: 10px;
+    }
+
+    /* note top right */
+    .note-info p{
+        font-size: 13px;
+        margin-bottom: 3px;
+    }
+
+    /* pdf  */
+    .note-preview iframe{
+        height: 440px;
+    }
+
+    /* note bottom customer review */
+    .customers .customer h6{
+        font-size: 18px;
+    }
+
+    .customers .customer p{
+        font-size: 12px;
+    }
+
+    /* ========================================
+                Contact Us
+    ======================================== */
+    #contact-form .form-group{
+        margin-bottom: 20px;
+    }
+
+    #contact-form label{
+        margin-bottom: 5px;
+    }
+
+    /* ========================================
+                Dashboard
+    ======================================== */
+    .stats-content{
+        height: 125px;
+        padding: 30px 0px;
+    }
+
+    .stats-content h6{
+        font-size: 22px;
+    }
+
+    .stats-content h4{
+        font-size: 20px;
+    }
+
+    /* table */
+    .table td, 
+    .table th{
+        font-size: 14px;
+    }
+
+}
+
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px){
+    
+    /* ========================================
+                Mobile nav
+    ======================================== */
+    
+
+}

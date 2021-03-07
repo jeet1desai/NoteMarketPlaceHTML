@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- title -->
+    <title>Note - Email Verify</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.min.css">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="~/Content/style.css">
+
+    <!-- Responsive Css -->
+    <link rel="stylesheet" href="~/Content/responsive.css">
+</head>
+
+<body>
+
+    <section id="emailveri">
+        <div class="box">
+            <div class="form-content">
+                <div class="logo">
+                    <div class="text-center">
+                        <img src="~/images/Logos/top-logo-purple.png" alt="">
+                    </div>
+                </div>
+
+                <div class="email-verif-heading">
+                    <h3>Email Verification</h3>
+                </div>
+
+                <p><b>Dear,</b></p>
+                <p>Thanks for Signing up!</p>
+                <p>Please verify the email address via clicking on the link we sent you via email.</p>
+
+                <!-- email varification btn -->
+                @Html.ActionLink("Verify Email Address", "RegisterConfirm", "Signup", new { regID = @ViewBag.regID }, new { @class = "btn btn-color" })
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <!-- JQuery -->
+    <script src="~/Scripts/jquery.js"></script>
+
+    <!-- bootstrap javaScript -->
+    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+
+    <!-- javaScript -->
+    <script src="~/Scripts/script.js"></script>
+
+</body>
+</html>

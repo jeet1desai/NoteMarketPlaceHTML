@@ -37,13 +37,18 @@
                         </div>
                         <div class="form-group">
                             <label for="Email">Email Address *</label>
-                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "Email", placeholder = "Enter your Email", type = "email", required = "required" })
-
+                            @if (Session["ID"] != null)
+                            {
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "Email", disabled = "disabled" })
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "Email", placeholder = "Enter your Email", type = "email", required = "required" })
+                            }
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject *</label>
                             @Html.TextBoxFor(model => model.Subject, new { @class = "form-control", id = "subject", placeholder = "Enter Your Subject", required = "required" })
-
                         </div>
                     </div>
                     <!-- contact Us Right -->

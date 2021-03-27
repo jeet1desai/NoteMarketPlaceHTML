@@ -1,0 +1,110 @@
+﻿@model NoteMarketPlace.Models.ChangePasswordModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- title -->
+    <title>Note - Change Password</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.min.css">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="~/Content/style.css">
+
+    <!-- Responsive Css -->
+    <link rel="stylesheet" href="~/Content/responsive.css">
+</head>
+
+<body>
+
+    <section id="change-password">
+        <div class="box">
+            <div class="logo">
+                <div class="text-center">
+                    <img src="./images/Login/top-logo.png" alt="">
+                </div>
+            </div>
+            <div class="form-content">
+                <div class="change-pass-heading">
+                    <h3 class="text-center">Change Password</h3>
+                    <p class="text-center">Enter your new password to change password</p>
+                </div>
+
+                @using (Html.BeginForm("Index", "ChangePassword", FormMethod.Post, new { @class = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <!-- old password -->
+                    <div class="form-group">
+                        <div class="pass-and-forgpass">
+                            <label for="oldpassword" class="text-left">Old Password</label>
+                        </div>
+                        <div class="password-input">
+                            @Html.TextBoxFor(model => model.OldPassword, new { @class = "form-control", id = "oldpassword", placeholder = "Enter your old Password", type = "password" })
+                            <span toggle="#oldpassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.OldPassword)
+                    </div>
+                    <!-- new password -->
+                    <div class="form-group">
+                        <div class="pass-and-forgpass">
+                            <label for="newpassword" class="text-left">New Password</label>
+                        </div>
+                        <div class="password-input">
+                            @Html.TextBoxFor(model => model.NewPassword, new { @class = "form-control", id = "newpassword", placeholder = "Enter your new Password", type = "password" })
+                            <span toggle="#newpassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.NewPassword)
+                    </div>
+                    <!-- confirm password -->
+                    <div class="form-group">
+                        <div class="pass-and-forgpass">
+                            <label for="confirmpassword" class="text-left">Confirm Password</label>
+                        </div>
+                        <div class="password-input">
+                            @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "form-control", id = "confirmpassword", placeholder = "Enter your confirm Password", type = "password" })
+                            <span toggle="#confirmpassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                    </div>
+                    <!-- login btn -->
+                    <button type="submit" class="btn change-pass-btn">Submit</button>
+
+                }
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+    <!-- JavaScript -->
+    <!-- JQuery -->
+    <script src="~/Scripts/jquery.js"></script>
+
+    <!-- bootstrap javaScript -->
+    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+
+    <!-- javaScript -->
+    <script src="~/Scripts/script.js"></script>
+</body>
+
+</html>

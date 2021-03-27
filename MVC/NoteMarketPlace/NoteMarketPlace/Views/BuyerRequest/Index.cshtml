@@ -57,7 +57,7 @@
 
                     <tbody>
                         @{
-                            int no = (ViewBag.srno - 1) * 5 + 1;
+                            int no = (ViewBag.srno - 1) * 10 + 1;
                         }
                         @if (Model.Count() == 0)
                         {
@@ -68,6 +68,7 @@
 
                         @foreach (var item in Model)
                         {
+
                             <tr>
                                 <td>@no</td>
                                 <td><span>@item.Downloadstbl.NoteTitle</span></td>
@@ -106,51 +107,54 @@
             </div>
         </div>
 
-        <div class="row justify-content-center">
 
-            <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item">
-                        @if (ViewBag.PageNumber == 1)
-                        {
-                            <a class="page-link" href="@Url.Action("Index", new { brpage = @ViewBag.PageNumber, search = Request.QueryString["search"], sortOrder = Request.QueryString["sortOrder"] })"><i class="fa fa-angle-left"></i></a>
-                        }
-                        else
-                        {
-                            <a class="page-link" href="@Url.Action("Index", new { brpage = @ViewBag.PageNumber - 1, search = Request.QueryString["search"], sortOrder = Request.QueryString["sortOrder"] })"><i class="fa fa-angle-left"></i></a>
-                        }
-                    </li>
+        @if (ViewBag.TotalBuyerRequestPage != 0)
+        {
+            <div class="row justify-content-center">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item">
 
-                    @{
-                        double TotalPagesBuyerRequest = ViewBag.TotalBuyerRequestPage;
-                        for (int i = 1; i <= TotalPagesBuyerRequest; i++)
-                        {
-                            if (i == ViewBag.PageNumber)
+                            @if (ViewBag.currentPage == 1)
                             {
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">@i<span class="sr-only">(current)</span></a>
-                                </li>
+                                <a class="page-link" href="@Url.Action("Index", new { brpage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-left"></i></a>
                             }
                             else
                             {
-                                <li class="page-item">@Html.ActionLink(i.ToString(), "Index", new { brpage = i, search = Request.QueryString["search"], sortOrder = Request.QueryString["sortOrder"] }, new { @class = "page-link" })</li>
+                                <a class="page-link" href="@Url.Action("Index", new { brpage = @ViewBag.currentPage - 1, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-left"></i></a>
+                            }
+                        </li>
+                        @{
+
+                            for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                            {
+                                if (i == ViewBag.currentPage)
+                                {
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#">@i<span class="sr-only">(current)</span></a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="page-item">@Html.ActionLink(i.ToString(), "Index", new { brpage = i, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] }, new { @class = "page-link" })</li>
+                                }
                             }
                         }
-                    }
+                        <li class="page-item">
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { brpage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { brpage = @ViewBag.currentPage + 1, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+                        </li>
+                    </ul>
+                </nav>
+            </div>
 
-                    <li class="page-item">
-                        @if (ViewBag.PageNumber == TotalPagesBuyerRequest)
-                        {
-                            <a class="page-link" href="@Url.Action("Index", new {brpage = @ViewBag.PageNumber, search = Request.QueryString["search"], sortOrder = Request.QueryString["sortOrder"]  })"><i class="fa fa-angle-right"></i></a>
-                        }
-                        else
-                        {
-                            <a class="page-link" href="@Url.Action("Index", new {  brpage = @ViewBag.PageNumber + 1, search = Request.QueryString["search"], sortOrder = Request.QueryString["sortOrder"] })"><i class="fa fa-angle-right"></i></a>
-                        }
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        }
 
     </div>
 </section>

@@ -45,7 +45,7 @@
                                         {
                                             <button type="button" class="btn btn-purples" disabled>
                                                 Download / $ @Model.sellerNote.SellingPrice
-                                            </button>
+                                            </button><br />
                                         }
                                         else
                                         {
@@ -208,16 +208,19 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-9 text-right">
                                 <div class="rate">
                                     <!-- <span class="fa fa-star-half-o "></span> -->
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <p>100 reviews</p>
+                                    @for (var i = 1; i <= Model.AvgRating; i++)
+                                    {
+                                        <i class="fa fa-star"></i>
+                                    }
+                                    @for (var i = (Model.AvgRating + 1); i <= 5; i++)
+                                    {
+                                        <i class="fa fa-star-o"></i>
+                                    }
+                                    <p>@Model.TotalReview reviews</p>
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <span>5 Users marked this note as inappropriate</span>
+                                <span>@Model.Spam Users marked this note as inappropriate</span>
                             </div>
                         </div>
                     </div>
@@ -255,77 +258,39 @@
                     </div>
                     <div class="container">
                         <div class="customers">
+                            @if (Model.notesreview.Count() == 0)
+                            {
+                                <div class="row customer">
+                                    No Review Given
+                                </div>
+                            }
+
                             <!-- Customer - 01 -->
-                            <div class="row customer">
-                                <div class="col-lg-2 col-md-2 col-sm-2 col-3">
-                                    <img class="img-fluid rounded-circle" src="~/images/NotesDetails/avatar.png"
-                                         alt="">
-                                </div>
-                                <div class="col-lg-10 col-md-10 col-sm-10 col-9">
-                                    <h6>Richard Brown</h6>
-                                    <div class="rate">
-                                        <!-- <span class="fa fa-star-half-o "></span> -->
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
+                            @foreach (var item in Model.notesreview)
+                            {
+                                <div class="row customer">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                                        <img class="img-fluid rounded-circle" src="@Url.Content(item.UserProfiles.ProfilePicture)"
+                                             alt="reviewer image">
                                     </div>
-                                    <p>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, magni,
-                                        assumenda delecs enim laborum earum odio commodi impedit repellendus
-                                        facere explicabo!
-                                    </p>
-                                </div>
-                            </div>
-                            <hr>
-                            <!-- Customer - 02 -->
-                            <div class="row customer">
-                                <div class="col-lg-2 col-md-2 col-sm-2 col-3">
-                                    <img class="img-fluid rounded-circle" src="~/images/NotesDetails/avatar.png"
-                                         alt="">
-                                </div>
-                                <div class="col-lg-10 col-md-10 col-sm-10 col-9">
-                                    <h6>Richard Brown</h6>
-                                    <div class="rate">
-                                        <!-- <span class="fa fa-star-half-o "></span> -->
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-9">
+                                        <h6>@item.Users.FirstName @item.Users.LastName</h6>
+                                        <div class="rate">
+                                            @for (var i = 1; i <= item.SellerNotesReviews.Ratings; i++)
+                                            {
+                                                <i class="fa fa-star"></i>
+                                            }
+                                            @for (var i = (item.SellerNotesReviews.Ratings + 1); i <= 5; i++)
+                                            {
+                                                <i class="fa fa-star-o"></i>
+                                            }
+                                        </div>
+                                        <p>
+                                            @item.SellerNotesReviews.Comments
+                                        </p>
                                     </div>
-                                    <p>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, magni,
-                                        assumenda delectus enim laborum earum odio commodi impedit repellendus
-                                        facere explicabo!
-                                    </p>
                                 </div>
-                            </div>
-                            <hr>
-                            <!-- Customer - 03 -->
-                            <div class="row customer">
-                                <div class="col-lg-2 col-md-2 col-sm-2 col-3">
-                                    <img class="img-fluid rounded-circle" src="~/images/NotesDetails/avatar.png"
-                                         alt="">
-                                </div>
-                                <div class="col-lg-10 col-md-10 col-sm-10 col-9">
-                                    <h6>Richard Brown</h6>
-                                    <div class="rate">
-                                        <!-- <span class="fa fa-star-half-o "></span> -->
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, magni,
-                                        assumenda delectus enim laborum earum odio commodi impedit repellendus
-                                        facere explicabo!
-                                    </p>
-                                </div>
-                            </div>
+                            }
                         </div>
 
                     </div>
@@ -334,15 +299,3 @@
         </div>
     </div>
 </section>
-
-<script>
-    function fun1() {
-        $(document).ready(function () {
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
-        });
-    }
-</script>
-
-@*data-dismiss="modal" data-toggle="modal" data-target="#exampleModal1"*@

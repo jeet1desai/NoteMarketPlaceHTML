@@ -11,13 +11,16 @@ namespace NoteMarketPlace.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SellerNotesReportedIssue
     {
         public int ID { get; set; }
         public int NoteID { get; set; }
         public int ReportedByID { get; set; }
         public int AgainstDownloadID { get; set; }
+
+        [Required]
         public string Remarks { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> CreatedBy { get; set; }

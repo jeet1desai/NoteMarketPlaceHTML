@@ -41,40 +41,46 @@
                     </div>
 
                     <div class="col-lg-4 col-md-8 col-sm-12 col-12">
-                        <div class="row">
-                            <div class="note-sold col-lg-6 col-md-6 col-sm-6 col-6">
-                                <div class="stats-content">
-                                    <h6>100</h6>
-                                    <p>Number Notes Sold</p>
+                        <a class="dashboard-static" href="@Url.Action("Index", "MySoldNote")">
+                            <div class="row">
+                                <div class="note-sold col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <div class="stats-content">
+                                        <h6>@Model.NumberOfSoldNote</h6>
+                                        <p>Number Notes Sold</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="money-earn col-lg-6 col-md-6 col-sm-6 col-6">
-                                <div class="stats-content">
-                                    <h6>$10,00,000</h6>
-                                    <p>Money earned</p>
+                                <div class="money-earn col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <div class="stats-content">
+                                        <h6>$@Model.MoneyEarned</h6>
+                                        <p>Money earned</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
+                            </div>
+                        </a>
                     </div>
 
 
                     <div class="download col-lg-2 col-md-4 col-sm-4">
-                        <div class="stats-content">
-                            <h6>38</h6>
-                            <p>My Downloads</p>
-                        </div>
+                        <a class="dashboard-static" href="@Url.Action("Index", "MyDownload")">
+                            <div class="stats-content">
+                                <h6>@Model.MyDownload</h6>
+                                <p>My Downloads</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="reject-note col-lg-2 col-md-4 col-sm-4">
-                        <div class="stats-content">
-                            <h6>12</h6>
-                            <p>My Rejected Notes</p>
-                        </div>
+                        <a class="dashboard-static" href="@Url.Action("Index", "MyRejectNote")">
+                            <div class="stats-content">
+                                <h6>@Model.MyRejectedNote</h6>
+                                <p>My Rejected Notes</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="buyer-req col-lg-2 col-md-4 col-sm-4">
                         <a class="dashboard-static" href="@Url.Action("Index", "BuyerRequest")">
                             <div class="stats-content">
-                                <h6>102</h6>
+                                <h6>@Model.BuyerRequest</h6>
                                 <p>Buyer Requests</p>
                             </div>
                         </a>
@@ -102,7 +108,7 @@
                             <p>In Progress Notes</p>
                         </div>
                     </div>
-
+                    <!-- Search -->
                     <div class="col-lg-4 col-md-5 col-sm-6 text-right">
                         <div class="search-in-tab">
                             @using (Html.BeginForm("Index", "SellNote", FormMethod.Get))
@@ -176,6 +182,7 @@
             </div>
         </div>
 
+        <!-- Pagination -->
         <div class="row justify-content-center">
 
             <nav aria-label="...">
@@ -238,7 +245,7 @@
                             <p>Published Notes</p>
                         </div>
                     </div>
-
+                    <!-- Search -->
                     <div class="col-lg-4 col-md-5 col-sm-6 col-12 text-right">
                         <div class="search-in-tab">
                             @using (Html.BeginForm("Index", "SellNote", FormMethod.Get))
@@ -305,6 +312,7 @@
             </div>
         </div>
 
+        <!-- PAgination -->
         <div class="row justify-content-center">
 
             <nav aria-label="...">

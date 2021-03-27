@@ -47,7 +47,10 @@ namespace NoteMarketPlace.Controllers
             {
                 
                 Match isPassword = Regex.Match(user.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,24}", RegexOptions.IgnorePatternWhitespace);
-               
+                Match isFirstName = Regex.Match(user.FirstName, @"^[a-zA-Z]+$", RegexOptions.IgnorePatternWhitespace);
+                Match isLastName = Regex.Match(user.LastName, @"^[a-zA-Z]+$", RegexOptions.IgnorePatternWhitespace);
+
+
                 //Email already Exist
                 if (db.Users.Any(x => x.Email == user.Email))
                 {
@@ -56,16 +59,28 @@ namespace NoteMarketPlace.Controllers
                 }
                 
                 //Password and ConfirmPassword doesn't Match
-                else if(!(user.Password.Equals(user.ConfirmPassword)))
+                if(!(user.Password.Equals(user.ConfirmPassword)))
                 {
                     ModelState.AddModelError("ConfirmPassword", "Password and ConfirmPassword are not Same");
                     return View(user);
                 }
                 
                 //Password is not Valid
-                else if (!isPassword.Success)
+                if (!isPassword.Success)
                 {
                     ModelState.AddModelError("Password", "Password shold contain 6 long, 1 - special, digit, upper, lower char");
+                    return View(user);
+                }
+
+                //FirstName And LastName is Not valid
+                if (!isFirstName.Success)
+                {
+                    ModelState.AddModelError("FirstName", "Use Only Alphabet");
+                    return View(user);
+                }
+                if (!isLastName.Success)
+                {
+                    ModelState.AddModelError("LastName", "Use Only Alphabet");
                     return View(user);
                 }
 
@@ -95,7 +110,7 @@ namespace NoteMarketPlace.Controllers
                 //If Fail to Signup
                 ViewBag.Status = 1;
                 ViewBag.Class = "danger";
-                ViewBag.Msg = "Fail to Login";
+                ViewBag.Msg = "Fail to Signup";
                 return View(user); 
             }
 
@@ -118,13 +133,16 @@ namespace NoteMarketPlace.Controllers
             User user = db.Users.FirstOrDefault(x => x.ID == regID);
             FormsAuthentication.SetAuthCookie(user.Email, true);
             user.IsEmailVerified = true;
+            user.CreatedBy = user.ID;
+            user.ModifiedBy = user.ID;
+            user.ModifiedDate = DateTime.Now;
             db.Configuration.ValidateOnSaveEnabled = false;
             db.SaveChanges();
             db.Dispose();
 
             if(user.RoleID == 1)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "MyProfile");
             }
             else
             {

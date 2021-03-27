@@ -11,15 +11,39 @@ namespace NoteMarketPlace.Controllers
 {
     public class ContactusController : Controller
     {
+        readonly NoteMarketPlaceEntities db;
+
+        public ContactusController()
+        {
+            db = new NoteMarketPlaceEntities();
+        }
+
+
         // GET: Contactus
         [Route("Contactus")]
+        [HttpGet]
         public ActionResult Index()
         {
             ViewBag.ContactUs = "active";
             ViewBag.Class = "white-nav";
-            return View();
+
+            //Auth User
+            User user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
+
+            ContactusModel contactus = new ContactusModel();
+
+            //If User is Auth then Fullname and Email AutoPopulate
+            if(user != null)
+            {
+                contactus.FullName = user.FirstName + " " + user.LastName;
+                contactus.Email = user.Email;
+            }
+
+            return View(contactus);
         }
 
+
+        //Mail Send to Admin
         [Route("Contactus")]
         [ValidateAntiForgeryToken]
         [HttpPost]

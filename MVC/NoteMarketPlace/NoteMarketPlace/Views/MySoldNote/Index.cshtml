@@ -1,0 +1,150 @@
+﻿@model IEnumerable<NoteMarketPlace.Models.SoldNoteModel>
+@{
+    ViewBag.Title = "Note - My Sold Notes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="my-sold-note">
+    <div class="content-box">
+        <div class="container">
+
+            <div class="heading">
+                <div class="row">
+                    <!-- Heading -->
+                    <div class="col-lg-8 col-md-7 col-sm-6">
+                        <div class="title">
+                            <p>My Sold Notes</p>
+                        </div>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="col-lg-4 col-md-5 col-sm-6 text-right">
+                        <div class="search-in-tab">
+                            @using (Html.BeginForm("Index", "MySoldNote", FormMethod.Get))
+                            {
+                                <div class="form-group has-search">
+                                    <span class="fa fa-search form-control-feedback"></span>
+                                    <input type="text" name="search" class="form-control" placeholder="Search">
+                                </div>
+                                <div id="btn-purple">
+                                    <button type="submit" class="btn">Search</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-content table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">SR NO.</th>
+                            <th scope="col">@Html.ActionLink("NOTE TITLE", "Index", new { sortOrder = ViewBag.TitleSortParm, search = Request.QueryString["search"], snpage = Request.QueryString["snpage"] })</th>
+                            <th scope="col">@Html.ActionLink("CATEGORY", "Index", new { sortOrder = ViewBag.CategorySortParm, search = Request.QueryString["search"], snpage = Request.QueryString["snpage"] })</th>
+                            <th scope="col">@Html.ActionLink("BUYER", "Index", new { sortOrder = ViewBag.EmailSortParm, search = Request.QueryString["search"], snpage = Request.QueryString["snpage"] })</th>
+                            <th scope="col">@Html.ActionLink("SELL TYPE", "Index", new { sortOrder = ViewBag.SellTypeSortParm, search = Request.QueryString["search"], snpage = Request.QueryString["snpage"] })</th>
+                            <th scope="col">@Html.ActionLink("PRICE", "Index", new { sortOrder = ViewBag.PriceSortParm, search = Request.QueryString["search"], snpage = Request.QueryString["snpage"] })</th>
+                            <th scope="col">@Html.ActionLink("DOWNLOADED DATE/TIME", "Index", new { sortOrder = ViewBag.DateSortParm, search = Request.QueryString["search"], snpage = Request.QueryString["snpage"] })</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{
+                            int no = (ViewBag.srno - 1) * 10 + 1;
+                        }
+                        @if (Model.Count() == 0)
+                        {
+                            <tr>
+                                <td colspan="8" class="text-center">No Record Found</td>
+                            </tr>
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@no</td>
+                                <td><span>@item.MySoldNote.NoteTitle</span></td>
+                                <td>@item.MySoldNote.NoteCategory</td>
+                                <td>@item.Users.Email</td>
+                                @if (item.MySoldNote.IsPaid)
+                                {
+                                    <td>Paid</td>
+                                    <td>$@item.MySoldNote.PurchasedPrice</td>
+                                }
+                                else
+                                {
+                                    <td>Free</td>
+                                    <td>$0</td>
+                                }
+
+                                <td>@item.MySoldNote.AttachmentDownloadedDate</td>
+                                <td>
+                                    <!-- Dropdown -->
+                                    <div class="dropdown dropleft table-img">
+                                        <a href="@Url.Action("NoteDetail", "SearchNote", new { id = item.MySoldNote.NoteID})"><img src="~/images/Dashboard/eye.png" alt="eye"></a>
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="@Url.Action("DownloadNote", "MySoldNote", new { id = item.MySoldNote.NoteID})">Download Note</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            no++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        @if (ViewBag.TotalSoldNotePage != 0)
+        {
+            <div class="row justify-content-center">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { snpage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { snpage = @ViewBag.currentPage - 1, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-left"></i></a>
+                            }
+                        </li>
+                        @{
+
+                            for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                            {
+                                if (i == ViewBag.currentPage)
+                                {
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#">@i<span class="sr-only">(current)</span></a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="page-item">@Html.ActionLink(i.ToString(), "Index", new { snpage = i, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] }, new { @class = "page-link" })</li>
+                                }
+                            }
+                        }
+                        <li class="page-item">
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { snpage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { snpage = @ViewBag.currentPage + 1, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        }
+    </div>
+</section>
+

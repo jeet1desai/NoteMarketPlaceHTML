@@ -20,6 +20,8 @@ namespace NoteMarketPlace.Controllers
             db = new NoteMarketPlaceEntities();
         }
 
+
+
         // GET: ForgetPassword
         [Route("ForgetPassword")]
         [HttpGet]
@@ -28,13 +30,20 @@ namespace NoteMarketPlace.Controllers
             return View();
         }
 
+
+
+
+
         [Route("ForgetPassword")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index(User user)
         {
+            //Auth User
             var isUser = db.Users.Where(a => a.Email == user.Email).FirstOrDefault();
 
+
+            //If Auth 
             if (!db.Users.Any(x => x.Email == user.Email))
             {
                 ViewBag.Status = 1;

@@ -54,8 +54,22 @@ $(function () { // DOM ready
 
 });
 
+/* =======================================================================
+                Reload Page 
+======================================================================= */
 
 
+$(function () {
+    if (window.localStorage) {
+        if (!localStorage.getItem('firstLoad')) {
+            localStorage['firstLoad'] = true;
+            window.location.reload();
+        }
+        else {
+            localStorage.removeItem('firstLoad');
+        }
+    }
+});
 
 /* =======================================================================
                 Login - Password
@@ -120,9 +134,6 @@ function verified() {
     })
 }
 
-
-
-
 /* =======================================================================
                 Enable/Diable Radio btn In AddNote
 ======================================================================= */
@@ -137,6 +148,37 @@ $(function () {
     });
 })
 
+/* =======================================================================
+                NoteDetail - DropDown And Search 
+======================================================================= */
+$(document).ready(function () {
+    $(".input-boxes #type").change(function () {
+        this.form.submit();
+    });
+    $(".input-boxes #search").change(function () {
+        this.form.submit();
+    });
+    $(".input-boxes #category").change(function () {
+        this.form.submit();
+    });
+    $(".input-boxes #university").change(function () {
+        this.form.submit();
+    });
+    $(".input-boxes #course").change(function () {
+        this.form.submit();
+    });
+    $(".input-boxes #country").change(function () {
+        this.form.submit();
+    });
+    $(".input-boxes #rating").change(function () {
+        this.form.submit();
+    });
+});
+
+
+/* =======================================================================
+                Select File
+======================================================================= */
 
 var input = document.getElementById('dis-pic');
 var input2 = document.getElementById('upload-notes');
@@ -146,15 +188,16 @@ var infoArea = document.getElementById('display-picture-filename');
 var infoArea2 = document.getElementById('note-filename');
 var infoArea3 = document.getElementById('note-preview-filename');
 
-input.addEventListener('change', showFileName );
-input2.addEventListener('change', showFileName2 );
-input3.addEventListener('change', showFileName3 );
+input.addEventListener('change', showFileName);
+input2.addEventListener('change', showFileName2);
+input3.addEventListener('change', showFileName3);
+
 
 function showFileName(event) {
-  infoArea.textContent = null;
-  var input = event.srcElement;
-  var fileName = input.files[0].name;
-  infoArea.textContent = fileName;
+    infoArea.textContent = null;
+    var input = event.srcElement;
+    var fileName = input.files[0].name;
+    infoArea.textContent = fileName;
 }
 
 function showFileName2(event) {
@@ -172,3 +215,7 @@ function showFileName3(event) {
 }
 
 
+
+
+
+   

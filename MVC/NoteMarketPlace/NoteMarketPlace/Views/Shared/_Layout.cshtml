@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using NoteMarketPlace.Models;
+@using System.Linq;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- meta-data -->
@@ -22,8 +25,11 @@
 
     <!-- Responsive Css -->
     <link rel="stylesheet" href="~/Content/responsive.css">
+
+
+
 </head>
-<body>
+<body onbeforeunload="HandleBackFunctionality()">
 
     <!-- Navigation -->
     <section class="navigation @ViewBag.Class">
@@ -64,15 +70,30 @@
                                 <li class="nav-item">
                                     <div class="dropdown">
                                         <a class="nav-link" data-toggle="dropdown" href="#">
-                                            <img class="rounded-circle" src="~/images/NotesDetails/avatar.png" alt="">
+                                            @{
+                                                using (var db = new NoteMarketPlaceEntities())
+                                                {
+                                                    int id = (int)System.Web.HttpContext.Current.Session["ID"];
+                                                    var data = db.UserProfiles.FirstOrDefault(x => x.UserID == id);
+
+                                                    if (data == null || data.ProfilePicture == null)
+                                                    {
+                                                        <img class="rounded-circle" src="~/images/NotesDetails/avatar.png" alt="">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="rounded-circle" src="@Url.Content(data.ProfilePicture)" alt="">
+                                                    }
+                                                }
+                                            }
                                         </a>
                                         <img class="arrow-down" src="~/images/Dashboard/down-arrow.png" alt="">
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#">My Profile</a>
-                                            <a class="dropdown-item" href="mydownloads.html">My Downloads</a>
-                                            <a class="dropdown-item" href="mysold_note.html">My Sold Notes</a>
-                                            <a class="dropdown-item" href="myrejected_note.html">My Rejected Notes</a>
-                                            <a class="dropdown-item" href="change_password.html">Change Password</a>
+                                            <a class="dropdown-item @ViewBag.MyProfile" href="@Url.Action("Index","MyProfile")">My Profile</a>
+                                            <a class="dropdown-item @ViewBag.MyDownload" href="@Url.Action("Index","MyDownload")">My Downloads</a>
+                                            <a class="dropdown-item @ViewBag.MySoldNote" href="@Url.Action("Index","MySoldNote")">My Sold Notes</a>
+                                            <a class="dropdown-item @ViewBag.MyRejectNote" href="@Url.Action("Index","MyRejectNote")">My Rejected Notes</a>
+                                            <a class="dropdown-item" href="@Url.Action("Index","ChangePassword")">Change Password</a>
                                             <a class="dropdown-item" href="@Url.Action("Logout","Login")"><span>Logout</span> </a>
                                         </div>
                                     </div>
@@ -80,7 +101,7 @@
                                 <!-- Logout Btn -->
                                 <li class="nav-item">
                                     <div id="btn-white">
-                                        <a class="btn" href="@Url.Action("Logout","Login")" role="button">Logout</a>
+                                        <a class="btn" onclick="return confirm('Are you Sure you want to Logout??')" href="@Url.Action("Logout","Login")" role="button">Logout</a>
                                     </div>
                                 </li>
                             }

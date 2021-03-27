@@ -64,6 +64,17 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -134,11 +145,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminDashboardController.cs" />
     <Compile Include="Controllers\BuyerRequestController.cs" />
+    <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\ContactusController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\ForgetPasswordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MyDownloadController.cs" />
+    <Compile Include="Controllers\MyProfileController.cs" />
+    <Compile Include="Controllers\MyRejectNoteController.cs" />
+    <Compile Include="Controllers\MySoldNoteController.cs" />
     <Compile Include="Controllers\SearchNoteController.cs" />
     <Compile Include="Controllers\SellNoteController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
@@ -146,6 +162,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BuyerRequestModel.cs" />
+    <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\ContactusModel.cs" />
     <Compile Include="Models\Country.cs">
       <DependentUpon>NoteModel.tt</DependentUpon>
@@ -155,6 +172,7 @@
     </Compile>
     <Compile Include="Models\EditNoteModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MyProfileModel.cs" />
     <Compile Include="Models\NoteCategory.cs">
       <DependentUpon>NoteModel.tt</DependentUpon>
     </Compile>
@@ -180,6 +198,8 @@
     <Compile Include="Models\ReferenceData.cs">
       <DependentUpon>NoteModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RejectedNoteModel.cs" />
+    <Compile Include="Models\SearchNoteModel.cs" />
     <Compile Include="Models\SellerNote.cs">
       <DependentUpon>NoteModel.tt</DependentUpon>
     </Compile>
@@ -193,6 +213,7 @@
       <DependentUpon>NoteModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SellNoteDashboardModel.cs" />
+    <Compile Include="Models\SoldNoteModel.cs" />
     <Compile Include="Models\SystemConfiguration.cs">
       <DependentUpon>NoteModel.tt</DependentUpon>
     </Compile>
@@ -327,6 +348,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\MyProfile\Index.cshtml" />
+    <Content Include="Views\ChangePassword\Index.cshtml" />
+    <Content Include="Views\MyDownload\Index.cshtml" />
+    <Content Include="Views\MySoldNote\Index.cshtml" />
+    <Content Include="Views\MyRejectNote\Index.cshtml" />
+    <Content Include="Views\Login\VerifyEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

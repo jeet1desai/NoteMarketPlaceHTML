@@ -1,0 +1,243 @@
+﻿@model NoteMarketPlace.Models.MyProfileModel
+@{
+    ViewBag.Title = "Note - My Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Head -->
+<section id="head">
+    <div id="page-head-content">
+        <div class="page-text">
+            <p>User Profile</p>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- User Profile Form -->
+<section id="userprofile">
+    @using (Html.BeginForm("Index", "MyProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.ID)
+
+        <!-- Basic Profile Detail -->
+        <section id="basic-profile-detail">
+            <div class="content-box-top">
+                <div class="container">
+
+                    <div class="heading">
+                        <div class="row">
+                            <!-- Heading -->
+                            <div class="col-lg-12 col-md-12">
+                                <div class="title">
+                                    <p>Basic Profile Details</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="addnote-form">
+                        <div class="row">
+                            <!-- name -->
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="FirstName">First Name *</label>
+                                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", id = "FirstName", placeholder = "Enter your first name", type = "text" })
+                                    @Html.ValidationMessageFor(model => model.FirstName)
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="LastName">Last Name *</label>
+                                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", id = "LastName", placeholder = "Enter your last name", type = "text" })
+                                    @Html.ValidationMessageFor(model => model.LastName)
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="Email">Email *</label>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "Email", disabled = "disabled" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="DoB">Date of Birth</label>
+                                    @Html.TextBoxFor(model => model.DOB, "{0:yyyy/MM/dd}", new { @class = "form-control", id = "DoB", placeholder = "Enter your date of birth", type = "date" })
+                                    @Html.ValidationMessageFor(model => model.DOB)
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Gender *</label><br>
+                                    @Html.DropDownListFor(model => model.Gender, new SelectList(Model.GenderList, "ID", "Value", Model.Gender), "Select your gender", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Gender)
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="phone">Phone No *</label><br>
+                                    <div class="phone-number">
+                                        @Html.DropDownListFor(model => model.CountryPhoneCode, new SelectList(Model.CountryList, "ID", "CountryCode", Model.CountryPhoneCode), "Country Code", new { @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", id = "phone", placeholder = "Enter Your Phone No"})
+
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.CountryPhoneCode)
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber)
+                                </div>
+                            </div>
+                            <!-- Profile Picture -->
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="profile-pic">Profile Picture</label>
+                                    <div class="upload-box">
+                                        @Html.TextBoxFor(model => model.ProfilePicture, new { @class = "form-control-file upload", id = "profile-pic-profile", type = "file" })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.ProfilePicture)
+                                    <p id="display-picture-profile">@ViewBag.ProfilePicture</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Address Informaion -->
+        <section id="address">
+            <div class="content-box-top">
+                <div class="container">
+
+                    <div class="heading">
+                        <div class="row">
+                            <!-- Heading -->
+                            <div class="col-lg-12">
+                                <div class="title">
+                                    <p>Address Details</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="addnote-form">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="address1">Address Line 1 *</label>
+                                    @Html.TextBoxFor(model => model.AddressOne, new { @class = "form-control", id = "address1", placeholder = "Enter Your Address Line 1" })
+                                    @Html.ValidationMessageFor(model => model.AddressOne)
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="address2">Address Line 2</label>
+                                    @Html.TextBoxFor(model => model.AddressTwo, new { @class = "form-control", id = "address2", placeholder = "Enter Your Address Line 2" })
+                                    @Html.ValidationMessageFor(model => model.AddressTwo)
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="city">City *</label>
+                                    @Html.TextBoxFor(model => model.City, new { @class = "form-control", id = "city", placeholder = "Enter Your City" })
+                                    @Html.ValidationMessageFor(model => model.City)
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="state">State *</label>
+                                    @Html.TextBoxFor(model => model.State, new { @class = "form-control", id = "state", placeholder = "Enter Your State" })
+                                    @Html.ValidationMessageFor(model => model.State)
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="zipcode">Zipcode *</label>
+                                    @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control", id = "zipcode", placeholder = "Enter Your ZipCode" })
+                                    @Html.ValidationMessageFor(model => model.ZipCode)
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="country">Country *</label>
+                                    @Html.DropDownListFor(model => model.Country, new SelectList(Model.CountryList, "ID", "Name", Model.Country), "Select your Country", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Country)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- University and Collage Info -->
+        <section id="clg-info">
+            <div class="content-box">
+                <div class="container">
+
+                    <div class="heading">
+                        <div class="row">
+                            <!-- Heading -->
+                            <div class="col-lg-12">
+                                <div class="title">
+                                    <p>University and Collage Information</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="addnote-form">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="university">University</label>
+                                    @Html.TextBoxFor(model => model.University, new { @class = "form-control", id = "university", placeholder = "Enter Your University" })
+                                    @Html.ValidationMessageFor(model => model.University)
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="collage">Collage</label>
+                                    @Html.TextBoxFor(model => model.College, new { @class = "form-control", id = "collage", placeholder = "Enter Your College" })
+                                    @Html.ValidationMessageFor(model => model.College)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div id="btn-purple">
+                                        <button type="submit" value="Submit" class="btn">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+</section>
+

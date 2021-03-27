@@ -32,10 +32,12 @@ namespace NoteMarketPlace.Models
 
         [Required]
         [MaxLength(50)]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string FirstName { get; set; }
 
         [Required]
         [MaxLength(50)]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string LastName { get; set; }
 
         [Required]

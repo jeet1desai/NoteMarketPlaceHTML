@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NoteMarketPlace.Models.SellerNote>
+﻿@model NoteMarketPlace.Models.SearchNoteModel
 @{
     ViewBag.Title = "Note - Search Note";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,71 +27,42 @@
                     </div>
                 </div>
             </div>
-
-            <div class="input-boxes">
-                <!-- Search -->
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <div class="form-group has-search">
-                            <span class="fa fa-search form-control-feedback"></span>
-                            <input type="text" class="form-control" placeholder="Search notes here...">
+            @using (@Html.BeginForm("Index", "SearchNote", FormMethod.Get, new { id = "SearchForm" }))
+            {
+                <div class="input-boxes">
+                    <!-- Search -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-search">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input type="text" name="search" class="form-control" id="search" value="@ViewBag.Search" placeholder="Search Notes Here...">
+                            </div>
                         </div>
+                    </div>
+                    <!-- Filter -->
+                    <div class="row">
+                        <div class="col-lg-2 col-md-4 col-sm-6 fil-item form-group">
+                            @Html.DropDownList("type", new SelectList(@ViewBag.TypeList, "ID", "Name"), "Select Type", new { @class = "form-control", id = "type" })
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 fil-item form-group">
+                            @Html.DropDownList("category", new SelectList(@ViewBag.CategoryList, "ID", "Name"), "Select Category", new { @class = "form-control", id = "category" })
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 fil-item form-group">
+                            @Html.DropDownList("university", new SelectList(@ViewBag.UniversityList), "Select University", new { @class = "form-control", id = "university" })
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 fil-item form-group">
+                            @Html.DropDownList("course", new SelectList(@ViewBag.CourseList), "Select Course", new { @class = "form-control", id = "course" })
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 fil-item form-group">
+                            @Html.DropDownList("country", new SelectList(@ViewBag.CountryList, "ID", "Name"), "Select Country", new { @class = "form-control", id = "country" })
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 fil-item form-group">
+                            @Html.DropDownList("ratings", new SelectList(@ViewBag.RatingList, "Value", "Text"), "Select Rating", new { @class = "form-control", id = "rating" })
+                        </div>
+                    </div>
 
-                    </div>
                 </div>
-                <!-- Filter -->
-                <div class="row">
-                    <div class="col-lg-2 col-md-4 col-sm-6 fil-item">
-                        <select class="selectpicker">
-                            <option class="muted">Select Type</option>
-                            <option value="">Mustard</option>
-                            <option value="">Ketchup</option>
-                            <option value="">Relish</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 fil-item">
-                        <select class="selectpicker">
-                            <option class="muted">Select Category</option>
-                            <option value="">Mustard</option>
-                            <option value="">Ketchup</option>
-                            <option value="">Relish</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 fil-item">
-                        <select class="selectpicker">
-                            <option class="muted">Select University</option>
-                            <option value="">Mustard</option>
-                            <option value="">Ketchup</option>
-                            <option value="">Relish</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 fil-item">
-                        <select class="selectpicker">
-                            <option class="muted">Select Course</option>
-                            <option value="">Mustard</option>
-                            <option value="">Ketchup</option>
-                            <option value="">Relish</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 fil-item">
-                        <select class="selectpicker">
-                            <option class="muted">Select Country</option>
-                            <option value="">Mustard</option>
-                            <option value="">Ketchup</option>
-                            <option value="">Relish</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 fil-item">
-                        <select class="selectpicker">
-                            <option class="muted">Select Rating</option>
-                            <option value="">Mustard</option>
-                            <option value="">Ketchup</option>
-                            <option value="">Relish</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>
@@ -104,17 +75,23 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="title">
-                    <p>Totle 18 Notes</p>
+                    <p>Totle @ViewBag.TotalNote Notes</p>
                 </div>
             </div>
         </div>
 
         <!-- Note Detail -->
-        <div class="card-deck">
+        <div class="">
             <div class="row">
+                @{
+                    int Avg;
+                }
 
-                @foreach (var item in Model)
+                @foreach (var item in Model.Notes)
                 {
+                    {
+                        Avg = (int)item.SellerNotesReviews.Sum(x => x.Ratings) / (item.SellerNotesReviews.Count == 0 ? 1 : item.SellerNotesReviews.Count);
+                    }
                     <div class="col-lg-4 col-md-6">
                         <a class="card card-item" href="@Url.Action("NoteDetail","SearchNote", new { id = item.ID})">
                             <img class="card-img-top" src="@Url.Content(item.DisplayPicture)" alt="Card image cap">
@@ -122,19 +99,21 @@
                                 <h5 class="card-title">@item.Title</h5>
                             </div>
                             <div class="card-footer">
-                                <p><i class="fa fa-university"></i>@item.UniversityName</p>
+                                <p><i class="fa fa-university"></i>@item.UniversityName, @item.Country1.Name</p>
                                 <p><i class="fa fa-book"></i>@item.NumberofPages Pages</p>
                                 <p><i class="fa fa-calendar"></i>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.ModifiedDate))</p>
-                                <p><i class="fa fa-flag-o"></i><span>5 Users marked this note as inappropriate</span></p>
+                                <p><i class="fa fa-flag-o"></i><span>@item.SellerNotesReportedIssues.Count Users marked this note as inappropriate</span></p>
                                 <!-- Note Rating -->
                                 <div class="rate">
-                                    <!-- <span class="fa fa-star-half-o "></span> -->
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <p>100 reviews</p>
+                                    @for (var i = 1; i <= Avg; i++)
+                                    {
+                                        <i class="fa fa-star"></i>
+                                    }
+                                    @for (var i = (Avg + 1); i <= 5; i++)
+                                    {
+                                        <i class="fa fa-star-o"></i>
+                                    }
+                                    <p>@item.SellerNotesReviews.Count reviews</p>
                                 </div>
                             </div>
                         </a>
@@ -142,29 +121,58 @@
                 }
             </div>
         </div>
+
+        <!-- PAgination -->
+        @if (Model.Pager.TotalPages != 0)
+        {
+            <div class="row justify-content-center">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            @if (Model.Pager.CurrentPage == 1)
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { page = Model.Pager.CurrentPage, search = ViewBag.Search , type = ViewBag.Type, category = ViewBag.Category, university = ViewBag.University, course = ViewBag.Course, country = ViewBag.Country, ratings = ViewBag.Rating})"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { page = Model.Pager.CurrentPage - 1, search = ViewBag.Search , type = ViewBag.Type, category = ViewBag.Category, university = ViewBag.University, course = ViewBag.Course, country = ViewBag.Country, ratings = ViewBag.Rating})"><i class="fa fa-angle-left"></i></a>
+                            }
+                        </li>
+
+
+                        @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                        {
+                            if (page == Model.Pager.CurrentPage)
+                            {
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">@page<span class="sr-only">(current)</span></a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">@Html.ActionLink(page.ToString(), "Index", new { page = page, search = ViewBag.Search, type = ViewBag.Type, category = ViewBag.Category, university = ViewBag.University, course = ViewBag.Course, country = ViewBag.Country, ratings = ViewBag.Rating }, new { @class = "page-link" })</li>
+                            }
+                        }
+
+                        <li class="page-item">
+                            @if (Model.Pager.CurrentPage == Model.Pager.EndPage)
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { page = Model.Pager.CurrentPage, search = ViewBag.Search , type = ViewBag.Type, category = ViewBag.Category, university = ViewBag.University, course = ViewBag.Course, country = ViewBag.Country, ratings = ViewBag.Rating })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { page = Model.Pager.CurrentPage + 1, search = ViewBag.Search , type = ViewBag.Type, category = ViewBag.Category, university = ViewBag.University, course = ViewBag.Course, country = ViewBag.Country, ratings = ViewBag.Rating})"><i class="fa fa-angle-right"></i></a>
+                            }
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        }
     </div>
 </section>
 
 
 
-<!-- Pagination -->
-<section id="paginations">
-    <div class="content-box">
-        <ul class="pagination justify-content-center align-items-center">
-
-            <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">1<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
-
-        </ul>
-    </div>
-</section>
 
 
 

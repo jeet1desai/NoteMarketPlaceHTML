@@ -11,21 +11,27 @@ namespace NoteMarketPlace.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SellerNotesReview
     {
         public int ID { get; set; }
         public int NoteID { get; set; }
         public int ReviewedByID { get; set; }
         public int AgainstDownloadsID { get; set; }
+
+        [Required]
         public decimal Ratings { get; set; }
+
+        [Required]
         public string Comments { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public bool IsActive { get; set; }
-    
+
+
         public virtual Download Download { get; set; }
         public virtual SellerNote SellerNote { get; set; }
         public virtual User User { get; set; }

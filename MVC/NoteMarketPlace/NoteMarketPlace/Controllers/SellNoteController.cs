@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using System.Web;
 
 namespace NoteMarketPlace.Controllers
 {
@@ -20,7 +21,9 @@ namespace NoteMarketPlace.Controllers
         }
 
 
-        // GET: SellNote
+
+
+
         // Searching, Sorting and Paging
         [Route("SellNote")]
         [Authorize]
@@ -30,12 +33,14 @@ namespace NoteMarketPlace.Controllers
             ViewBag.Class = "white-nav";
             ViewBag.SellNote = "active";
 
+            //For Sorting InProgress
             ViewBag.TitleSortParm = sortOrder == "Title" ? "title_desc" : "Title";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.CategorySortParm = sortOrder == "Category" ? "category_desc" : "Category";
             ViewBag.StatusSortParm = sortOrder == "Status" ? "status_desc" : "Status";
 
 
+            //For Sorting Publish
             ViewBag.TitleSortParm1 = sortOrderP == "Title" ? "title_desc" : "Title";
             ViewBag.DateSortParm1 = sortOrderP == "Date" ? "date_desc" : "Date";
             ViewBag.CategorySortParm1 = sortOrderP == "Category" ? "category_desc" : "Category";
@@ -46,10 +51,34 @@ namespace NoteMarketPlace.Controllers
             ViewBag.PageNumberPublished = publishpage;
 
             SellNoteDashboardModel dashboardviewmodel = new SellNoteDashboardModel();
+
+            //Auth User
             var user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
 
+            //Buyer Request
+            var BuyerReqCount = db.Downloads.Where(x => x.Seller == user.ID && x.IsSellerHasAllowedDownload == false).Count();
+            dashboardviewmodel.BuyerRequest = BuyerReqCount;
+
+            //My Download
+            var MyDownloadCount = db.Downloads.Where(x => x.Downloader == user.ID && x.IsSellerHasAllowedDownload == true).Count();
+            dashboardviewmodel.MyDownload = MyDownloadCount;
+
+            //My Rejected Note
+            var RejectNote = db.SellerNotes.Where(x => x.SellerID == user.ID && x.IsActive == true && x.Status == 5).Count();
+            dashboardviewmodel.MyRejectedNote = RejectNote;
+
+            //Note Sold and Earn Money
+            var SoldNote = db.Downloads.Where(x => x.Seller == user.ID && x.IsSellerHasAllowedDownload == true).Count();
+            dashboardviewmodel.NumberOfSoldNote = SoldNote;
+            var EarnMoney = db.Downloads.Where(x => x.Seller == user.ID && x.IsSellerHasAllowedDownload == true).Sum(x => x.PurchasedPrice);
+            dashboardviewmodel.MoneyEarned = EarnMoney == null ? 0 : (int)EarnMoney;
+
+            //InProgrss Query
             var IpNote = db.SellerNotes.Where(x => x.SellerID == user.ID && (x.Status == 1 || x.Status == 2 || x.Status == 3));
+            //Publish Query
             var PNote = db.SellerNotes.Where(x => x.SellerID == user.ID && x.Status == 4);
+
+            //Is InProgrss and Publish Search not Null
             if (search != null)
             {
                 IpNote = IpNote.Where(x => x.Title.Contains(search) || x.NoteCategory.Name.Contains(search) || x.ReferenceData.Value.Contains(search));
@@ -58,6 +87,8 @@ namespace NoteMarketPlace.Controllers
             {
                 PNote = PNote.Where(x => x.Title.Contains(search2) || x.NoteCategory.Name.Contains(search2) || x.ReferenceData.Value.Contains(search2));
             }
+
+            //Inprogrss Sorting
             switch (sortOrder)
             {
                 case "title_desc":
@@ -88,6 +119,8 @@ namespace NoteMarketPlace.Controllers
                     dashboardviewmodel.InProgressNote = IpNote.OrderByDescending(s => s.ModifiedDate);
                     break;
             }
+
+            //Publish Sorting
             switch (sortOrderP)
             {
                 case "title_desc":
@@ -125,6 +158,7 @@ namespace NoteMarketPlace.Controllers
                     break;
             }
 
+            //Pagination
             ViewBag.TotalPagesInProgress = Math.Ceiling(dashboardviewmodel.InProgressNote.Count() / 5.0);
             ViewBag.TotalPagesInPublished = Math.Ceiling(dashboardviewmodel.PublishedNote.Count() / 5.0);
             dashboardviewmodel.InProgressNote = dashboardviewmodel.InProgressNote.Skip((inprogresspage - 1) * 5).Take(5);
@@ -135,11 +169,18 @@ namespace NoteMarketPlace.Controllers
 
 
 
-        //Delete Seller Note
+
+
+
+
+        //Delete Seller Note if Its in Draft
         [HttpPost]
         public ActionResult Delete(int id)
         {
+            //Auth USer
             var user = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+
+            //Check Note is Store in Draft Formate
             var note = db.SellerNotes.Where(x => x.ID == id && x.SellerID == user.ID && x.Status == 1).FirstOrDefault();
 
             if (note == null)
@@ -150,16 +191,22 @@ namespace NoteMarketPlace.Controllers
             {
                 return Content("You Can't Delete This Note, This Note doesn't Belong to You");
             }
-            var noteFile = db.SellerNotesAttachements.Where(x => x.NoteID == note.ID).FirstOrDefault();
-            db.SellerNotesAttachements.Remove(noteFile);
+            var noteFile = db.SellerNotesAttachements.Where(x => x.NoteID == note.ID).ToList();
+
+            //Delete in Database Table
+            foreach (var item in noteFile)
+            {
+                db.SellerNotesAttachements.Remove(item);
+            }
+
             db.SaveChanges();
 
             db.SellerNotes.Remove(note);
             db.SaveChanges();
 
+            //Delete in server Folder(Members)
+            string PathPreview = Request.MapPath("~/Members/" + note.SellerID + "/" + note.ID);
 
-            string PathPreview = Request.MapPath("~/Members/" + note.SellerID + "/" + note.ID );
-            
             if (Directory.Exists(PathPreview))
             {
                 DeleteDirectory(PathPreview);
@@ -167,6 +214,7 @@ namespace NoteMarketPlace.Controllers
 
             return RedirectToAction("Index");
         }
+
         public void DeleteDirectory(string path)
         {
             foreach (string filename in Directory.GetFiles(path))
@@ -183,6 +231,14 @@ namespace NoteMarketPlace.Controllers
         }
 
 
+
+
+
+
+
+
+
+
         //Add Note
         [Route("SellNote/AddNote")]
         [Authorize]
@@ -195,18 +251,19 @@ namespace NoteMarketPlace.Controllers
             var typ = db.NoteTypes.Where(x => x.IsActive == true).ToList();
             var cnt = db.Countries.Where(x => x.IsActive == true).ToList();
 
-
             AddNoteModel viewModel = new AddNoteModel
             {
                 NoteCategoryList = cat,
                 NoteTypeList = typ,
                 CountryList = cnt
             };
-
-
             return View(viewModel);
 
         }
+
+
+
+
 
 
         //Add Note
@@ -244,9 +301,9 @@ namespace NoteMarketPlace.Controllers
                 sellernotes.IsActive = true;
 
                 // If seller add unvalid price
-                if (sellernotes.IsPaid)
+                if (note.IsPaid)
                 {
-                    if (sellernotes.SellingPrice == null || sellernotes.SellingPrice < 1)
+                    if (note.SellingPrice == null || note.SellingPrice < 1)
                     {
                         ModelState.AddModelError("SellingPrice", "Enter valid Selling price");
 
@@ -255,11 +312,18 @@ namespace NoteMarketPlace.Controllers
                         return View(viewModel);
                     }
                 }
+                if (note.UploadNotes[0] == null)
+                {
+                    ModelState.AddModelError("UploadNotes", "Enter Note");
+
+                    AddNoteModel viewModel = GetDD();
+
+                    return View(viewModel);
+                }
 
                 db.SellerNotes.Add(sellernotes);
                 db.SaveChanges();
 
-                Debug.WriteLine(sellernotes.ID);
 
                 sellernotes = db.SellerNotes.Find(sellernotes.ID);
 
@@ -296,27 +360,39 @@ namespace NoteMarketPlace.Controllers
                 db.SaveChanges();
 
                 //save note file
-                string notesattachementfilename = System.IO.Path.GetFileName(note.UploadNotes.FileName);
-                string notesattachementpath = "~/Members/" + user.ID + "/" + sellernotes.ID + "/Attachements/";
-                CreateDirectoryIfMissing(notesattachementpath);
-                string notesattachementfilepath = Path.Combine(Server.MapPath(notesattachementpath), notesattachementfilename);
-
-                note.NotesPreview.SaveAs(notesattachementfilepath);
-
-                //save note file into SellerNotesAttachement table
-                SellerNotesAttachement notesattachements = new SellerNotesAttachement
+                if (note.UploadNotes[0] != null)
                 {
-                    NoteID = sellernotes.ID,
-                    FileName = notesattachementfilename,
-                    FilePath = notesattachementpath + notesattachementfilename,
-                    CreatedDate = DateTime.Now,
-                    CreatedBy = user.ID,
-                    IsActive = true
-                };
+                    foreach (HttpPostedFileBase file in note.UploadNotes)
+                    {
+                        if (file != null)
+                        {
+                            string notesattachementfilename = System.IO.Path.GetFileName(file.FileName);
+                            string notesattachementpath = "~/Members/" + user.ID + "/" + sellernotes.ID + "/Attachements/";
+                            CreateDirectoryIfMissing(notesattachementpath);
+                            string notesattachementfilepath = Path.Combine(Server.MapPath(notesattachementpath), notesattachementfilename);
 
-                db.SellerNotesAttachements.Add(notesattachements);
+                            note.NotesPreview.SaveAs(notesattachementfilepath);
 
-                db.SaveChanges();
+
+                            //save note file into SellerNotesAttachement table
+                            SellerNotesAttachement notesattachements = new SellerNotesAttachement
+                            {
+                                NoteID = sellernotes.ID,
+                                FileName = notesattachementfilename,
+                                FilePath = notesattachementpath + notesattachementfilename,
+                                CreatedDate = DateTime.Now,
+                                CreatedBy = user.ID,
+                                ModifiedDate = DateTime.Now,
+                                ModifiedBy = user.ID,
+                                IsActive = true
+                            };
+
+                            db.SellerNotesAttachements.Add(notesattachements);
+
+                            db.SaveChanges();
+                        }
+                    }
+                }
                 db.Dispose();
 
                 return RedirectToAction("Index", "SellNote");
@@ -330,27 +406,37 @@ namespace NoteMarketPlace.Controllers
 
 
 
+
+
+
+
         //Edit Note
         [Route("SellNote/EditNote/{id}")]
         [Authorize]
         [HttpGet]
-
         public ActionResult EditNote(int id)
         {
             ViewBag.Class = "white-nav";
 
+            //DropDown
             var cat = db.NoteCategories.Where(x => x.IsActive == true).ToList();
             var typ = db.NoteTypes.Where(x => x.IsActive == true).ToList();
             var cnt = db.Countries.Where(x => x.IsActive == true).ToList();
 
-
+            //Auth USer
             var user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
 
+            //Note Detail
             var note = db.SellerNotes.Where(x => x.ID == id && x.SellerID == user.ID && x.Status == 1).FirstOrDefault();
 
-            var FileNote = db.SellerNotesAttachements.Where(x => x.NoteID == note.ID).FirstOrDefault();
-            
-            if(note == null)
+            var FileNote = db.SellerNotesAttachements.Where(x => x.NoteID == note.ID).ToList();
+            string path = "";
+            foreach (var item in FileNote)
+            {
+                path = path + item.FileName + ", ";
+            }
+
+            if (note == null)
             {
                 return Content("You can't have access to this file");
             }
@@ -377,14 +463,17 @@ namespace NoteMarketPlace.Controllers
 
             viewModel.DpPathName = note.DisplayPicture;
             viewModel.NpPathName = note.NotesPreview;
-            viewModel.NtPathName = FileNote.FilePath;
 
             ViewBag.ImageName = Path.GetFileName(note.DisplayPicture);
             ViewBag.PreviewName = Path.GetFileName(note.NotesPreview);
-            ViewBag.FileName = Path.GetFileName(FileNote.FilePath);
+            ViewBag.FileName = path;
 
             return View(viewModel);
         }
+
+
+
+
 
 
 
@@ -399,7 +488,7 @@ namespace NoteMarketPlace.Controllers
 
             var note = db.SellerNotes.Where(x => x.ID == viewModel.ID && x.Status == 1 && x.SellerID == user.ID).FirstOrDefault();
 
-            var AttachFile = db.SellerNotesAttachements.Where(x => x.NoteID == note.ID).FirstOrDefault();
+            var AttachFile = db.SellerNotesAttachements.Where(x => x.NoteID == note.ID).ToList();
 
             if (user != null && ModelState.IsValid)
             {
@@ -415,13 +504,13 @@ namespace NoteMarketPlace.Controllers
                 note.CourseCode = viewModel.CourseCode;
                 note.Professor = viewModel.Professor;
                 note.IsPaid = viewModel.IsPaid;
-                note.SellingPrice = viewModel.IsPaid == false ? 0 : note.SellingPrice;
+                note.SellingPrice = viewModel.SellingPrice;
                 note.ModifiedDate = DateTime.Now;
 
                 db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
 
-                
+
                 if (viewModel.DisplayPicture != null)
                 {
                     string FileNameDelete = System.IO.Path.GetFileName(note.DisplayPicture);
@@ -441,7 +530,7 @@ namespace NoteMarketPlace.Controllers
                     db.SaveChanges();
                 }
 
-                if(viewModel.NotesPreview != null)
+                if (viewModel.NotesPreview != null)
                 {
                     string FileNameDelete = System.IO.Path.GetFileName(note.NotesPreview);
                     string PathPreview = Request.MapPath("~/Members/" + note.SellerID + "/" + note.ID + "/" + FileNameDelete);
@@ -459,34 +548,52 @@ namespace NoteMarketPlace.Controllers
                     db.Configuration.ValidateOnSaveEnabled = false;
                     db.SaveChanges();
                 }
-                if(viewModel.UploadNotes != null)
+                if (viewModel.UploadNotes != null)
                 {
-                    string FileNameDelete = System.IO.Path.GetFileName(note.NotesPreview);
-                    string PathPreview = Request.MapPath("~/Members/" + note.SellerID + "/" + note.ID + "/Attachements" + FileNameDelete);
-                    FileInfo file = new FileInfo(PathPreview);
-                    if (file.Exists)
+                    string deletepath = Request.MapPath("~/Members/" + note.SellerID + "/" + note.ID + "/Attachements/");
+                    foreach (string filename in Directory.GetFiles(deletepath))
                     {
+                        FileInfo file = new FileInfo(filename);
                         file.Delete();
                     }
-                    string notesattachementfilename = System.IO.Path.GetFileName(viewModel.UploadNotes.FileName);
-                    string notesattachementpath = "~/Members/" + note.SellerID + "/" + note.ID + "/Attachements/";
-                    string notesattachementfilepath = Path.Combine(Server.MapPath(notesattachementpath), notesattachementfilename);
+                    foreach (var item in AttachFile)
+                    {
+                        db.SellerNotesAttachements.Remove(item);
+                        db.SaveChanges();
+                    }
+                    foreach (HttpPostedFileBase file in viewModel.UploadNotes)
+                    {
+                        if (file != null)
+                        {
+                            string notesattachementfilename = System.IO.Path.GetFileName(file.FileName);
+                            string notesattachementpath = "~/Members/" + note.SellerID + "/" + note.ID + "/Attachements/";
+                            string notesattachementfilepath = Path.Combine(Server.MapPath(notesattachementpath), notesattachementfilename);
 
-                    viewModel.UploadNotes.SaveAs(notesattachementfilepath);
+                            file.SaveAs(notesattachementfilepath);
 
-                    AttachFile.FileName = notesattachementfilename;
-                    AttachFile.FilePath = notesattachementpath + notesattachementfilename;
-                    AttachFile.ModifiedDate = DateTime.Now;
-                    AttachFile.ModifiedBy = user.ID;
+                            SellerNotesAttachement notesattachements = new SellerNotesAttachement
+                            {
+                                NoteID = viewModel.ID,
+                                FileName = notesattachementfilename,
+                                FilePath = notesattachementpath + notesattachementfilename,
+                                CreatedDate = DateTime.Now,
+                                CreatedBy = user.ID,
+                                ModifiedDate = DateTime.Now,
+                                ModifiedBy = user.ID,
+                                IsActive = true
+                            };
 
-                    db.Configuration.ValidateOnSaveEnabled = false;
-                    db.SaveChanges();
+                            db.SellerNotesAttachements.Add(notesattachements);
+                            db.SaveChanges();
+                        }
+                    }
                 }
                 return RedirectToAction("Index", "SellNote");
-
             }
             return View();
         }
+
+
 
 
 
@@ -506,6 +613,7 @@ namespace NoteMarketPlace.Controllers
 
             return viewModel;
         }
+
 
 
         private void CreateDirectoryIfMissing(string path)

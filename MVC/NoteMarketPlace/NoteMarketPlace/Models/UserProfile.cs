@@ -11,7 +11,8 @@ namespace NoteMarketPlace.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class UserProfile
     {
         public int ID { get; set; }
@@ -19,14 +20,30 @@ namespace NoteMarketPlace.Models
         public Nullable<System.DateTime> DOB { get; set; }
         public Nullable<int> Gender { get; set; }
         public string SecondaryEmailAddress { get; set; }
+
+        [Required]
         public string PhoneNumberCountryCode { get; set; }
+
+        [Required]
         public string PhoneNumber { get; set; }
         public string ProfilePicture { get; set; }
+
+        [Required]
         public string AddressLine1 { get; set; }
+
+        [Required]
         public string AddressLine2 { get; set; }
+
+        [Required]
         public string City { get; set; }
+
+        [Required]
         public string State { get; set; }
+
+        [Required]
         public string ZipCode { get; set; }
+
+        [Required]
         public string Country { get; set; }
         public string University { get; set; }
         public string College { get; set; }

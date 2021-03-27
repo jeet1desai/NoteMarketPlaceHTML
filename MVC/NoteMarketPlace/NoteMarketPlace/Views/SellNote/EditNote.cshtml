@@ -71,7 +71,7 @@
                                 <div class="form-group">
                                     <label for="upload-notes">Upload Notes *</label>
                                     <div class="upload-box">
-                                        @Html.TextBoxFor(model => model.UploadNotes, new { @class = "form-control-file upload", id = "upload-notes", type = "file" })
+                                        @Html.TextBoxFor(model => model.UploadNotes, new { @class = "form-control-file upload", id = "upload-notes", type = "file", multiple = "multiple" })
                                     </div>
                                     @Html.ValidationMessageFor(model => model.UploadNotes)
                                     <p id="note-filename">@ViewBag.FileName</p>

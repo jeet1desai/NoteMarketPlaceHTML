@@ -151,7 +151,7 @@ namespace NoteMarketPlace.Controllers
 
             var message = new MailMessage();
             message.To.Add(new MailAddress(Downloader.Email));  // Reciever 
-            message.From = new MailAddress("******@******.ac.in");  // Sender
+            message.From = new MailAddress("170200107021@gecrajkot.ac.in");  // Sender
             message.Subject = Seller.FirstName + " " + Seller.LastName + " " + "Allows you to download a note";
             message.Body = string.Format(body, Downloader.FirstName+" "+Downloader.LastName, Seller.FirstName+" "+Seller.LastName);
             message.IsBodyHtml = true;
@@ -160,7 +160,7 @@ namespace NoteMarketPlace.Controllers
             {
                 var credential = new NetworkCredential
                 {
-                    UserName = "******@******.ac.in",
+                    UserName = "170200107021@gecrajkot.ac.in",
                     Password = "******"
                 };
                 smtp.Credentials = credential;

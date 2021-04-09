@@ -11,11 +11,15 @@ namespace NoteMarketPlace.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SystemConfiguration
     {
         public int ID { get; set; }
+        [Required]
+        [MaxLength(100)]
         public string Name { get; set; }
+        [Required]
         public string Value { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> CreatedBy { get; set; }

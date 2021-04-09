@@ -1,0 +1,44 @@
+﻿@model NoteMarketPlace.Models.Country
+
+@{
+    ViewBag.Title = "Note - Add Country";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Add Country -->
+<section id="addcountry">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="title">
+                        <p>Add Country</p>
+                    </div>
+                    <p class="text-danger">@ViewBag.Error</p>
+                    <div class="form-div">
+                        @using (Html.BeginForm("AddCountry", "ManageCountry", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label for="country">Country Name *</label>
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", id = "country", placeholder = "Enter Your Country Name", type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="code">Country Code *</label>
+                                @Html.TextBoxFor(model => model.CountryCode, new { @class = "form-control", id = "code", placeholder = "Enter Your Country Code", type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.CountryCode)
+                            </div>
+
+                            <div id="btn-purple">
+                                <button type="submit" value="Submit" class="btn">SUBMIT</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

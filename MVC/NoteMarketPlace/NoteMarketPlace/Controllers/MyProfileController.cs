@@ -131,7 +131,8 @@ namespace NoteMarketPlace.Controllers
                     }
                     else
                     {
-                        //Admin Config Defualt Pic Use 
+                        var filepath = db.SystemConfigurations.Where(x => x.Name == "DefaultMemberDisplayPicture").FirstOrDefault();
+                        userProfile.ProfilePicture = filepath.Value;
                     }
 
                     db.UserProfiles.Add(userProfile);

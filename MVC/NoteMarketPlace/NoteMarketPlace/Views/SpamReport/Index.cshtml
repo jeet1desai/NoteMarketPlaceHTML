@@ -1,0 +1,141 @@
+﻿@model IEnumerable<NoteMarketPlace.Models.SellerNotesReportedIssue>
+
+
+@{
+    ViewBag.Title = "Note - Spam Report";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Spam Report -->
+<section id="spam-report">
+    <div class="content-box-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="title">
+                        <p>Span Reports</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    @using (@Html.BeginForm("Index", "SpamReport", FormMethod.Get))
+                    {
+                        <div class="search-btn">
+                            <div class="form-group has-search">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input name="search" type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <div id="btn-purple">
+                                <button type="submit" class="btn">Search</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-content table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>SR NO.</th>
+                            <th>@Html.ActionLink("REPORTED BY", "Index", new { sortOrder = ViewBag.TitleSortParm, search = Request.QueryString["search"], srPage = Request.QueryString["srPage"] })</th>
+                            <th>@Html.ActionLink("NOTE TITLE", "Index", new { sortOrder = ViewBag.TitleSortParm, search = Request.QueryString["search"], srPage = Request.QueryString["srPage"] })</th>
+                            <th>@Html.ActionLink("CATEGORY", "Index", new { sortOrder = ViewBag.TitleSortParm, search = Request.QueryString["search"], srPage = Request.QueryString["srPage"] })</th>
+                            <th>@Html.ActionLink("DATE EDITED", "Index", new { sortOrder = ViewBag.TitleSortParm, search = Request.QueryString["search"], srPage = Request.QueryString["srPage"] })</th>
+                            <th>@Html.ActionLink("REMARK", "Index", new { sortOrder = ViewBag.TitleSortParm, search = Request.QueryString["search"], srPage = Request.QueryString["srPage"] })</th>
+                            <th>ACTION</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int no = (ViewBag.srno - 1) * 5 + 1;
+                        }
+
+                        @if (Model.Count() == 0)
+                        {
+                            <tr>
+                                <td colspan="8" class="text-center">No Record Found</td>
+                            </tr>
+                        }
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@no</td>
+                                <td>@item.User.FirstName @item.User.LastName</td>
+                                <td><span>@item.SellerNote.Title</span></td>
+                                <td>@item.SellerNote.NoteCategory.Name</td>
+                                <td>@item.CreatedDate</td>
+                                <td>@item.Remarks</td>
+                                <td class="text-center"><a onclick="return confirm('Are you sure you want to delete reported issue?')" href="@Url.Action("DeleteSpam", "SpamReport", new { id = item.ID})"><img src="./images/Dashboard/delete.jpeg" alt=""></a></td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="./images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="@Url.Action("DownloadNote", "AdminDashboard", new { id = item.SellerNote.ID})">Download Note</a>
+                                            <a class="dropdown-item" href="@Url.Action("NoteDetail", "SearchNote", new { id = item.SellerNote.ID})">View More Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            no++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            @if (ViewBag.TotalSpamReportPage != 0)
+            {
+                <div class="row justify-content-center">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                @if (ViewBag.currentPage == 1)
+                                {
+                                    <a class="page-link" href="@Url.Action("Index", new { srPage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-left"></i></a>
+                                }
+                                else
+                                {
+                                    <a class="page-link" href="@Url.Action("Index", new { srPage = @ViewBag.currentPage - 1, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-left"></i></a>
+                                }
+                            </li>
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <li class="page-item active">
+                                            <a class="page-link" href="#">@i<span class="sr-only">(current)</span></a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item">@Html.ActionLink(i.ToString(), "Index", new { srPage = i, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] }, new { @class = "page-link" })</li>
+                                    }
+                                }
+                            }
+                            <li class="page-item">
+                                @if (ViewBag.currentPage == ViewBag.endPage)
+                                {
+                                    <a class="page-link" href="@Url.Action("Index", new { srPage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-right"></i></a>
+                                }
+                                else
+                                {
+                                    <a class="page-link" href="@Url.Action("Index", new { srPage = @ViewBag.currentPage + 1, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-right"></i></a>
+                                }
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            }
+
+        </div>
+    </div>
+
+</section>
+
+

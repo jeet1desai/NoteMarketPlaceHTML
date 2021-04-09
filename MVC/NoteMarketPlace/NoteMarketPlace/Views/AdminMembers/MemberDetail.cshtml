@@ -1,0 +1,248 @@
+﻿@model NoteMarketPlace.Models.MemberDetailModel
+
+@{
+    ViewBag.Title = "Note - " + Model.User.FirstName + " " + @Model.User.LastName;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Member Detail Top -->
+<section id="member-top">
+    <div class="content-box">
+        <div class="container">
+
+            <div class="row">
+                <!-- Heading -->
+                <div class="col-md-12">
+                    <div class="title-sm">
+                        <p>Member Details</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Member Top -->
+            <div class="row">
+                <!-- Member Detail Left -->
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12 mem-left">
+                    <div class="row">
+                        <!-- Member Image -->
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                            <div class="note-image">
+                                @if (Model.UserProfile.ProfilePicture == null)
+                                {
+                                    <img class="img-fluid" src="~/Content/Admin/images/Profile/avatar.png" alt="">
+                                }
+                                else
+                                {
+                                    <img class="img-fluid" src="@Url.Content(Model.UserProfile.ProfilePicture)" alt="">
+                                }
+                            </div>
+                        </div>
+                        <!-- Member Detail -->
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-12">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>First Name:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p><span>@Model.User.FirstName</span></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>Last Name:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p><span>@Model.User.LastName</span></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>Email:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p><span>@Model.User.Email</span></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>DOB:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p><span>@Convert.ToString(string.Format("{0:dd MMM yyyy}", Model.UserProfile.DOB))</span></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>Phone No:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p><span>@Model.UserProfile.PhoneNumber</span></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>Collage/University:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p><span>@Model.UserProfile.University</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member Detail Right -->
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12 mem-right">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>Address 1:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p><span>@Model.UserProfile.AddressLine1</span></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>Address 2:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p><span>@Model.UserProfile.AddressLine2</span></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>City:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p><span>@Model.UserProfile.City</span></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>State:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p><span>@Model.UserProfile.State</span></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>Country:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p><span>@Model.CountryName</span></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p>Zip Code:</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <p><span>@Model.UserProfile.ZipCode</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<!-- Menber Detail Bottom -->
+<section id="member-bottom">
+    <div class="content-box-top">
+        <div class="container">
+            <div class="title-sm">
+                <p>Notes</p>
+            </div>
+
+            <div class="table-content table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>SR NO.</th>
+                            <th>@Html.ActionLink("NOTE TITLE", "MemberDetail", new { sortOrder = ViewBag.TitleSortParm, mdPage = Request.QueryString["mdPage"] })</th>
+                            <th>@Html.ActionLink("CATEGORY", "MemberDetail", new { sortOrder = ViewBag.CategorySortParm, mdPage = Request.QueryString["mdPage"] })</th>
+                            <th>@Html.ActionLink("STATUS", "MemberDetail", new { sortOrder = ViewBag.StatusSortParm, mdPage = Request.QueryString["mdPage"] })</th>
+                            <th class="text-center">@Html.ActionLink("DOWNLOADED NOTES", "MemberDetail", new { sortOrder = ViewBag.DnSortParm, mdPage = Request.QueryString["mdPage"] })</th>
+                            <th class="text-center">@Html.ActionLink("TOTAL EARNING", "MemberDetail", new { sortOrder = ViewBag.TeSortParm, mdPage = Request.QueryString["mdPage"] })</th>
+                            <th>@Html.ActionLink("DATE ADDED", "MemberDetail", new { sortOrder = ViewBag.ADateSortParm, mdPage = Request.QueryString["mdPage"] })</th>
+                            <th>@Html.ActionLink("PUBLISHED DATE", "MemberDetail", new { sortOrder = ViewBag.PDateSortParm, mdPage = Request.QueryString["mdPage"] })</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int no = (ViewBag.srno - 1) * 5 + 1;
+                        }
+
+                        @if (Model.Notes.Count() == 0)
+                        {
+                            <tr>
+                                <td colspan="9" class="text-center">No Record Found</td>
+                            </tr>
+                        }
+
+                        @foreach (var item in Model.Notes)
+                        {
+                            <tr>
+                                <td>@no</td>
+                                <td><a href="@Url.Action("NoteDetail", "SearchNote", new { id = item.SellerNote.ID})"><span>@item.SellerNote.Title</span></a></td>
+                                <td>@item.SellerNote.NoteCategory.Name</td>
+                                <td>@item.SellerNote.ReferenceData.Value</td>
+                                <td class="text-center"><a href="@Url.Action("Index", "AdminDownloadedNote", new { noteId = item.SellerNote.ID})"><span>@item.DownloadedNotes</span></a></td>
+                                <td class="text-center">$@item.TotalEarning</td>
+                                <td>@item.SellerNote.CreatedDate</td>
+                                <td>@item.SellerNote.PublishedDate</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="~/Content/Admin/images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="@Url.Action("DownloadNote", "AdminDashboard", new { id = item.SellerNote.ID})">Download Notes</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            no++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            @if (ViewBag.TotalMemberDetailPage != 0)
+            {
+                <div class="row justify-content-center">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item">
+
+                                @if (ViewBag.currentPage == 1)
+                                {
+                                    <a class="page-link" href="@Url.Action("MemberDetail", new { mdPage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"] })"><i class="fa fa-angle-left"></i></a>
+                                }
+                                else
+                                {
+                                    <a class="page-link" href="@Url.Action("MemberDetail", new { mdPage = @ViewBag.currentPage - 1, sortOrder = Request.QueryString["sortOrder"] })"><i class="fa fa-angle-left"></i></a>
+                                }
+                            </li>
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <li class="page-item active">
+                                            <a class="page-link" href="#">@i<span class="sr-only">(current)</span></a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item">@Html.ActionLink(i.ToString(), "MemberDetail", new { mdPage = i, sortOrder = Request.QueryString["sortOrder"] }, new { @class = "page-link" })</li>
+                                    }
+                                }
+                            }
+                            <li class="page-item">
+                                @if (ViewBag.currentPage == ViewBag.endPage)
+                                {
+                                    <a class="page-link" href="@Url.Action("MemberDetail", new { mdPage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"] })"><i class="fa fa-angle-right"></i></a>
+                                }
+                                else
+                                {
+                                    <a class="page-link" href="@Url.Action("MemberDetail", new { mdPage = @ViewBag.currentPage + 1, sortOrder = Request.QueryString["sortOrder"] })"><i class="fa fa-angle-right"></i></a>
+                                }
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+

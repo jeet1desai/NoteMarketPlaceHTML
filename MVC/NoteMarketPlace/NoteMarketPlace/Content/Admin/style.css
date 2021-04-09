@@ -1,0 +1,945 @@
+/* =======================================================================
+                By Default
+======================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+section {
+    overflow: hidden;
+}
+
+/* =======================================================================
+                Content Box
+======================================================================= */
+.content-box {
+    padding: 60px 0;
+}
+
+.content-box-top {
+    padding-top: 60px;
+}
+
+/* =======================================================================
+                button
+======================================================================= */
+#btn-purple a {
+    background-color: #6255a5;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 3px;
+    font-weight: 600;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.btn-green a {
+    background-color: green;
+    color: white;
+    border-radius: 3px;
+    font-weight: 600;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.btn-red a {
+    background-color: red;
+    color: white;
+    border-radius: 3px;
+    font-weight: 600;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.btn-gray a {
+    background-color: gray;
+    color: white;
+    border-radius: 3px;
+    font-weight: 600;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.btn-green a:hover,
+.btn-red a:hover,
+.btn-gray a:hover{
+    color: white;
+}
+
+#btn-purple {
+    margin-bottom: 5px;
+}
+
+.btn-home {
+    width: 172px;
+    padding: 10px 0px;
+    font-size: 18px;
+}
+
+.login-btn, .for-pass-btn {
+    width: 100%;
+    background-color: #6255a5;
+    border-radius: 3px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 18px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    margin-bottom: 12px;
+}
+
+.login-btn:hover, .for-pass-btn:hover {
+    color: white;
+}
+
+
+#msc #btn-purple button,
+#addadmin #btn-purple button,
+#addcategory #btn-purple button,
+#addtype #btn-purple button,
+#addcountry #btn-purple button,
+#myprofile #btn-purple button {
+    width: 150px;
+}
+/* =======================================================================
+                Title
+======================================================================= */
+.title p {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #6255a5;
+    margin-bottom: 15px;
+}
+
+.title-sm p {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #6255a5;
+    margin-bottom: 15px;
+}
+
+/* =======================================================================
+                Navigation
+======================================================================= */
+
+.navigation {
+    width: 100%;
+    background-color: white;
+}
+
+.nav-box {
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    position: fixed;
+    background-color: white;
+}
+
+.navbar {
+    padding: 18px 0px;
+    display: flex;
+}
+
+.nav-menu-link {
+    flex: 1;
+}
+
+.navbar-nav.container {
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.nav-logo img {
+    max-width: 180px;
+}
+
+.navbar-nav img {
+    width: 28px;
+    height: 28px;
+}
+
+.navbar-nav .nav-item {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.navbar-nav .nav-link {
+    color: #333333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.navbar-nav .nav-link.active {
+    color: #6255a5;
+    border-bottom: 2px solid #6255a5;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #6255a5;
+}
+
+.arrow-down {
+    display: none;
+}
+
+.navbar-nav #btn-purple {
+    margin-top: 3px;
+    margin-bottom: 0px;
+}
+
+/* dropdown */
+
+.navbar-nav .dropdown-menu {
+    position: absolute;
+}
+
+.dropdown-item span {
+    color: #6255a5;
+}
+
+.dropdown-item {
+    font-size: 16px;
+}
+
+.dropdown-item:hover, .dropdown-item.active, .dropdown-item:hover span {
+    background-color: #6255a5;
+    color: white;
+}
+
+/* Toggle */
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    color: #333333;
+    background-color: #333333;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-toggle {
+    justify-self: end;
+    margin-top: 7px;
+    /* display: none; */
+}
+
+.menu-toggle:hover {
+    cursor: pointer;
+}
+
+#mobile-menu.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+#mobile-menu.is-active .bar:nth-child(1) {
+    -webkit-transform: translateY(8px) rotate(45deg);
+    -ms-transform: translateY(8px) rotate(45deg);
+    -o-transform: translateY(8px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
+}
+
+#mobile-menu.is-active .bar:nth-child(3) {
+    -webkit-transform: translateY(-8px) rotate(-45deg);
+    -ms-transform: translateY(-8px) rotate(-45deg);
+    -o-transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* =======================================================================
+            Forms - Contact Us, Add Notes, User Profile
+======================================================================= */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 15px;
+    color: #333333;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.form-group .form-control {
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: black;
+    padding-bottom: 8px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+/* login */
+
+.pass-and-forgpass a {
+    float: right;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #6255a5;
+}
+
+.pass-and-forgpass a:hover {
+    text-decoration: none;
+    color: #6255a5;
+}
+
+.field-icon {
+    color: #999999;
+    float: right;
+    margin-left: -25px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+    padding-right: 30px;
+}
+
+#passwordHelpBlock {
+    font-size: 13px;
+    font-weight: 300;
+    color: #ff3636;
+}
+
+.form-check .form-check-input {
+    border: 1px solid #d1d1d1;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.form-check .form-check-label {
+    padding-left: 5px;
+}
+
+/* =======================================================================
+            Login, Forget Pass.
+======================================================================= */
+
+#login, #forget-password {
+    background-image: url('../images/Login/banner-with-overlay.jpg');
+    width: 100%;
+    min-height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 15px;
+}
+
+.form-content {
+    background-color: white;
+    padding: 25px 50px;
+    border-radius: 3px;
+    margin-top: 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.box {
+    width: 450px;
+}
+
+.login-heading h3, .for-pass-heading h3 {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+    margin-bottom: 5px;
+}
+
+.login-heading p, .for-pass-heading p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #333333;
+    margin-bottom: 30px;
+}
+
+/* =======================================================================
+                Footer
+======================================================================= */
+
+/*.foot {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    bottom: 0;
+    background-color: white;
+} */
+
+/* =======================================================================
+                Dasboard
+======================================================================= */
+
+#admin-dashboard {
+    padding-top: 80px;
+}
+
+.dashbox {
+    height: 130px;
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+    padding: 28px;
+    text-align: center;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+
+
+.dashbox h5 {
+    color: #6255a5;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.dashbox p {
+    color: #333333;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0px;
+    line-height: 18px;
+}
+
+.statistic:hover,
+.statistic:focus{
+    text-decoration: none !important;
+}
+
+
+/* table */
+.table-content {
+    border: 1px solid #d1d1d1;
+}
+
+.table {
+    margin-bottom: 0px;
+}
+
+.table th, .table td {
+    font-size: 15px;
+    color: #333333;
+    line-height: 18px;
+}
+
+tbody tr:hover {
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+td a:hover,
+td a:focus,
+th a:hover,
+th a:focus{
+    text-decoration: none !important;
+}
+
+th a,
+th a:hover,
+th a:focus {
+    color: black;
+}
+ 
+
+.has-search {
+    position: relative;
+}
+
+.form-control-feedback {
+    position: absolute;
+    left: 8px;
+    top: 10px;
+}
+
+.has-search .form-control {
+    padding-left: 30px;
+    line-height: 10px;
+}
+
+.dash-select .form-control, .has-search .form-control {
+    height: 38px;
+}
+
+.dash-select select {
+    padding-left: 5px;
+}
+
+.dash-select .form-control option:hover {
+    background-color: #6255a5;
+    color: white;
+}
+
+.crow #btn-purple button {
+    width: 95px;
+}
+
+.crow {
+    padding: 0;
+}
+
+.table-dot img {
+    width: 15px;
+    height: 17px;
+}
+
+.table .dropdown-menu.show {
+    font-size: 16px;
+    display: block !important;
+}
+
+.table .dropdown-item {
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.table td span {
+    color: #6255a5;
+}
+
+/* =======================================================================
+                Pagination
+======================================================================= */
+
+.pagination {
+    z-index: -1;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.page-link {
+    margin: 0px 5px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    color: #333333;
+    border: 0px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.page-link:hover {
+    color: #6255a5;
+    text-decoration: none;
+}
+
+.page-link.active {
+    background-color: #6255a5;
+    color: white;
+}
+
+.page-item.active .page-link {
+    background-color: #6255a5;
+    color: white;
+}
+/* =======================================================================
+                My Profile
+======================================================================= */
+#myprofile {
+    margin-top: 80px;
+}
+
+.phone-number {
+    display: flex;
+}
+
+.phoneno {
+    width: 20%;
+    margin-right: 15px;
+}
+
+.phone-number select{
+    width: 35%;
+    margin-right: 15px;
+}
+
+.selectpicker {
+    border: 1px solid #d1d1d1;
+    outline: none;
+    padding: 5px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.upload-box {
+    background-image: url('/images/MyProfile/upload.png');
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.upload-box input.upload {
+    opacity: 0;
+    height: 100px;
+    width: 100%;
+}
+
+.form-div a {
+    width: 150px;
+}
+
+/* =======================================================================
+        MANAGE Administrator, Category, Country, Type, System Config
+======================================================================= */
+
+#manage-admin, #manage-category, #manage-country, #manage-type, #msc {
+    margin-top: 80px;
+}
+
+.search-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.search-btn .has-search {
+    margin-right: 15px;
+}
+
+.search-delete img {
+    width: 18px;
+    margin-right: 9px;
+}
+
+/* =======================================================================
+        ADD Category, Admin, Country, Type
+======================================================================= */
+
+#addcategory, #addadmin, #addcountry, #addtype {
+    margin-top: 80px;
+}
+
+textarea {
+    color: #333333;
+    display: block;
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+    padding: 6px 12px;
+    outline: none;
+    width: 100%;
+    height: 130px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+
+
+#addcategory textarea,
+#addadmin textarea,
+#addcountry textarea, 
+#addtype textarea {
+    height: 130px;
+} 
+/* =======================================================================
+                Note Detail
+======================================================================= */
+#note-top {
+    margin-top: 80px;
+}
+
+.note-header {
+    display: flex;
+}
+
+.note-image {
+    flex: 1;
+}
+
+.note-detail {
+    padding-right: 8px;
+    flex: 2;
+}
+
+.note-detail h5 {
+    color: #6255a5;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 22px;
+    margin-bottom: 8px;
+}
+
+.note-detail p {
+    font-size: 16px;
+    color: black;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 14px;
+}
+
+.note-detail #btn-purple a {
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+/* note detail right */
+
+.note-info p {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.note-info .text-right {
+    color: #6255a5;
+    font-weight: 600;
+}
+
+.note-info span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #df3434;
+}
+
+.rate i {
+    padding: 0px;
+}
+
+.rate p {
+    color: #6255a5;
+    display: inline;
+}
+
+.fa-star {
+    color: orange;
+}
+
+.fa-star-o {
+    color: black;
+}
+
+/* pdf preview */
+
+.note-preview iframe {
+    width: 100%;
+    height: 480px;
+}
+
+iframe::-webkit-scrollbar {
+    display: none;
+}
+
+/* Customer review */
+
+.customer-review .container {
+    padding: 0;
+}
+
+.customer-review .customers {
+    margin: 0;
+    border-radius: 3px;
+    border: 1px solid #d1d1d1;
+    padding: 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.customers .customer h6 {
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.customers .customer .rate {
+    margin-bottom: 4px;
+}
+
+.customers .customer p {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.review-delete{
+    display: flex;
+}
+
+.review-delete .delete-img{
+    flex: 1;
+    text-align: end;
+}
+
+/* popup */
+
+.modal-header {
+    border: 0px;
+}
+
+.thank-pop-head img {
+    margin-bottom: 10px;
+}
+
+.modal-body p {
+    font-size: 16px;
+    line-height: 18px;
+    color: #333333;
+}
+
+.modal-footer{
+    border-top: 0;
+}
+
+#btn-purple button {
+    background-color: #6255a5;
+    color: white;
+}
+/* =======================================================================
+                Members, Member Detail
+======================================================================= */
+#members, #member-top {
+    margin-top: 80px;
+}
+
+.mem-left {
+    border-right: 1px solid #d1d1d1;
+}
+
+.mem-left p, .mem-right p {
+    margin-bottom: 4px;
+    font-weight: 400;
+    color: #333333;
+}
+
+.mem-left span, .mem-right span {
+    font-weight: 600;
+    color: #6255a5;
+}
+
+/* =======================================================================
+                Spam Reports
+======================================================================= */
+
+#spam-report {
+    margin-top: 80px;
+}
+
+/* =======================================================================
+        Note Under Review, Published Note, Rejected Note
+======================================================================= */
+
+#noteunderreview, #publishednote, #rejectednote, #downloadednote {
+    margin-top: 80px;
+}
+
+#noteunderreview .selectpicker, #publishednote .selectpicker, #rejectednote .selectpicker, #downloadednote .selectpicker {
+    width: 100%;
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons div {
+    margin-left: 5px;
+    margin-left: 5px;
+}
+
+.modal-body h4 {
+    color: #6255a5;
+    font-weight: 600;
+}
+
+#noteunderreview .table td, 
+#noteunderreview .table th{
+    vertical-align: middle;
+}
+
+td img {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+td img:first-child{
+    margin-right: 20px;
+}
+
+.muted {
+    color: #d1d1d1;
+}
+
+.search-filter {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+button.btn-red,
+button.btn-red:hover{
+    background-color: red;
+    color: white;
+}
+
+/* =======================================================================
+                    Validation Style
+======================================================================= */
+span.field-validation-error {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 19px;
+    color: red;
+}
+
+div.form-group input.input-validation-error {
+    border-color: red;
+}
+
+#userprofile div.form-group select.input-validation-error {
+    border-color: red;
+}
+
+.sucessinfo{
+    color: green;
+}

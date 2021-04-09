@@ -70,7 +70,7 @@ namespace NoteMarketPlace.Controllers
 
             var message = new MailMessage();
             message.To.Add(new MailAddress(user.Email));  // Reciever 
-            message.From = new MailAddress("******@******.ac.in");  // Sender
+            message.From = new MailAddress("170200107021@gecrajkot.ac.in");  // Sender
             message.Subject = " New Temporary Password has been created for you";
             message.Body = string.Format(body, password);
             message.IsBodyHtml = true;
@@ -79,7 +79,7 @@ namespace NoteMarketPlace.Controllers
             {
                 var credential = new NetworkCredential
                 {
-                    UserName = "******@******.ac.in",  
+                    UserName = "170200107021@gecrajkot.ac.in",  
                     Password = "******"
                 };
                 smtp.Credentials = credential;

@@ -14,16 +14,16 @@ $(function () {
     function showHideNav() {
         if ($('.navigation').hasClass('white-nav')) {
             $('.navigation').addClass("white-nav-top");
-            $(".nav-logo img").attr("src", "/Content/images/Logos/top-logo-purple.png");
+            $(".nav-logo img").attr("src", "/images/Logos/top-logo-purple.png");
         } else {
             if ($(window).scrollTop() > 40) {
                 // show white navigation
                 $('.navigation').addClass("white-nav-top");
                 // logo
-                $(".nav-logo img").attr("src", "/Content/images/Logos/top-logo-purple.png");
+                $(".nav-logo img").attr("src", "/images/Logos/top-logo-purple.png");
             } else {
                 $('.navigation').removeClass("white-nav-top");
-                $(".nav-logo img").attr("src", "/Content/images/Logos/top-logo-white.png");
+                $(".nav-logo img").attr("src", "/images/Logos/top-logo-white.png");
             }
         }
     }
@@ -57,8 +57,6 @@ $(function () { // DOM ready
 /* =======================================================================
                 Reload Page 
 ======================================================================= */
-
-
 $(function () {
     if (window.localStorage) {
         if (!localStorage.getItem('firstLoad')) {

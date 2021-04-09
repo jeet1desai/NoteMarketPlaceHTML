@@ -1,0 +1,266 @@
+﻿@model NoteMarketPlace.Models.AdminDashboardModel
+@using System.Linq;
+@using NoteMarketPlace.Models;
+
+@{
+    ViewBag.Title = "Note - Admin Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Dashboard -->
+<div id="admin-dashboard">
+    <div class="content-box-top">
+        <div class="container">
+            <!-- Title -->
+            <div class="title">
+                <p>Dashboard</p>
+            </div>
+            <div class="row">
+                <!-- Box - 01 -->
+                <div class="col-lg-4 col-md-4">
+                    <a class="statistic" href="@Url.Action("Index", "AdminNoteUnderReview")">
+                        <div class="dashbox">
+                            <h5>@Model.InReview</h5>
+                            <p>No of Notes in Review for Public</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Box - 02 -->
+                <div class="col-lg-4 col-md-4">
+                    <a class="statistic" href="@Url.Action("Index", "AdminDownloaded")">
+                        <div class="dashbox">
+                            <h5>@Model.Downlaod</h5>
+                            <p>No of new Notes Downloaded</p>
+                            <p>(Last 7 days)</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Box - 03 -->
+                <div class="col-lg-4 col-md-4">
+                    <a class="statistic" href="@Url.Action("Index", "AdminMembers")">
+                        <div class="dashbox">
+                            <h5>@Model.SignUp</h5>
+                            <p>No of new Registrations</p>
+                            <p>(Last 7 days)</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Dashboard Table -->
+<div id="dashboard-table">
+    <div class="content-box">
+        <div class="container">
+
+            <div class="row">
+                <!-- Heading -->
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="title-sm">
+                        <p>Published Notes</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    @using (@Html.BeginForm("Index", "AdminDashboard", new { search = Request.QueryString["search"], month = Request.QueryString["month"], sortOrder = Request.QueryString["sortOrder"], adpage = Request.QueryString["adpage"] }, FormMethod.Get))
+                    {
+                        <div class="row search-sort">
+                            <!-- Search -->
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="form-group has-search">
+                                    <span class="fa fa-search form-control-feedback"></span>
+                                    <input name="search" type="text" class="form-control" placeholder="Search">
+                                </div>
+                            </div>
+                            <!-- Search Btn -->
+                            <div class="col-lg-2 col-md-2 col-sm-2 crow">
+                                <div id="btn-purple">
+                                    <button type="submit" class="btn">Search</button>
+                                </div>
+                            </div>
+                            <!-- Select -->
+                            <div class="col-lg-4 col-md-4 col-sm-4 fil-item form-group">
+                                @Html.DropDownList("month", new SelectList(@ViewBag.MonthList, "Value", "Text"), "Select Month", new { @class = "form-control", id = "month" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-content table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>SR NO.</th>
+                            <th>@Html.ActionLink("NOTE TITLE", "Index", new { sortOrder = ViewBag.TitleSortParm, search = Request.QueryString["search"], month = Request.QueryString["month"], adpage = Request.QueryString["adpage"] })</th>
+                            <th>@Html.ActionLink("CATEGORY", "Index", new { sortOrder = ViewBag.CategorySortParm, search = Request.QueryString["search"], month = Request.QueryString["month"], adpage = Request.QueryString["adpage"] })</th>
+                            <th class="text-center">ATTACHMENT SIZE</th>
+                            <th>@Html.ActionLink("SELL TYPE", "Index", new { sortOrder = ViewBag.SellTypeSortParm, search = Request.QueryString["search"], month = Request.QueryString["month"], adpage = Request.QueryString["adpage"] })</th>
+                            <th>@Html.ActionLink("PRICE", "Index", new { sortOrder = ViewBag.PriceSortParm, search = Request.QueryString["search"], month = Request.QueryString["month"], adpage = Request.QueryString["adpage"] })</th>
+                            <th>@Html.ActionLink("PUBLISHER", "Index", new { sortOrder = ViewBag.PublisherSortParm, search = Request.QueryString["search"], month = Request.QueryString["month"], adpage = Request.QueryString["adpage"] })</th>
+                            <th>@Html.ActionLink("PUBLISHED DATE", "Index", new { sortOrder = ViewBag.DateSortParm, search = Request.QueryString["search"], month = Request.QueryString["month"], adpage = Request.QueryString["adpage"] })</th>
+                            <th class="text-center">@Html.ActionLink("NO Of DOWNLOADS", "Index", new { sortOrder = ViewBag.NoOfDownloadSortParm, search = Request.QueryString["search"], month = Request.QueryString["month"], adpage = Request.QueryString["adpage"] })</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.SellerNotes.Count() == 0)
+                        {
+                            <tr>
+                                <td colspan="10" class="text-center">No Record Found</td>
+                            </tr>
+                        }
+
+                        @{
+                            int no = (ViewBag.srno - 1) * 5 + 1;
+                        }
+
+                        @foreach (var item in Model.SellerNotes)
+                        {
+
+                            long size = 0;
+                            string path = Server.MapPath("~/Members/" + item.SellerID + "/" + item.ID + "/Attachements/");
+                            DirectoryInfo di = new DirectoryInfo(path);
+                            FileInfo[] fiArr = di.GetFiles();
+                            foreach (FileInfo f in fiArr)
+                            {
+                                size = size + f.Length;
+                            }
+                            int counter = 0;
+                            string[] suffixes = { "Bytes", "KB", "MB", "GB", "TB", "PB" };
+                            while ((size / 1024) >= 1)
+                            {
+                                size = size / 1024;
+                                counter++;
+                            }
+                            string s = string.Format("{0} {1}", size, suffixes[counter]);
+
+                            int count = 0;
+                            using (var db = new NoteMarketPlaceEntities())
+                            {
+                                count = db.Downloads.Where(x => x.NoteID == item.ID && x.IsSellerHasAllowedDownload == true).Count();
+                            }
+
+                            <tr>
+                                <td>@no</td>
+                                <td><a href="@Url.Action("NoteDetail", "SearchNote", new { id = item.ID})"><span>@item.Title</span></a></td>
+                                <td>@item.NoteCategory.Name</td>
+                                <td class="text-center">@s</td>
+                                @if (item.IsPaid)
+                                {
+                                    <td>Paid</td>
+                                }
+                                else
+                                {
+                                    <td>Free</td>
+                                }
+
+                                <td>$@item.SellingPrice</td>
+                                <td>@item.User1.FirstName @item.User1.LastName</td>
+                                <td>@item.PublishedDate</td>
+                                <td class="text-center"><a href="@Url.Action("Index", "AdminDownloadedNote", new { noteId = item.ID})"><span>@count</span></a></td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img alt="3dot-menu" src="./images/Dashboard/3dot.png" data-toggle="dropdown">
+
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="@Url.Action("DownloadNote", "AdminDashboard", new { id = item.ID})">Download Note</a>
+                                            <a class="dropdown-item" href="@Url.Action("NoteDetail", "SearchNote", new { id = item.ID})">View More Details</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter1-@item.ID">Unpublish</a>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" id="exampleModalCenter1-@item.ID" tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                @using (Html.BeginForm("UnPublishNote", "AdminDashboard", new { id = item.ID }, FormMethod.Post, new { }))
+                                                {
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">
+                                                            UnPublishNote
+                                                        </h5>
+                                                        <img src="~/images/NotesDetails/close.png" data-dismiss="modal"
+                                                             alt="">
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">
+                                                            @item.Title
+                                                        </h5>
+                                                        <br />
+                                                        <div class="form-group">
+                                                            <label>Remarks *</label>
+                                                            <textarea name="Remark" class="form-control" placeholder="Remarks ..." required></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div id="btn-purple" class="modal-footer">
+                                                        <button type="submit" onclick="return confirm('Are you sure you want to Unpublish this note?')" class="btn btn-purples">UnPublish</button>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            no++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        @if (ViewBag.TotalADPage != 0)
+        {
+            <div class="row justify-content-center">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { adpage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"], month = Request.QueryString["month"] })"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { adpage = @ViewBag.currentPage - 1, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"], month = Request.QueryString["month"] })"><i class="fa fa-angle-left"></i></a>
+                            }
+                        </li>
+                        @{
+
+                            for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                            {
+                                if (i == ViewBag.currentPage)
+                                {
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#">@i<span class="sr-only">(current)</span></a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="page-item">@Html.ActionLink(i.ToString(), "Index", new { adpage = i, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"], month = Request.QueryString["month"] }, new { @class = "page-link" })</li>
+                                }
+                            }
+                        }
+                        <li class="page-item">
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { adpage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"], month = Request.QueryString["month"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a class="page-link" href="@Url.Action("Index", new { adpage = @ViewBag.currentPage + 1, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"], month = Request.QueryString["month"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        }
+
+    </div>
+</div>
+

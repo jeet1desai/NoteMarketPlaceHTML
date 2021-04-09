@@ -15,16 +15,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
     <!-- font-awesome -->
-    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/Client/font-awesome/css/font-awesome.min.css">
 
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Client/bootstrap/bootstrap.min.css">
 
     <!-- css -->
-    <link rel="stylesheet" href="~/Content/style.css">
+    <link rel="stylesheet" href="~/Content/Client/style.css">
 
     <!-- Responsive Css -->
-    <link rel="stylesheet" href="~/Content/responsive.css">
+    <link rel="stylesheet" href="~/Content/Client/responsive.css">
 
 
 
@@ -38,7 +38,7 @@
                 <nav class="navbar">
                     <!-- Logo -->
                     <div class="nav-logo">
-                        <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("/Content/images/Logos/top-logo-white.png")" alt="logo"></a>
+                        <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("/images/Logos/top-logo-white.png")" alt="logo"></a>
                     </div>
 
                     <!-- Link -->
@@ -73,12 +73,12 @@
                                             @{
                                                 using (var db = new NoteMarketPlaceEntities())
                                                 {
-                                                    int id = (int)System.Web.HttpContext.Current.Session["ID"];
-                                                    var data = db.UserProfiles.FirstOrDefault(x => x.UserID == id);
+                                                    int id = (int)Session["ID"];
+                                                    var data = db.UserProfiles.Where(x => x.UserID == id).FirstOrDefault();
 
                                                     if (data == null || data.ProfilePicture == null)
                                                     {
-                                                        <img class="rounded-circle" src="~/images/NotesDetails/avatar.png" alt="">
+                                                        <img class="rounded-circle" src="~/Content/Client/images/NotesDetails/avatar.png" alt="">
                                                     }
                                                     else
                                                     {
@@ -145,9 +145,19 @@
                 <!-- Social Icon -->
                 <div class="col-md-6 col-sm-4 foot-icon col-sm-4 text-right">
                     <ul class="social-list">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        @using (var db = new NoteMarketPlaceEntities())
+                        {
+                            string fb, twitter, linkedin;
+                            var fblink = db.SystemConfigurations.Where(x => x.Name == "FbUrl").FirstOrDefault();
+                            var twitterlink = db.SystemConfigurations.Where(x => x.Name == "LinkedInUrl").FirstOrDefault();
+                            var linkedinlink = db.SystemConfigurations.Where(x => x.Name == "TwitterUrl").FirstOrDefault();
+                            if (fblink == null) { fb = ""; } else { fb = fblink.Value; }
+                            if (twitterlink == null) { twitter = ""; } else { twitter = twitterlink.Value; }
+                            if (linkedinlink == null) { linkedin = ""; } else { linkedin = linkedinlink.Value; }
+                            <li><a href="@Url.Content(fb)" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="@Url.Content(twitter)" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="@Url.Content(linkedin)" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -158,17 +168,26 @@
 
     <!-- JavaScript -->
     <!-- JQuery -->
-    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/Client/jquery.js"></script>
 
 
-    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/Client/popper.min.js"></script>
+
 
     <!-- bootstrap javaScript -->
-    <script src="~/Scripts/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/Client/bootstrap/bootstrap.bundle.min.js"></script>
 
 
     <!-- javaScript -->
-    <script src="~/Scripts/script.js"></script>
+    <script src="~/Scripts/Client/script.js"></script>
+
+    @if (ViewBag.Requested != null)
+    {
+        <script type="text/javascript">
+            $("#exampleModal1").modal("show");
+            localStorage['firstLoad'] = false;
+        </script>
+    }
 
 </body>
 </html>

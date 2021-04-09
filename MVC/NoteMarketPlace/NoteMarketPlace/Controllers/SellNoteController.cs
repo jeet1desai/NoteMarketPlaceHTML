@@ -339,7 +339,10 @@ namespace NoteMarketPlace.Controllers
                 }
                 else
                 {
-                    //other wise admin config
+                    var filepath = db.SystemConfigurations.Where(x => x.Name == "DefaultNoteDisplayPicture").FirstOrDefault();
+                    
+                    sellernotes.DisplayPicture = filepath.Value;
+
                 }
 
 

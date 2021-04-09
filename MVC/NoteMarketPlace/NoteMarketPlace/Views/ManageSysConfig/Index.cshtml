@@ -1,0 +1,84 @@
+﻿@model NoteMarketPlace.Models.SystemConfigModel
+@{
+    ViewBag.Title = "Note - Manage System Congiguration";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Manage System Configuration -->
+<section id="msc">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-8 col-sm-12">
+                    <div class="title">
+                        <p>Manage System Configuration</p>
+                    </div>
+                    <p class="sucessinfo">@ViewBag.sucess</p>
+                    <div class="form-div">
+                        @using (Html.BeginForm("Index", "ManageSysConfig", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-group">
+                                <label for="supportemailadd">Support Email Address *</label>
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "supportemailadd", placeholder = "Enter Your Support Email Address", type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="supportphone">Support Phone No *</label>
+                                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", id = "supportphone", placeholder = "Enter Your Support Phone No", type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.Phone)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="vemail">Email Address(es) (for various events system will send notifications to these users) *</label>
+                                @Html.TextBoxFor(model => model.SecondaryEmail, new { @class = "form-control", id = "vemail", placeholder = "Enter Your Email Address", type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.SecondaryEmail)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fb">Facebook URL *</label>
+                                @Html.TextBoxFor(model => model.FacebookUrl, new { @class = "form-control", id = "fb", placeholder = "Enter Your FB URL", type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.FacebookUrl)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="twitter">Twitter URL *</label>
+                                @Html.TextBoxFor(model => model.TwitterUrl, new { @class = "form-control", id = "twitter", placeholder = "Enter Your Twitter URL", type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.TwitterUrl)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="linkedin">Linkedin URL *</label>
+                                @Html.TextBoxFor(model => model.LinkedinUrl, new { @class = "form-control", id = "linkedin", placeholder = "Enter Your Linkedin URL", type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.LinkedinUrl)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="upload-notes">Default Image for Notes (is seller do not upload) *</label>
+                                <div class="upload-box">
+                                    @Html.TextBoxFor(model => model.ImageNote, new { @class = "form-control upload", id = "upload-notes", type = "file"})
+                                </div>
+                                @Html.ValidationMessageFor(model => model.ImageNote)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="upload-notes1">Default Profile Picture (is seller do not upload) *</label>
+                                <div class="upload-box">
+                                    @Html.TextBoxFor(model => model.ImageProfile, new { @class = "form-control upload", id = "upload-notes1", type = "file" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.ImageProfile)
+                            </div>
+
+                            <div id="btn-purple">
+                                <button type="submit" value="Submit" class="btn">Submit</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

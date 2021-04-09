@@ -13,6 +13,7 @@ namespace NoteMarketPlace.Models
         public SellerNotesAttachement sellerNotesAttachement { get; set; }
 
         public bool DisableBtn { get; set; }
+        public bool isAdmin { get; set; }
 
         public int Spam { get; set; }  
 

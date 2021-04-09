@@ -210,8 +210,8 @@ namespace NoteMarketPlace.Controllers
                 "<p>Note MarketPlace</p>";
 
             var message = new MailMessage();
-            message.To.Add(new MailAddress("******@gmail.com"));  // Reciever 
-            message.From = new MailAddress("******@******.ac.in");  // Sender
+            message.To.Add(new MailAddress("170200107021@gecrajkot.ac.in"));  // Reciever 
+            message.From = new MailAddress("**170200107021@gecrajkot.ac.in");  // Sender
             message.Subject = user.FirstName + " " + user.LastName + " " + "Reported an issue for " + download.NoteTitle;
             message.Body = string.Format(body, user.FirstName + " " + user.LastName, seller.FirstName + " " + seller.LastName, download.NoteTitle);
             message.IsBodyHtml = true;
@@ -220,7 +220,7 @@ namespace NoteMarketPlace.Controllers
             {
                 var credential = new NetworkCredential
                 {
-                    UserName = "******@******.ac.in",
+                    UserName = "170200107021@gecrajkot.ac.in",
                     Password = "******"
                 };
                 smtp.Credentials = credential;

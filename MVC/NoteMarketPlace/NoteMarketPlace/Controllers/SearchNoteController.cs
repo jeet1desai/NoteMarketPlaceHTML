@@ -59,26 +59,32 @@ namespace NoteMarketPlace.Controllers
                                                  x.NoteCategory.Name.ToLower().Contains(search.ToLower())
                                             ).ToList();
             }
+
             if (!String.IsNullOrEmpty(type))
             {
                 note = note.Where(x => x.NoteType.ToString().ToLower().Contains(type.ToLower())).ToList();
             }
+
             if (!String.IsNullOrEmpty(category))
             {
                 note = note.Where(x => x.Category.ToString().ToLower().Contains(category.ToLower())).ToList();
             }
+
             if (!String.IsNullOrEmpty(university))
             {
                 note = note.Where(x => x.UniversityName.ToLower().Contains(university.ToLower())).ToList();
             }
+
             if (!String.IsNullOrEmpty(course))
             {
                 note = note.Where(x => x.Course.ToLower().Contains(course.ToLower())).ToList();
             }
+
             if (!String.IsNullOrEmpty(country))
             {
                 note = note.Where(x => x.Country.ToString().ToLower().Contains(country.ToLower())).ToList();
             }
+
             if (!String.IsNullOrEmpty(ratings))
             {
                 List<SellerNote> searchNoteList = new List<SellerNote>();
@@ -117,11 +123,18 @@ namespace NoteMarketPlace.Controllers
 
 
         //NoteDetail
+        [OutputCache(Duration = 0)]
         [Route("SearchNote/NoteDetail/{id}")]
         [AllowAnonymous]
         public ActionResult NoteDetail(int id)
         {
             ViewBag.Class = "white-nav";
+
+            if (TempData["Requested"] != null)
+            {
+                ViewBag.Requested = "Requested";
+                Session["Req"] = "Requested";
+            }
 
             //Auth User as Buyer
             var buyer = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
@@ -157,12 +170,21 @@ namespace NoteMarketPlace.Controllers
             //If Buyer already Bought this Note the disable Download Button
             if (buyer != null)
             {
-                var disable = db.Downloads.Where(x => x.Downloader == buyer.ID && x.Seller == NoteDetail.SellerID && x.NoteID == NoteDetail.ID).FirstOrDefault();
-                if (disable != null)
+                //if User is Admin then Review Delete Button Show
+                if (buyer.RoleID != 1)
                 {
-                    if (disable.IsPaid)
+                    note.DisableBtn = false;
+                    note.isAdmin = true;
+                }
+                else
+                {
+                    var disable = db.Downloads.Where(x => x.Downloader == buyer.ID && x.Seller == NoteDetail.SellerID && x.NoteID == NoteDetail.ID).FirstOrDefault();
+                    if (disable != null)
                     {
-                        note.DisableBtn = true;
+                        if (disable.IsPaid)
+                        {
+                            note.DisableBtn = true;
+                        }
                     }
                 }
             }
@@ -172,6 +194,9 @@ namespace NoteMarketPlace.Controllers
             note.AvgRating = (int)rating;
             note.TotalReview = totalreview;
             note.notesreview = reviews;
+
+
+            
 
             return View(note);
         }
@@ -185,7 +210,6 @@ namespace NoteMarketPlace.Controllers
         {
             //Auth User as Buyer
             var buyer = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
-
 
             //If Buyer Didnot Enter UserProfile the Redirect First on MyProfile Page
             var  Profile = db.UserProfiles.Where(x=>x.UserID == buyer.ID).FirstOrDefault();
@@ -202,6 +226,24 @@ namespace NoteMarketPlace.Controllers
             //Note Seller Info
             var seller = db.Users.Where(x => x.ID == note.SellerID).FirstOrDefault();
 
+
+            if (buyer.RoleID != 1)
+            {
+                string Apath = Server.MapPath("~/Members/" + seller.ID + "/" + note.ID + "/Attachements/");
+                DirectoryInfo Adir = new DirectoryInfo(Apath);
+                using (var memoryStream = new MemoryStream())
+                {
+                    using (var ziparchive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                    {
+                        foreach (var item in Adir.GetFiles())
+                        {
+                            string filepath = Apath + item.ToString();
+                            ziparchive.CreateEntryFromFile(filepath, item.ToString());
+                        }
+                    }
+                    return File(memoryStream.ToArray(), "application/zip", note.Title + ".zip");
+                }
+            }
 
 
             //if User download First Time free Note
@@ -265,7 +307,7 @@ namespace NoteMarketPlace.Controllers
 
                 var message = new MailMessage();
                 message.To.Add(new MailAddress(seller.Email));  // Reciever 
-                message.From = new MailAddress("******@******.ac.in");  // Sender
+                message.From = new MailAddress("170200107021@gecrajkot.ac.in");  // Sender
                 message.Subject = buyer.FirstName + " " + buyer.LastName + " wants to purchase your notes";
                 message.Body = string.Format(body, seller.FirstName + " " + seller.LastName, buyer.FirstName + " " + buyer.LastName);
                 message.IsBodyHtml = true;
@@ -274,8 +316,8 @@ namespace NoteMarketPlace.Controllers
                 {
                     var credential = new NetworkCredential
                     {
-                        UserName = "******@******.ac.in",
-                        Password = "******"
+                        UserName = "170200107021@gecrajkot.ac.in",
+                        Password = "*******"
                     };
                     smtp.Credentials = credential;
                     smtp.Host = "smtp.gmail.com";
@@ -283,7 +325,7 @@ namespace NoteMarketPlace.Controllers
                     smtp.EnableSsl = true;
                     smtp.Send(message);
                 }
-
+                TempData["Requested"] = "Requested";
                 return RedirectToAction("NoteDetail", "SearchNote", new { id = noteId });
             }
 
@@ -303,6 +345,31 @@ namespace NoteMarketPlace.Controllers
                 return File(memoryStream.ToArray(), "application/zip", note.Title + ".zip");
             }
 
+        }
+
+
+
+        public ActionResult DeleteReview(int id)
+        {
+            //Auth User as Buyer
+            var user = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+
+            if(user.RoleID == 1)
+            {
+                return Content("You'r not Allowed to Delete this Review of this Book");
+            }
+
+            var Review = db.SellerNotesReviews.Where(x => x.ID == id && x.IsActive == true).FirstOrDefault();
+            var Note = db.SellerNotes.Where(x => x.ID == Review.NoteID).FirstOrDefault();
+
+            if (Review == null)
+            {
+                return Content("This Review is not Available....");
+            }
+            db.SellerNotesReviews.Remove(Review);
+            db.SaveChanges();
+
+            return RedirectToAction("NoteDetail", "SearchNote", new { id = Note.ID});
         }
 
     }

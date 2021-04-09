@@ -38,7 +38,7 @@ section {
     width: 100%;
     height: 330px;
     position: relative;
-    background-image: url('../images/Search/banner-with-overlay.jpg');
+    background-image: url('/images/Search/banner-with-overlay.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
@@ -391,7 +391,7 @@ section {
     width: 100%;
     height: 620px;
     position: relative;
-    background-image: url('../images/Homepage/banner-with-overlay.jpg');
+    background-image: url('/images/Homepage/banner-with-overlay.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
@@ -711,7 +711,7 @@ ul.social-list {
     }
 
 .upload-box {
-    background-image: url('../images/AddNote/upload.png');
+    background-image: url('/images/AddNote/upload.png');
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
@@ -826,7 +826,7 @@ input[type='radio']:checked:before {
 #forget-password,
 #emailveri,
 #change-password {
-    background-image: url('../images/Login/banner-with-overlay.jpg');
+    background-image: url('/images/Login/banner-with-overlay.jpg');
     width: 100%;
     min-height: 100%;
     background-position: center;
@@ -1182,6 +1182,20 @@ div.customer {
     border-bottom: 1px solid #d1d1d1;
     padding-bottom: 20px;
     padding-top: 20px;
+}
+
+.customers .customer img{
+    height: 60px;
+    width: 60px;
+}
+
+.review-delete {
+    display: flex;
+}
+
+.review-delete .delete-img{
+    flex: 1;
+    text-align: end;
 }
 
 /* width */

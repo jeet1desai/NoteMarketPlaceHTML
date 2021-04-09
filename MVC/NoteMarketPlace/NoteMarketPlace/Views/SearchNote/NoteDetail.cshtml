@@ -1,6 +1,6 @@
 ﻿@model NoteMarketPlace.Models.NoteDetailsModel
 @{
-    ViewBag.Title = "Note - Note Detail";
+    ViewBag.Title = "Note - " + Model.sellerNote.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -53,7 +53,6 @@
                                                 Download / $ @Model.sellerNote.SellingPrice
                                             </button>
                                         }
-
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -100,6 +99,7 @@
                                                         <h5 class="modal-title" id="thanksModalCenterTitle">
                                                             Thank you for
                                                             purchasing!
+                                                            
                                                         </h5>
                                                     </div>
                                                     <div class="modal-body">
@@ -268,13 +268,22 @@
                             <!-- Customer - 01 -->
                             @foreach (var item in Model.notesreview)
                             {
+                                
                                 <div class="row customer">
                                     <div class="col-lg-2 col-md-2 col-sm-2 col-3">
                                         <img class="img-fluid rounded-circle" src="@Url.Content(item.UserProfiles.ProfilePicture)"
                                              alt="reviewer image">
                                     </div>
                                     <div class="col-lg-10 col-md-10 col-sm-10 col-9">
-                                        <h6>@item.Users.FirstName @item.Users.LastName</h6>
+                                        <div class="review-delete">
+                                            <h6>@item.Users.FirstName @item.Users.LastName</h6>
+                                            @if (Model.isAdmin)
+                                            {
+                                                <div class="delete-img">
+                                                    <a href="@Url.Action("DeleteReview", "SearchNote", new { id = item.SellerNotesReviews.ID})"><img src="~/Content/Admin/images/Dashboard/delete.jpeg" alt=""></a>
+                                                </div>
+                                            }
+                                        </div>
                                         <div class="rate">
                                             @for (var i = 1; i <= item.SellerNotesReviews.Ratings; i++)
                                             {

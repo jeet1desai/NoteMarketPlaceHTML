@@ -1,0 +1,156 @@
+﻿@model IEnumerable<NoteMarketPlace.Models.NoteType>
+@using NoteMarketPlace.Models;
+@{
+    ViewBag.Title = "Note - Manage Type";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Manage Type -->
+<section id="manage-type">
+    <div class="content-box-top">
+        <div class="container">
+            <div class="title">
+                <p>Manage Type</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-4">
+                    <div id="btn-purple">
+                        <a class="btn" href="@Url.Action("AddType", "ManageType")" title="Add Type" role="button">Add Type</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-8">
+                    @using (@Html.BeginForm("Index", "ManageType", FormMethod.Get))
+                    {
+                        <div class="search-btn">
+                            <div class="form-group has-search">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input name="search" type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <div id="btn-purple">
+                                <button type="submit" class="btn">Search</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-content table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>SR NO.</th>
+                            <th>@Html.ActionLink("TYPE", "Index", new { sortOrder = ViewBag.TypeSortParm, search = Request.QueryString["search"], mtPage = Request.QueryString["mtPage"] })</th>
+                            <th>@Html.ActionLink("DESCRIPTION", "Index", new { sortOrder = ViewBag.DescriptSortParm, search = Request.QueryString["search"], mtPage = Request.QueryString["mtPage"] })</th>
+                            <th>@Html.ActionLink("DATE ADDED", "Index", new { sortOrder = ViewBag.DateSortParm, search = Request.QueryString["search"], mtPage = Request.QueryString["mtPage"] })</th>
+                            <th>@Html.ActionLink("ADDED BY", "Index", new { sortOrder = ViewBag.AddedBySortParm, search = Request.QueryString["search"], mtPage = Request.QueryString["mtPage"] })</th>
+                            <th class="text-center">@Html.ActionLink("ACTIVE", "Index", new { sortOrder = ViewBag.ActiveSortParm, search = Request.QueryString["search"], mtPage = Request.QueryString["mtPage"] })</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int no = (ViewBag.srno - 1) * 5 + 1;
+                        }
+
+                        @if (Model.Count() == 0)
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center">No Record Found</td>
+                            </tr>
+                        }
+                        @foreach (var item in Model)
+                        {
+                            string addedby = "";
+                            using (var db = new NoteMarketPlaceEntities())
+                            {
+                                var userAby = db.Users.Where(x => x.ID == item.CreatedBy).FirstOrDefault();
+                                addedby = userAby.FirstName + " " + userAby.LastName;
+                            }
+
+                            <tr>
+                                <td>@no</td>
+                                <td>@item.Name</td>
+                                <td>@item.Description</td>
+                                <td>@item.CreatedDate</td>
+                                <td>@addedby</td>
+                                @if (item.IsActive)
+                                {
+                                    <td class="text-center">Yes</td>
+                                }
+                                else
+                                {
+                                    <td class="text-center">No</td>
+                                }
+                                <td>
+                                    <div class="search-delete">
+                                        <a href="@Url.Action("EditType", "ManageType", new { id = item.ID})">
+                                            <img src="./images/Dashboard/edit.png" alt="">
+                                        </a>
+                                        <a onclick="return confirm('Are you sure you want to make this type inactive?')" href="@Url.Action("InActiveType", "ManageType", new { id = item.ID})">
+                                            <img src="./images/Dashboard/delete.jpeg" alt="">
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            no++;
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            @if (ViewBag.TotalTypePage != 0)
+            {
+                <div class="row justify-content-center">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item">
+
+                                @if (ViewBag.currentPage == 1)
+                                {
+                                    <a class="page-link" href="@Url.Action("Index", new { mtPage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-left"></i></a>
+                                }
+                                else
+                                {
+                                    <a class="page-link" href="@Url.Action("Index", new { mtPage = @ViewBag.currentPage - 1, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-left"></i></a>
+                                }
+                            </li>
+                            @{
+
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <li class="page-item active">
+                                            <a class="page-link" href="#">@i<span class="sr-only">(current)</span></a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item">@Html.ActionLink(i.ToString(), "Index", new { mtPage = i, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] }, new { @class = "page-link" })</li>
+                                    }
+                                }
+                            }
+                            <li class="page-item">
+                                @if (ViewBag.currentPage == ViewBag.endPage)
+                                {
+                                    <a class="page-link" href="@Url.Action("Index", new { mtPage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-right"></i></a>
+                                }
+                                else
+                                {
+                                    <a class="page-link" href="@Url.Action("Index", new { mtPage = @ViewBag.currentPage + 1, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-right"></i></a>
+                                }
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            }
+
+        </div>
+    </div>
+
+</section>

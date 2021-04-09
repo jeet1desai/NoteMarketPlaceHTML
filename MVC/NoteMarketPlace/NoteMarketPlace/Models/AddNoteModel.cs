@@ -17,7 +17,6 @@ namespace NoteMarketPlace.Models
 
         [Required(ErrorMessage = "Title is required")]
         [MaxLength(100, ErrorMessage ="<100 char")]
-        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Use letters only please")]
         public string Title { get; set; }
 
 
@@ -55,7 +54,6 @@ namespace NoteMarketPlace.Models
 
 
         [MaxLength(200, ErrorMessage = "<200 char")]
-        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Use letters only please")]
         public string UniversityName { get; set; }
 
 

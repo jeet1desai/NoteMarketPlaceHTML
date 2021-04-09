@@ -9,8 +9,10 @@ namespace NoteMarketPlace
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery.js",
-                        "~/Scripts/script.js"));
+                        "~/Scripts/Client/jquery.js",
+                        "~/Scripts/Admin/jquery.js",
+                        "~/Scripts/Client/script.js",
+                        "~/Scripts/Admin/script.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -21,13 +23,18 @@ namespace NoteMarketPlace
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.min.js",
-                      "~/Scripts/bootstrap.bundle.min.js"));
+                      "~/Scripts/Client/bootstrap.min.js",
+                      "~/Scripts/Client/bootstrap.bundle.min.js",
+                      "~/Scripts/Admin/bootstrap.min.js",
+                      "~/Scripts/Admin/bootstrap.bundle.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap/bootstrap.min.css",
-                      "~/Content/style.css",
-                      "~/Content/responsive.css"));
+                      "~/Content/Client/bootstrap/bootstrap.min.css",
+                      "~/Content/Client/style.css",
+                      "~/Content/Client/responsive.css",
+                      "~/Content/Admin/bootstrap/bootstrap.min.css",
+                      "~/Content/Admin/style.css",
+                      "~/Content/Admin/responsive.css"));
         }
     }
 }

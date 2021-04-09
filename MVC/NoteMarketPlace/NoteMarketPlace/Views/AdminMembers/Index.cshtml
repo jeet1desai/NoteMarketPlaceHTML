@@ -1,0 +1,146 @@
+﻿@model IEnumerable<NoteMarketPlace.Models.AdminMemberModel>
+
+
+
+@{
+    ViewBag.Title = "Note - Members";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Member Table -->
+<section id="members">
+    <div class="content-box-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-4">
+                    <div class="title">
+                        <p>Members</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-8">
+                    @using (@Html.BeginForm("Index", "AdminMembers", FormMethod.Get))
+                    {
+                        <div class="search-btn">
+                            <div class="form-group has-search">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input name="search" type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <div id="btn-purple">
+                                <button type="submit" class="btn">Search</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-content table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>SR NO.</th>
+                            <th>@Html.ActionLink("FIRST NAME", "Index", new { sortOrder = ViewBag.FNameSortParm, search = Request.QueryString["search"], amPage = Request.QueryString["amPage"] })</th>
+                            <th>@Html.ActionLink("LAST NAME", "Index", new { sortOrder = ViewBag.LNameSortParm, search = Request.QueryString["search"], amPage = Request.QueryString["amPage"] })</th>
+                            <th>@Html.ActionLink("EMAIL", "Index", new { sortOrder = ViewBag.EmailSortParm, search = Request.QueryString["search"], amPage = Request.QueryString["amPage"] })</th>
+                            <th>@Html.ActionLink("JOINING DATE", "Index", new { sortOrder = ViewBag.DateSortParm, search = Request.QueryString["search"], amPage = Request.QueryString["amPage"] })</th>
+                            <th class="text-center">@Html.ActionLink("UNDER REVIEW NOTES", "Index", new { sortOrder = ViewBag.NURSortParm, search = Request.QueryString["search"], amPage = Request.QueryString["amPage"] })</th>
+                            <th class="text-center">@Html.ActionLink("PUBLISHED NOTES", "Index", new { sortOrder = ViewBag.PnSortParm, search = Request.QueryString["search"], amPage = Request.QueryString["amPage"] })</th>
+                            <th class="text-center">@Html.ActionLink("DOWNLOADED NOTES", "Index", new { sortOrder = ViewBag.DnSortParm, search = Request.QueryString["search"], amPage = Request.QueryString["amPage"] })</th>
+                            <th class="text-center">@Html.ActionLink("TOTAL EXPENSES", "Index", new { sortOrder = ViewBag.TExpanseSortParm, search = Request.QueryString["search"], amPage = Request.QueryString["amPage"] })</th>
+                            <th class="text-center">@Html.ActionLink("TOTAL EARNING", "Index", new { sortOrder = ViewBag.TEarnSortParm, search = Request.QueryString["search"], amPage = Request.QueryString["amPage"] })</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int no = (ViewBag.srno - 1) * 5 + 1;
+                        }
+
+                        @if (Model.Count() == 0)
+                        {
+                            <tr>
+                                <td colspan="11" class="text-center">No Record Found</td>
+                            </tr>
+                        }
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@no</td>
+                                <td>@item.User.FirstName</td>
+                                <td>@item.User.LastName</td>
+                                <td>@item.User.Email</td>
+                                <td>@item.User.CreatedDate</td>
+                                <td class="text-center"><a href="@Url.Action("Index", "AdminNoteUnderReview", new { Sid = item.User.ID})"><span>@item.NoteUnderReview</span></a></td>
+                                <td class="text-center"><a href="@Url.Action("Index", "AdminPublishedNote", new { Sid = item.User.ID})"><span>@item.PublishedNote</span></a></td>
+                                <td class="text-center"><a href="@Url.Action("Index", "AdminDownloadedNote", new { Bid = item.User.ID})"><span>@item.DownloadedNote</span></a></td>
+                                <td class="text-center"><a href="@Url.Action("Index", "AdminDownloadedNote", new { Bid = item.User.ID})"><span>$@item.TotalExpanses</span></a></td>
+                                <td class="text-center">$@item.TotalEarning</td>
+                                <td>
+                                    <div class="dropdown dropleft table-dot">
+                                        <img src="~/Content/Admin/images/Dashboard/3dot.png" alt="3dot-menu" data-toggle="dropdown">
+
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="@Url.Action("MemberDetail", "AdminMembers", new { id = item.User.ID})">View More Details</a>
+                                            <a class="dropdown-item" onclick="return confirm('Are you sure you want to make this member inactive?')" href="@Url.Action("DeActive", "AdminMembers", new { id = item.User.ID})">Deactivate</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            no++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            @if (ViewBag.TotalMemberPage != 0)
+            {
+                <div class="row justify-content-center">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                @if (ViewBag.currentPage == 1)
+                                {
+                                    <a class="page-link" href="@Url.Action("Index", new { amPage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-left"></i></a>
+                                }
+                                else
+                                {
+                                    <a class="page-link" href="@Url.Action("Index", new { amPage = @ViewBag.currentPage - 1, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-left"></i></a>
+                                }
+                            </li>
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <li class="page-item active">
+                                            <a class="page-link" href="#">@i<span class="sr-only">(current)</span></a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item">@Html.ActionLink(i.ToString(), "Index", new { amPage = i, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] }, new { @class = "page-link" })</li>
+                                    }
+                                }
+                            }
+                            <li class="page-item">
+                                @if (ViewBag.currentPage == ViewBag.endPage)
+                                {
+                                    <a class="page-link" href="@Url.Action("Index", new { amPage = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-right"></i></a>
+                                }
+                                else
+                                {
+                                    <a class="page-link" href="@Url.Action("Index", new { amPage = @ViewBag.currentPage + 1, sortOrder = Request.QueryString["sortOrder"], search = Request.QueryString["search"] })"><i class="fa fa-angle-right"></i></a>
+                                }
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            }
+        </div>
+    </div>
+</section>
+
+

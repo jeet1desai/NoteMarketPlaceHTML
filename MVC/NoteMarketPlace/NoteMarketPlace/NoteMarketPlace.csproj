@@ -144,6 +144,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminDashboardController.cs" />
+    <Compile Include="Controllers\AdminDownloadedNoteController.cs" />
+    <Compile Include="Controllers\AdminMembersController.cs" />
+    <Compile Include="Controllers\AdminNoteUnderReviewController.cs" />
+    <Compile Include="Controllers\AdminPublishedNoteController.cs" />
+    <Compile Include="Controllers\AdminRejectedNoteController.cs" />
+    <Compile Include="Controllers\AdminUpdateProfileController.cs" />
     <Compile Include="Controllers\BuyerRequestController.cs" />
     <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\ContactusController.cs" />
@@ -151,6 +157,11 @@
     <Compile Include="Controllers\ForgetPasswordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ManageAdminController.cs" />
+    <Compile Include="Controllers\ManageCategoryController.cs" />
+    <Compile Include="Controllers\ManageCountryController.cs" />
+    <Compile Include="Controllers\ManageSysConfigController.cs" />
+    <Compile Include="Controllers\ManageTypeController.cs" />
     <Compile Include="Controllers\MyDownloadController.cs" />
     <Compile Include="Controllers\MyProfileController.cs" />
     <Compile Include="Controllers\MyRejectNoteController.cs" />
@@ -158,9 +169,13 @@
     <Compile Include="Controllers\SearchNoteController.cs" />
     <Compile Include="Controllers\SellNoteController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
+    <Compile Include="Controllers\SpamReportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminDashboardModel.cs" />
+    <Compile Include="Models\AdminMemberModel.cs" />
+    <Compile Include="Models\AdminProfileModel.cs" />
     <Compile Include="Models\BuyerRequestModel.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\ContactusModel.cs" />
@@ -172,6 +187,8 @@
     </Compile>
     <Compile Include="Models\EditNoteModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ManageAdminModel.cs" />
+    <Compile Include="Models\MemberDetailModel.cs" />
     <Compile Include="Models\MyProfileModel.cs" />
     <Compile Include="Models\NoteCategory.cs">
       <DependentUpon>NoteModel.tt</DependentUpon>
@@ -214,6 +231,7 @@
     </Compile>
     <Compile Include="Models\SellNoteDashboardModel.cs" />
     <Compile Include="Models\SoldNoteModel.cs" />
+    <Compile Include="Models\SystemConfigModel.cs" />
     <Compile Include="Models\SystemConfiguration.cs">
       <DependentUpon>NoteModel.tt</DependentUpon>
     </Compile>
@@ -223,6 +241,7 @@
     <Compile Include="Models\UserProfile.cs">
       <DependentUpon>NoteModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserRoleProvider.cs" />
     <Compile Include="Models\UsersRole.cs">
       <DependentUpon>NoteModel.tt</DependentUpon>
     </Compile>
@@ -230,50 +249,74 @@
     <Compile Include="Models\AddNoteModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap\bootstrap.min.css" />
-    <Content Include="Content\font-awesome\css\font-awesome.css" />
-    <Content Include="Content\font-awesome\css\font-awesome.min.css" />
-    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\images\AddNote\upload.png" />
-    <Content Include="Content\images\Dashboard\3dot.png" />
-    <Content Include="Content\images\Dashboard\delete.jpeg" />
-    <Content Include="Content\images\Dashboard\delete.png" />
-    <Content Include="Content\images\Dashboard\down-arrow.png" />
-    <Content Include="Content\images\Dashboard\earning-icon.svg" />
-    <Content Include="Content\images\Dashboard\edit.png" />
-    <Content Include="Content\images\Dashboard\eye.png" />
-    <Content Include="Content\images\Dashboard\search.jpg" />
-    <Content Include="Content\images\Dashboard\three-dots-vertical.svg" />
-    <Content Include="Content\images\FAQ\add.png" />
-    <Content Include="Content\images\FAQ\banner-with-overlay.jpg" />
-    <Content Include="Content\images\FAQ\banner.jpg" />
-    <Content Include="Content\images\FAQ\minus.png" />
-    <Content Include="Content\images\favicon\favicon.ico" />
-    <Content Include="Content\images\Homepage\avatar.png" />
-    <Content Include="Content\images\Homepage\banner-with-overlay.jpg" />
-    <Content Include="Content\images\Homepage\banner.jpg" />
-    <Content Include="Content\images\Homepage\download.png" />
-    <Content Include="Content\images\Homepage\sell-notes.jpeg" />
-    <Content Include="Content\images\Login\banner-with-overlay.jpg" />
-    <Content Include="Content\images\Login\eye.png" />
-    <Content Include="Content\images\Login\top-logo.png" />
-    <Content Include="Content\images\Logos\top-logo-purple.png" />
-    <Content Include="Content\images\Logos\top-logo-white.png" />
-    <Content Include="Content\images\NotesDetails\1.jpg" />
-    <Content Include="Content\images\NotesDetails\avatar.png" />
-    <Content Include="Content\images\NotesDetails\close.png" />
-    <Content Include="Content\images\NotesDetails\SUCCESS.png" />
-    <Content Include="Content\images\Search\1.jpg" />
-    <Content Include="Content\images\Search\2.jpg" />
-    <Content Include="Content\images\Search\3.jpg" />
-    <Content Include="Content\images\Search\4.jpg" />
-    <Content Include="Content\images\Search\5.jpg" />
-    <Content Include="Content\images\Search\6.jpg" />
-    <Content Include="Content\images\Search\banner-with-overlay.jpg" />
-    <Content Include="Content\images\Search\banner.jpg" />
-    <Content Include="Content\PagedList.css" />
-    <Content Include="Content\responsive.css" />
-    <Content Include="Content\style.css" />
+    <Content Include="Content\Admin\animate\animate.css" />
+    <Content Include="Content\Admin\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\Admin\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\Admin\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\Admin\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Admin\images\Dashboard\3dot.png" />
+    <Content Include="Content\Admin\images\Dashboard\close.png" />
+    <Content Include="Content\Admin\images\Dashboard\delete.jpeg" />
+    <Content Include="Content\Admin\images\Dashboard\edit.png" />
+    <Content Include="Content\Admin\images\favicon\favicon.ico" />
+    <Content Include="Content\Admin\images\Login\banner-with-overlay.jpg" />
+    <Content Include="Content\Admin\images\Login\eye.png" />
+    <Content Include="Content\Admin\images\Login\top-logo.png" />
+    <Content Include="Content\Admin\images\Logos\top-logo-purple.png" />
+    <Content Include="Content\Admin\images\Logos\top-logo-white.png" />
+    <Content Include="Content\Admin\images\MyProfile\upload.png" />
+    <Content Include="Content\Admin\images\NoteDetail\1.jpg" />
+    <Content Include="Content\Admin\images\NoteDetail\avatar.png" />
+    <Content Include="Content\Admin\images\NoteDetail\close.png" />
+    <Content Include="Content\Admin\images\NoteDetail\SUCCESS.png" />
+    <Content Include="Content\Admin\images\Profile\avatar.png" />
+    <Content Include="Content\Admin\images\Profile\down-arrow.png" />
+    <Content Include="Content\Admin\responsive.css" />
+    <Content Include="Content\Admin\style.css" />
+    <Content Include="Content\Client\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\Client\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\Client\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\Client\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Client\images\AddNote\upload.png" />
+    <Content Include="Content\Client\images\Dashboard\3dot.png" />
+    <Content Include="Content\Client\images\Dashboard\delete.jpeg" />
+    <Content Include="Content\Client\images\Dashboard\delete.png" />
+    <Content Include="Content\Client\images\Dashboard\down-arrow.png" />
+    <Content Include="Content\Client\images\Dashboard\earning-icon.svg" />
+    <Content Include="Content\Client\images\Dashboard\edit.png" />
+    <Content Include="Content\Client\images\Dashboard\eye.png" />
+    <Content Include="Content\Client\images\Dashboard\search.jpg" />
+    <Content Include="Content\Client\images\Dashboard\three-dots-vertical.svg" />
+    <Content Include="Content\Client\images\FAQ\add.png" />
+    <Content Include="Content\Client\images\FAQ\banner-with-overlay.jpg" />
+    <Content Include="Content\Client\images\FAQ\banner.jpg" />
+    <Content Include="Content\Client\images\FAQ\minus.png" />
+    <Content Include="Content\Client\images\favicon\favicon.ico" />
+    <Content Include="Content\Client\images\Homepage\avatar.png" />
+    <Content Include="Content\Client\images\Homepage\banner-with-overlay.jpg" />
+    <Content Include="Content\Client\images\Homepage\banner.jpg" />
+    <Content Include="Content\Client\images\Homepage\download.png" />
+    <Content Include="Content\Client\images\Homepage\sell-notes.jpeg" />
+    <Content Include="Content\Client\images\Login\banner-with-overlay.jpg" />
+    <Content Include="Content\Client\images\Login\eye.png" />
+    <Content Include="Content\Client\images\Login\top-logo.png" />
+    <Content Include="Content\Client\images\Logos\top-logo-purple.png" />
+    <Content Include="Content\Client\images\Logos\top-logo-white.png" />
+    <Content Include="Content\Client\images\NotesDetails\1.jpg" />
+    <Content Include="Content\Client\images\NotesDetails\avatar.png" />
+    <Content Include="Content\Client\images\NotesDetails\close.png" />
+    <Content Include="Content\Client\images\NotesDetails\SUCCESS.png" />
+    <Content Include="Content\Client\images\Search\1.jpg" />
+    <Content Include="Content\Client\images\Search\2.jpg" />
+    <Content Include="Content\Client\images\Search\3.jpg" />
+    <Content Include="Content\Client\images\Search\4.jpg" />
+    <Content Include="Content\Client\images\Search\5.jpg" />
+    <Content Include="Content\Client\images\Search\6.jpg" />
+    <Content Include="Content\Client\images\Search\banner-with-overlay.jpg" />
+    <Content Include="Content\Client\images\Search\banner.jpg" />
+    <Content Include="Content\Client\PagedList.css" />
+    <Content Include="Content\Client\responsive.css" />
+    <Content Include="Content\Client\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -302,6 +345,7 @@
     <Content Include="images\Login\top-logo.png" />
     <Content Include="images\Logos\top-logo-purple.png" />
     <Content Include="images\Logos\top-logo-white.png" />
+    <Content Include="images\MyProfile\upload.png" />
     <Content Include="images\NotesDetails\1.jpg" />
     <Content Include="images\NotesDetails\avatar.png" />
     <Content Include="images\NotesDetails\close.png" />
@@ -331,12 +375,23 @@
     <Content Include="Models\NoteModel.edmx.diagram">
       <DependentUpon>NoteModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\Admin\bootstrap\bootstrap.min.css.map" />
+    <Content Include="Content\Admin\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Admin\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Admin\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Admin\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Admin\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\Admin\images\Login\Thumbs.db" />
     <None Include="Readme.md" />
-    <Content Include="Scripts\bootstrap\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap\bootstrap.min.js" />
-    <Content Include="Scripts\jquery.js" />
-    <Content Include="Scripts\popper.min.js" />
-    <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\Admin\bootstrap\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\Admin\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\Admin\jquery.js" />
+    <Content Include="Scripts\Admin\script.js" />
+    <Content Include="Scripts\Client\bootstrap\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\Client\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\Client\jquery.js" />
+    <Content Include="Scripts\Client\popper.min.js" />
+    <Content Include="Scripts\Client\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -354,36 +409,60 @@
     <Content Include="Views\MySoldNote\Index.cshtml" />
     <Content Include="Views\MyRejectNote\Index.cshtml" />
     <Content Include="Views\Login\VerifyEmail.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Scripts\Admin\bootstrap\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\Admin\bootstrap\bootstrap.min.js.map" />
+    <Content Include="Views\AdminDashboard\Index.cshtml" />
+    <Content Include="Views\AdminNoteUnderReview\Index.cshtml" />
+    <Content Include="Views\AdminPublishedNote\Index.cshtml" />
+    <Content Include="Views\AdminDownloadedNote\Index.cshtml" />
+    <Content Include="Views\AdminRejectedNote\Index.cshtml" />
+    <Content Include="Views\AdminMembers\Index.cshtml" />
+    <Content Include="Views\AdminMembers\MemberDetail.cshtml" />
+    <Content Include="Views\SpamReport\Index.cshtml" />
+    <Content Include="Views\ManageSysConfig\Index.cshtml" />
+    <Content Include="Views\ManageAdmin\Index.cshtml" />
+    <Content Include="Views\ManageAdmin\AddAdmin.cshtml" />
+    <Content Include="Views\ManageAdmin\EditAdmin.cshtml" />
+    <Content Include="Views\ManageCategory\Index.cshtml" />
+    <Content Include="Views\ManageCategory\AddCategory.cshtml" />
+    <Content Include="Views\ManageCategory\EditCategory.cshtml" />
+    <Content Include="Views\ManageType\Index.cshtml" />
+    <Content Include="Views\ManageType\AddType.cshtml" />
+    <Content Include="Views\ManageType\EditType.cshtml" />
+    <Content Include="Views\ManageCountry\Index.cshtml" />
+    <Content Include="Views\ManageCountry\AddCountry.cshtml" />
+    <Content Include="Views\ManageCountry\EditCountry.cshtml" />
+    <Content Include="Views\AdminUpdateProfile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Members\" />
-    <Folder Include="Views\AdminDashboard\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap\bootstrap.min.css.map" />
-    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="Content\images\Dashboard\Thumbs.db" />
-    <Content Include="Content\images\FAQ\Thumbs.db" />
-    <Content Include="Content\images\Homepage\Thumbs.db" />
-    <Content Include="Content\images\Login\Thumbs.db" />
-    <Content Include="Content\images\NotesDetails\Thumbs.db" />
+    <Content Include="Content\Client\bootstrap\bootstrap.min.css.map" />
+    <Content Include="Content\Client\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Client\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Client\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Client\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Client\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\Client\images\Dashboard\Thumbs.db" />
+    <Content Include="Content\Client\images\FAQ\Thumbs.db" />
+    <Content Include="Content\Client\images\Homepage\Thumbs.db" />
+    <Content Include="Content\Client\images\Login\Thumbs.db" />
+    <Content Include="Content\Client\images\NotesDetails\Thumbs.db" />
     <Content Include="images\Dashboard\Thumbs.db" />
     <Content Include="images\FAQ\Thumbs.db" />
     <Content Include="images\Homepage\Thumbs.db" />
     <Content Include="images\Login\Thumbs.db" />
     <Content Include="images\NotesDetails\Thumbs.db" />
     <None Include="packages.config" />
-    <Content Include="Scripts\bootstrap\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap\bootstrap.min.js.map" />
+    <Content Include="Scripts\Client\bootstrap\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\Client\bootstrap\bootstrap.min.js.map" />
     <Content Include="Views\Contactus\Index.cshtml" />
     <Content Include="Views\FAQ\Index.cshtml" />
     <Content Include="Views\ForgetPassword\Index.cshtml" />

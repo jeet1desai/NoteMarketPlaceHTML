@@ -55,8 +55,8 @@ namespace NoteMarketPlace.Controllers
                 "<p>{1}</p>";
 
             var message = new MailMessage();
-            message.To.Add(new MailAddress("******@gmail.com"));  // Reciever 
-            message.From = new MailAddress("******@******.ac.in");  // Sender
+            message.To.Add(new MailAddress("170200107021@gecrajkot.ac.in"));  // Reciever 
+            message.From = new MailAddress("170200107021@gecrajkot.ac.in");  // Sender
             message.Subject = contact.FullName + "- Query";
             message.Body = string.Format(body, contact.Comments, contact.FullName);
             message.IsBodyHtml = true;
@@ -65,7 +65,7 @@ namespace NoteMarketPlace.Controllers
             {
                 var credential = new NetworkCredential
                 {
-                    UserName = "******@******.ac.in",  
+                    UserName = "170200107021@gecrajkot.ac.in",  
                     Password = "******"
                 };
                 smtp.Credentials = credential;

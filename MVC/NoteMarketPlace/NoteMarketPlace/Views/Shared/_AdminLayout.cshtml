@@ -1,0 +1,179 @@
+﻿@using NoteMarketPlace.Models;
+@using System.Linq;
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- title -->
+    <title>@ViewBag.Title</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="~/Content/Admin/font-awesome/css/font-awesome.min.css">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="~/Content/Admin/bootstrap/bootstrap.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="~/Content/Admin/style.css">
+
+    <!-- Responsive Css -->
+    <link rel="stylesheet" href="~/Content/Admin/responsive.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <section class="navigation">
+        <div class="nav-box">
+            <div class="container">
+                <nav class="navbar">
+                    <!-- Logo -->
+                    <div class="nav-logo">
+                        <a href="@Url.Action("Index", "AdminDashboard")"><img src="~/Content/Admin/images/Logos/top-logo-purple.png" alt=""></a>
+                    </div>
+                    <!-- Link -->
+                    <div class="nav-menu-link">
+                        <ul class="navbar-nav container">
+                            <!-- Dashboard -->
+                            <li class="nav-item">
+                                <a class="nav-link @ViewBag.Dashboard" href="@Url.Action("Index", "AdminDashboard")">Dashboard</a>
+                            </li>
+                            <!-- Notes -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link @ViewBag.Notes" data-toggle="dropdown" href="#">Notes</a>
+                                    <img class="arrow-down" src="~/Content/Admin/images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item @ViewBag.ANUR" href="@Url.Action("Index", "AdminNoteUnderReview")">Notes Under Review</a>
+                                        <a class="dropdown-item @ViewBag.APN" href="@Url.Action("Index", "AdminPublishedNote")">Published Notes</a>
+                                        <a class="dropdown-item @ViewBag.ADN" href="@Url.Action("Index", "AdminDownloadedNote")">Downloaded Notes</a>
+                                        <a class="dropdown-item @ViewBag.ARN" href="@Url.Action("Index", "AdminRejectedNote")">Rejected Notes</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Members -->
+                            <li class="nav-item">
+                                <a class="nav-link @ViewBag.Members" href="@Url.Action("Index", "AdminMembers")">Members</a>
+                            </li>
+                            <!-- Reports -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link @ViewBag.Reports" data-toggle="dropdown" href="#">Reports</a>
+                                    <img class="arrow-down" src="~/Content/Admin/images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item @ViewBag.SpamReport" href="@Url.Action("Index", "SpamReport")">Spam Reports</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Settings -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    @using (var db = new NoteMarketPlaceEntities())
+                                    {
+                                        int id = (int)Session["ID"];
+                                        var data = db.Users.FirstOrDefault(x => x.ID == id);
+
+                                        <a class="nav-link @ViewBag.Setting" data-toggle="dropdown" href="#">Settings</a>
+                                        <img class="arrow-down" src="~/Content/Admin/images/Profile/down-arrow.png" alt="">
+                                        <div class="dropdown-menu">
+                                            @if (data.RoleID == 3)
+                                            {
+                                                <a class="dropdown-item @ViewBag.MSC" href="@Url.Action("Index", "ManageSysConfig")">Manage System Configuration</a>
+                                                <a class="dropdown-item @ViewBag.MAdmin" href="@Url.Action("Index", "ManageAdmin")">Manage Administrator</a>
+                                            }
+                                            <a class="dropdown-item @ViewBag.MCategory" href="@Url.Action("Index", "ManageCategory")">Manage Category</a>
+                                            <a class="dropdown-item @ViewBag.MType" href="@Url.Action("Index", "ManageType")">Manage Type</a>
+                                            <a class="dropdown-item @ViewBag.MCountry" href="@Url.Action("Index", "ManageCountry")">Manage Countries</a>
+                                        </div>
+                                    }
+                                </div>
+                            </li>
+                            <!-- Profile -->
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">
+                                        @using (var db = new NoteMarketPlaceEntities())
+                                        {
+                                            int id = (int)Session["ID"];
+                                            var data = db.UserProfiles.FirstOrDefault(x => x.UserID == id);
+
+                                            if (data == null || data.ProfilePicture == null)
+                                            {
+                                                <img class="rounded-circle" src="~/Content/Client/images/NotesDetails/avatar.png" alt="">
+                                            }
+                                            else
+                                            {
+                                                <img class="rounded-circle" src="@Url.Content(data.ProfilePicture)" alt="">
+                                            }
+                                        }
+                                    </a>
+                                    <img class="arrow-down" src="~/Content/Admin/images/Profile/down-arrow.png" alt="">
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item @ViewBag.Profile" href="@Url.Action("Index","AdminUpdateProfile")">Update Profile</a>
+                                        <a class="dropdown-item" href="@Url.Action("Index","ChangePassword")">Change Password</a>
+                                        <a class="dropdown-item" onclick="return confirm('Are you Sure you want to Logout??')" href="@Url.Action("Logout","Login")"><span>Logout</span> </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Logout Btn -->
+                            <li class="nav-item">
+                                <div id="btn-purple">
+                                    <a class="btn" onclick="return confirm('Are you Sure you want to Logout??')" href="@Url.Action("Logout","Login")" title="Logout" role="button">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Mobile Toggle Btn -->
+                    <div class="menu-toggle" id="mobile-menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    @RenderBody()
+
+    <!-- Footer -->
+    <footer class="foot">
+        <hr>
+        <div class="container">
+            <div class="row">
+                <!-- Copyright -->
+                <div class="col-lg-4 col-md-4 col-sm-4 foot-text text-left">
+                    <p>Version : 1.1.1</p>
+                </div>
+                <!-- Social Icon -->
+                <div class="col-lg-8 col-md-8 col-sm-8 foot-text text-right">
+                    <p>Copyright &copy; TatvaSoft All Rights Reserved By</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <!-- JQuery -->
+    <script src="~/Scripts/Admin/jquery.js"></script>
+
+    <!-- bootstrap javaScript -->
+    <script src="~/Scripts/Admin/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- javaScript -->
+    <script src="~/Scripts/Admin/script.js"></script>
+
+</body>
+
+</html>

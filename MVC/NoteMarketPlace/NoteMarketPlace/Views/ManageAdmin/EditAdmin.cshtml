@@ -1,0 +1,62 @@
+﻿@model NoteMarketPlace.Models.ManageAdminModel
+
+@{
+    ViewBag.Title = "Note - EditAdmin - " + Model.FirstName + " " + Model.LastName;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Edit Administrator -->
+<section id="addadmin">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="title">
+                        <p>Edit Administrator</p>
+                    </div>
+                    <p class="text-danger">@ViewBag.Error</p>
+                    <div class="form-div">
+
+                        @using (Html.BeginForm("EditAdmin", "ManageAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.HiddenFor(model => model.ID);
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label for="firstname">First Name *</label>
+                                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", id = "firstname", placeholder = "Enter Your First Name", type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.FirstName)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastname">Last Name *</label>
+                                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", id = "lastname", placeholder = "Enter Your Last Name", type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.LastName)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "email", placeholder = "Enter Your Email", type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone No *</label><br>
+                                <div class="phone-number form-group">
+                                    @Html.DropDownListFor(model => model.CountryPhoneCode, new SelectList(Model.CountryList, "ID", "CountryCode", Model.CountryPhoneCode), "Country Code", new { @class = "form-control", required = "required" })
+                                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", id = "phone", placeholder = "Enter Your Phone", type = "text", required = "required" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Phone)
+                                @Html.ValidationMessageFor(model => model.CountryPhoneCode)
+                            </div>
+
+                            <div id="btn-purple">
+                                <button type="submit" value="Submit" class="btn">SUBMIT</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

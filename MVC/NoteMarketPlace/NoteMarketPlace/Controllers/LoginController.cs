@@ -85,18 +85,17 @@ namespace NoteMarketPlace.Controllers
                 if (isUser != null)
                 {
                     //Remember me check box
-                    FormsAuthentication.SetAuthCookie(user.Email, user.IsSelected);
+                    FormsAuthentication.SetAuthCookie(user.Email, true);
 
                     Session["ID"] = isUser.ID;
                     Session["Email"] = isUser.Email;
 
-
+                    
                     //For Member
                     if (isUser.RoleID == 1)
                     {
                         var UserProfile = db.UserProfiles.Where(x => x.UserID == isUser.ID).FirstOrDefault();
-                        
-                        if(UserProfile == null)
+                        if (UserProfile == null)
                         {
                             return RedirectToAction("Index", "MyProfile");
                         }
@@ -137,7 +136,7 @@ namespace NoteMarketPlace.Controllers
 
             var message = new MailMessage();
             message.To.Add(new MailAddress(sendTo.Trim()));  // Reciever 
-            message.From = new MailAddress("******@******.ac.in");  // Sender
+            message.From = new MailAddress("170200107021@gecrajkot.ac.in");  // Sender
             message.Subject = "Note Marketplace - Email Verification";
 
             string body;
@@ -158,7 +157,7 @@ namespace NoteMarketPlace.Controllers
             {
                 var credential = new NetworkCredential
                 {
-                    UserName = "******@******.ac.in",
+                    UserName = "170200107021@gecrajkot.ac.in",
                     Password = "******"
                 };
                 smtp.Credentials = credential;

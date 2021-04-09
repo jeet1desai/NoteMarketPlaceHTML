@@ -11,6 +11,7 @@ namespace NoteMarketPlace.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
     public partial class NoteCategory
@@ -24,12 +25,19 @@ namespace NoteMarketPlace.Models
        
 
         public int ID { get; set; }
+
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Use letters only please")]
+        [Required]
         public string Name { get; set; }
+
+        [Required]
         public string Description { get; set; }
+
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
+
         public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

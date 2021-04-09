@@ -30,10 +30,6 @@ namespace NoteMarketPlace.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (this.Request.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Home");
-            }
             return View();
         }
 
@@ -45,11 +41,9 @@ namespace NoteMarketPlace.Controllers
         {
             if (ModelState.IsValid)
             {
-                
                 Match isPassword = Regex.Match(user.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,24}", RegexOptions.IgnorePatternWhitespace);
                 Match isFirstName = Regex.Match(user.FirstName, @"^[a-zA-Z]+$", RegexOptions.IgnorePatternWhitespace);
                 Match isLastName = Regex.Match(user.LastName, @"^[a-zA-Z]+$", RegexOptions.IgnorePatternWhitespace);
-
 
                 //Email already Exist
                 if (db.Users.Any(x => x.Email == user.Email))
@@ -167,7 +161,7 @@ namespace NoteMarketPlace.Controllers
 
             var message = new MailMessage();
             message.To.Add(new MailAddress(sendTo.Trim()));  // Reciever 
-            message.From = new MailAddress("******@******.ac.in");  // Sender
+            message.From = new MailAddress("170200107021@gecrajkot.ac.in");  // Sender
             message.Subject = "Note Marketplace - Email Verification";
 
             string body;
@@ -188,7 +182,7 @@ namespace NoteMarketPlace.Controllers
             {
                 var credential = new NetworkCredential
                 {
-                    UserName = "******@******.ac.in",
+                    UserName = "170200107021@gecrajkot.ac.in",
                     Password = "******"
                 };
                 smtp.Credentials = credential;
